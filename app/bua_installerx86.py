@@ -3258,7 +3258,10 @@ def _bua_record_switch_baseline(app_name, latest):
         "update_recipe": {
             "type": "multi_component",
             "target": "/userdata/system/switch/appimages",
-            "components": latest["components"],
+            "components": [
+                c for c in latest["components"]
+                if not c.get("unavailable")
+            ],
         },
         "registration_source": "verified_component_match",
         "registration_schema": 2,
@@ -3315,9 +3318,10 @@ def get_switch_version_status(app_name: str) -> Dict | None:
     status["component_states"] = states
 
     errors = [s for s in states if s["state"] == "error"]
-    present = [s for s in states if s["state"] != "missing"]
     differs = [s for s in states if s["state"] == "differs"]
+    matched = [s for s in states if s["state"] == "match"]
     missing = [s for s in states if s["state"] == "missing"]
+    unavailable = [s for s in states if s["state"] == "unavailable"]
 
     if errors:
         status["error"] = "; ".join(
@@ -3325,15 +3329,34 @@ def get_switch_version_status(app_name: str) -> Dict | None:
         )
         return status
 
-    if not present:
-        status["error"] = "No Switch emulators found in appimages"
+    if not (differs or matched):
+        status["error"] = (
+            "; ".join(
+                f"{s['name']} source unavailable ({s['detail']})"
+                for s in unavailable
+            )
+            or "No Switch emulators found in appimages"
+        )
         return status
 
     summary = [f"{s['name']} out of date" for s in differs]
+    summary += [
+        f"{s['name']} source unavailable ({s['detail']})"
+        for s in unavailable
+    ]
     summary += [f"{s['name']} not installed" for s in missing]
     status["component_summary"] = ", ".join(summary)
 
     # Components the user never installed are reported, never added.
+    # An unavailable source can be neither confirmed nor updated: the
+    # rest are still checked, but Switch is not reported up to date.
+    if not differs and unavailable:
+        status["error"] = (
+            "Other emulators up to date; "
+            + status["component_summary"]
+        )
+        return status
+
     if not differs:
         if installed_identity != latest["identity"] and not missing:
             _bua_record_switch_baseline(app_name, latest)

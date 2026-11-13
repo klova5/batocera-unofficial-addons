@@ -5,6 +5,8 @@ import json
 import platform
 import re
 import subprocess
+import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -104,248 +106,176 @@ components = []
 
 
 # ============================================================
-# Citron
+# Component sources (BUA_SWITCH_SOURCES_V2)
 # ============================================================
+# Citron Nextendo and Ryujinx-Nextendo moved from GitHub to the
+# official Nextendo Forgejo server; its release API matches GitHub's
+# fields (tag_name, draft, prerelease, assets[].browser_download_url).
+# Each source is resolved on its own: one unreachable source marks only
+# that component unavailable instead of failing the whole Switch check.
 
-citron_version = None
+NEXTENDO_API = "https://git.nextendo.network/api/v1/repos/NextendoNetwork"
+APPIMAGES = "/userdata/system/switch/appimages/"
 
-if arch in ("x86_64", "aarch64"):
-    citron_data = json.loads(
-        get_bytes(
-            "https://api.github.com/repos/"
-            "NextendoNetwork/citron-nextendo/releases/tags/nightly-linux"
-        ).decode("utf-8")
-    )
 
-    citron_asset = None
-    citron_commit = None
+def _unavailable(name, target, reason):
+    return {
+        "name": name,
+        "version": "unavailable",
+        "unavailable": True,
+        "error": str(reason)[:200] or "Source unavailable",
+        "target": APPIMAGES + target,
+    }
 
-    assets = citron_data.get("assets", [])
+
+def _resolve(name, target, resolver):
+    try:
+        return resolver()
+    except Exception as exc:
+        if isinstance(exc, urllib.error.HTTPError):
+            failed_url = getattr(exc, "filename", None) or ""
+            host = urllib.parse.urlsplit(failed_url).hostname or "source"
+            reason = f"HTTP {exc.code} from {host}"
+        else:
+            reason = str(exc) or exc.__class__.__name__
+        return _unavailable(name, target, reason)
+
+
+def _citron():
+    data = json.loads(get_bytes(
+        NEXTENDO_API + "/citron-nextendo/releases/tags/nightly-linux"
+    ).decode("utf-8"))
 
     if arch == "x86_64":
-        # Prefer broad compatibility. Only consider the v3 build
-        # when this CPU actually supports x86-64-v3.
-        preferred_suffixes = [
-            "-linux-x86_64.AppImage",
-            "-linux-x86_64_v2.AppImage",
-        ]
-
+        # Broad compatibility first; x86-64-v3 only where the CPU has it;
+        # the no-PGO baseline build is the last resort.
+        suffixes = ["-linux-x86_64.AppImage", "-linux-x86_64_v2.AppImage"]
         if supports_x86_64_v3():
-            preferred_suffixes.append(
-                "-linux-x86_64_v3.AppImage"
-            )
+            suffixes.append("-linux-x86_64_v3.AppImage")
+        suffixes.append("-linux-x86_64-use-nopgo.AppImage")
     else:
-        preferred_suffixes = (
-            "-linux-aarch64.AppImage",
-            "-linux-aarch64-use-nopgo.AppImage",
-        )
+        suffixes = ["-linux-aarch64.AppImage",
+                    "-linux-aarch64-use-nopgo.AppImage"]
 
-    for suffix in preferred_suffixes:
+    assets = data.get("assets") or []
+    for suffix in suffixes:
         for asset in assets:
             name = str(asset.get("name") or "")
             url = str(asset.get("browser_download_url") or "")
+            match = re.fullmatch(
+                r"citron_nightly-([0-9a-f]+)" + re.escape(suffix), name)
+            if match and url:
+                return {
+                    "name": "Citron",
+                    "version": "nightly-" + match.group(1),
+                    "url": url,
+                    "target": APPIMAGES + "citron-emu.AppImage",
+                }
 
-            if name.endswith(suffix) and url:
-                citron_asset = url
-
-                m = re.search(
-                    r"citron_nightly-([0-9a-f]+)-",
-                    name,
-                )
-
-                if m:
-                    citron_commit = m.group(1)
-
-                break
-
-        if citron_asset:
-            break
-
-    if citron_asset:
-        citron_version = (
-            "nightly-" + citron_commit
-            if citron_commit
-            else str(citron_data.get("tag_name") or "nightly-linux")
-        )
-
-        components.append({
-            "name": "Citron",
-            "version": citron_version,
-            "url": citron_asset,
-            "target": (
-                "/userdata/system/switch/appimages/"
-                "citron-emu.AppImage"
-            ),
-        })
+    raise RuntimeError("No Linux build in Citron nightly-linux release")
 
 
-# ============================================================
-# Ryujinx-Nextendo
-# ============================================================
-
-ryujinx_version = None
-
-if arch == "x86_64":
-    releases = json.loads(
-        get_bytes(
-            "https://api.github.com/repos/"
-            "NextendoNetwork/Ryujinx-Nextendo/releases?per_page=100"
-        ).decode("utf-8")
-    )
+def _ryujinx():
+    releases = json.loads(get_bytes(
+        NEXTENDO_API + "/Ryujinx-Nextendo/releases?limit=50"
+    ).decode("utf-8"))
 
     candidates = []
-
     for release in releases:
         if release.get("draft") or release.get("prerelease"):
             continue
-
         version = str(release.get("tag_name") or "").strip()
         match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", version)
-
         if not match:
             continue
-
-        for asset in release.get("assets", []):
+        for asset in release.get("assets") or []:
             name = str(asset.get("name") or "")
             url = str(asset.get("browser_download_url") or "")
-
-            valid_name = (
-                name.startswith("Nextendo-")
-                and name.endswith("-linux-x64.tar.gz")
-            ) or (
-                name.startswith("Ryujinx-Nextendo-")
-                and name.endswith("-linux_x64.tar.gz")
-            )
-
-            if valid_name and url:
-                candidates.append((
-                    tuple(map(int, match.groups())),
-                    version,
-                    url,
-                ))
+            if name == "Nextendo-" + version.removeprefix("v") + "-linux-x64.tar.gz" and url:
+                candidates.append((tuple(map(int, match.groups())), version, url))
                 break
 
     if not candidates:
-        raise SystemExit(
-            "Unable to resolve Ryujinx-Nextendo Linux x64 archive"
-        )
+        raise RuntimeError("No Ryujinx-Nextendo Linux x64 release")
 
-    _, ryujinx_version, ryujinx_asset = max(
-        candidates, key=lambda item: item[0]
-    )
-
-    components.append({
+    _, version, url = max(candidates, key=lambda item: item[0])
+    return {
         "name": "Ryujinx-Nextendo",
-        "version": ryujinx_version,
-        "url": ryujinx_asset,
-        "target": (
-            "/userdata/system/switch/appimages/"
-            "ryujinx-nextendo.tar.gz"
-        ),
+        "version": version,
+        "url": url,
+        "target": APPIMAGES + "ryujinx-nextendo.tar.gz",
         "type": "replace_file",
         "executable": False,
-    })
+    }
 
+
+def _eden_release(index_url, default_base):
+    data = json.loads(get_bytes(index_url).decode("utf-8"))
+    version = str(data.get("tag_name") or "").strip()
+    base = str(data.get("base") or default_base).rstrip("/")
+    if not version:
+        raise RuntimeError("No version in " + index_url)
+    return version, base
+
+
+def _eden_stable_pair():
+    version, base = _eden_release(
+        "https://stable.eden-emu.dev/latest/release.json",
+        "https://stable.eden-emu.dev")
+    return [
+        {
+            "name": "Eden",
+            "version": version,
+            "url": f"{base}/{version}/Eden-Linux-{version}-amd64-gcc-standard.AppImage",
+            "target": APPIMAGES + "eden-emu.AppImage",
+        },
+        {
+            "name": "Eden PGO",
+            "version": version,
+            "url": f"{base}/{version}/Eden-Linux-{version}-amd64-clang-pgo.AppImage",
+            "target": APPIMAGES + "eden-pgo.AppImage",
+        },
+    ]
+
+
+def _eden_nightly():
+    version, base = _eden_release(
+        "https://nightly.eden-emu.dev/latest/release.json",
+        "https://nightly.eden-emu.dev")
+    if "." not in version:
+        raise RuntimeError("Unrecognized Eden Nightly version")
+    short = version.split(".", 1)[1]
+    return {
+        "name": "Eden Nightly",
+        "version": version,
+        "url": f"{base}/{version}/Eden-Linux-{short}-amd64-gcc-standard.AppImage",
+        "target": APPIMAGES + "eden-nightly.AppImage",
+    }
+
+
+if arch in ("x86_64", "aarch64"):
+    components.append(_resolve("Citron", "citron-emu.AppImage", _citron))
 
 if arch == "x86_64":
-    # ============================================================
-    # Eden stable + PGO
-    # ============================================================
+    components.append(
+        _resolve("Ryujinx-Nextendo", "ryujinx-nextendo.tar.gz", _ryujinx))
 
-    eden_data = json.loads(
-        get_bytes(
-            "https://stable.eden-emu.dev/latest/release.json"
-        ).decode("utf-8")
+    stable = _resolve("Eden", "eden-emu.AppImage", _eden_stable_pair)
+    if isinstance(stable, list):
+        components.extend(stable)
+    else:
+        components.append(stable)
+        components.append(
+            _unavailable("Eden PGO", "eden-pgo.AppImage", stable["error"]))
+
+    components.append(
+        _resolve("Eden Nightly", "eden-nightly.AppImage", _eden_nightly))
+
+if components and all(c.get("unavailable") for c in components):
+    raise SystemExit(
+        "No Switch component source reachable: "
+        + "; ".join(c["name"] + ": " + c["error"] for c in components)
     )
-
-    eden_version = str(
-        eden_data.get("tag_name") or ""
-    ).strip()
-
-    eden_base = str(
-        eden_data.get("base")
-        or "https://stable.eden-emu.dev"
-    ).rstrip("/")
-
-    if not eden_version:
-        raise SystemExit("Unable to resolve Eden")
-
-    eden_url = (
-        f"{eden_base}/{eden_version}/"
-        f"Eden-Linux-{eden_version}-"
-        "amd64-gcc-standard.AppImage"
-    )
-
-    eden_pgo_url = (
-        f"{eden_base}/{eden_version}/"
-        f"Eden-Linux-{eden_version}-"
-        "amd64-clang-pgo.AppImage"
-    )
-
-    components.append({
-        "name": "Eden",
-        "version": eden_version,
-        "url": eden_url,
-        "target": (
-            "/userdata/system/switch/appimages/"
-            "eden-emu.AppImage"
-        ),
-    })
-
-    components.append({
-        "name": "Eden PGO",
-        "version": eden_version,
-        "url": eden_pgo_url,
-        "target": (
-            "/userdata/system/switch/appimages/"
-            "eden-pgo.AppImage"
-        ),
-    })
-
-
-    # ============================================================
-    # Eden Nightly
-    # ============================================================
-
-    nightly_data = json.loads(
-        get_bytes(
-            "https://nightly.eden-emu.dev/latest/release.json"
-        ).decode("utf-8")
-    )
-
-    nightly_version = str(
-        nightly_data.get("tag_name") or ""
-    ).strip()
-
-    nightly_base = str(
-        nightly_data.get("base")
-        or "https://nightly.eden-emu.dev"
-    ).rstrip("/")
-
-    if (
-        not nightly_version
-        or "." not in nightly_version
-    ):
-        raise SystemExit("Unable to resolve Eden Nightly")
-
-    nightly_short = nightly_version.split(".", 1)[1]
-
-    nightly_url = (
-        f"{nightly_base}/{nightly_version}/"
-        f"Eden-Linux-{nightly_short}-"
-        "amd64-gcc-standard.AppImage"
-    )
-
-    components.append({
-        "name": "Eden Nightly",
-        "version": nightly_version,
-        "url": nightly_url,
-        "target": (
-            "/userdata/system/switch/appimages/"
-            "eden-nightly.AppImage"
-        ),
-    })
-
 
 
 # ============================================================

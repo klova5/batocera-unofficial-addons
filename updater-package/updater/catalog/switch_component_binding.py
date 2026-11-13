@@ -56,6 +56,17 @@ def verify_switch_components(lines, major=42, architecture="x86_64",
         name=item["name"]
         version=item.get("version")
         url=item.get("url")
+        if item.get("unavailable"):
+            # BUA_SWITCH_SOURCES_V2: this source could not be resolved.
+            error=item.get("error")
+            if (version!="unavailable" or url is not None
+                    or item.get("target")!=EXPECTED[name]
+                    or not isinstance(error,str) or not error or len(error)>200):
+                raise ValueError("Invalid unavailable component entry")
+            checked.append({"name":name,"version":version,"url":None,
+                            "target":EXPECTED[name],"unavailable":True,
+                            "error":error})
+            continue
         if not isinstance(version,str) or not version or len(version)>128:
             raise ValueError("Invalid component version")
         if not isinstance(url,str) or len(url)>1000:
@@ -71,9 +82,9 @@ def verify_switch_components(lines, major=42, architecture="x86_64",
             raise ValueError("Unsafe asset URL path")
         host=parsed.hostname
         if name=="Citron":
-            if host!="github.com" or not re.fullmatch(
+            if host!="git.nextendo.network" or not re.fullmatch(
                 r"/NextendoNetwork/citron-nextendo/releases/download/nightly-linux/"
-                r"citron_nightly-[0-9a-f]+-linux-x86_64(?:_v2|_v3)?[.]AppImage",path):
+                r"citron_nightly-[0-9a-f]+-linux-x86_64(?:_v2|_v3|-use-nopgo)?[.]AppImage",path):
                 raise ValueError("Citron asset not from expected release")
             commit=re.search(r"citron_nightly-([0-9a-f]+)-",path).group(1)
             if version!="nightly-"+commit:
@@ -83,7 +94,7 @@ def verify_switch_components(lines, major=42, architecture="x86_64",
             version_without_v=re.escape(version.removeprefix("v"))
             expected=(r"/NextendoNetwork/Ryujinx-Nextendo/releases/download/"
                       +tag+r"/Nextendo-"+version_without_v+r"-linux-x64[.]tar[.]gz")
-            if host!="github.com" or not re.fullmatch(expected,path):
+            if host!="git.nextendo.network" or not re.fullmatch(expected,path):
                 raise ValueError("Ryujinx asset not from selected release")
         elif name in ("Eden","Eden PGO"):
             variant="gcc-standard" if name=="Eden" else "clang-pgo"
@@ -273,7 +284,7 @@ def verify_installed_components(components, root="", cache_path=None,
     components: the "components" list from verify_switch_components().
     root: test prefix prepended to every /userdata path.
     Returns one {"name","version","state","detail"} per component;
-    state is "match", "differs", "missing" or "error".
+    state is "match", "differs", "missing", "unavailable" or "error".
     """
     cache_path = cache_path or (root + ASSET_CACHE_FILE)
     cache = _load_cache(cache_path)
@@ -287,7 +298,9 @@ def verify_installed_components(components, root="", cache_path=None,
         archive = name == "Ryujinx-Nextendo"
         state, detail = "error", ""
         try:
-            if not archive and not _regular_file(local_target):
+            if item.get("unavailable"):
+                state, detail = "unavailable", item.get("error") or ""
+            elif not archive and not _regular_file(local_target):
                 state, detail = "missing", "Not installed"
             else:
                 entry = describe_remote_asset(item["url"], archive, cache,
