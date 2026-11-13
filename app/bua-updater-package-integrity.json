@@ -1,7 +1,7 @@
 {
   "backend_api_version": 1,
   "file_hashes": {
-    "bua_installerx86.py": "3186daecfbbb43dd084f895264ecd458493a31f61cfb035be1fc1a3e56b3a510",
+    "bua_installerx86.py": "441ce26e8698518e0c7933666e0964cb9837b5dd768c9cc5977df5ac8c163c64",
     "catalog/audit_github_parent_sources.py": "d86df49130168de2b87944d27b971e5d76925941a6906dcbf5f9bb1fa143453d",
     "catalog/audit_mirror_backed_sources.py": "be55e0f006c33126ae7fd80d4c1afc0b0d973c920f9faa3b7fb1380557cf7261",
     "catalog/blissos_sourceforge_identity.py": "3b7e34a3d9203531b75945d6db072f9069ab129f98a5b83b6d6e97e15cb0a8e1",
@@ -279,6 +279,6 @@
     "integrations/nextendo-browser-select.py": "e99358d15d85a2dcedb6bdc2d68d9902320f54acc72925575a78571d687c85ff",
     "integrations/switch-motion-restore.sh": "267636f85b8096c1c387e99f3b571174b77bb693e7653966f79f487b7995083c"
   },
-  "package_sha256": "8fd41c47aa0f78e712e5d281c7cdd4edc7ec2017dc86bcba6631fb43e033a160",
+  "package_sha256": "81a3625d29066a4b4a194c7a25a0b18855ea2c3d30c7224de4465d36b93d11ea",
   "schema_version": 1
 }

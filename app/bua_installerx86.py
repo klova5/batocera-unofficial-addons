@@ -324,6 +324,21 @@ def t(key: str) -> str:
     # Last resort: return key itself
     return key
 
+
+def tr(key: str, default: str, **fields) -> str:
+    """t() with an English default for keys a translation file may not
+    have yet (the files are read from the main repo, so new keys only
+    appear there once merged). Fills {placeholders} from fields."""
+    value = t(key)
+    if not value or value == key:
+        value = default
+    if not fields:
+        return value
+    try:
+        return value.format(**fields)
+    except Exception:
+        return default.format(**fields)
+
 def check_language_exists(lang_data: Tuple[str, str, str], results: list, lock: threading.Lock):
     """Check if a language file exists on GitHub (threaded helper)"""
     name, code, native = lang_data
@@ -7845,19 +7860,27 @@ def get_switch_version_status(app_name: str) -> Dict | None:
     if not (differs or matched):
         status["error"] = (
             "; ".join(
-                f"{s['name']} source unavailable ({s['detail']})"
+                tr("switch_component_unavailable", "{name} source unavailable ({reason})",
+                   name=s["name"], reason=s["detail"])
                 for s in unavailable
             )
             or "No Switch emulators found in appimages"
         )
         return status
 
-    summary = [f"{s['name']} out of date" for s in differs]
+    summary = [
+        tr("switch_component_out_of_date", "{name} out of date", name=s["name"])
+        for s in differs
+    ]
     summary += [
-        f"{s['name']} source unavailable ({s['detail']})"
+        tr("switch_component_unavailable", "{name} source unavailable ({reason})",
+           name=s["name"], reason=s["detail"])
         for s in unavailable
     ]
-    summary += [f"{s['name']} not installed" for s in missing]
+    summary += [
+        tr("switch_component_not_installed", "{name} not installed", name=s["name"])
+        for s in missing
+    ]
     status["component_summary"] = ", ".join(summary)
 
     # Components the user never installed are reported, never added.
@@ -7865,7 +7888,8 @@ def get_switch_version_status(app_name: str) -> Dict | None:
     # rest are still checked, but Switch is not reported up to date.
     if not differs and unavailable:
         status["error"] = (
-            "Other emulators up to date; "
+            tr("switch_other_components_current", "Other emulators up to date")
+            + "; "
             + status["component_summary"]
         )
         return status
@@ -9324,11 +9348,11 @@ class _UpdaterScanState:
         self.error: str | None = None
         self.idx = 0
         self.items: List[Tuple[str, str, bool, str]] = [
-            (app, "Waiting to scan", False, "") for app in apps
+            (app, tr("updater_waiting_to_scan", "Waiting to scan"), False, "") for app in apps
         ]
         self.selected: Dict[str, bool] = {}
         self.scan_target_count = len(apps)
-        self.scan_progress = "Starting scan..."
+        self.scan_progress = tr("updater_scan_starting", "Starting scan...")
         self.finished_at: float | None = None
         self.seen = False
 
@@ -9501,10 +9525,7 @@ class UpdaterScreen(BaseScreen):
             push_screen(
                 InfoDialog(
                     t("updater"),
-                    [
-                        "Select at least one installed "
-                        "application to scan."
-                    ],
+                    [tr("updater_select_one", "Select at least one installed application to scan.")],
                 )
             )
             return
@@ -9560,10 +9581,11 @@ class UpdaterScreen(BaseScreen):
         Scan only the apps explicitly selected by the user.
         """
         try:
-            self.scan_progress = "Refreshing update catalog..."
+            self.scan_progress = tr("updater_refreshing_catalog", "Refreshing update catalog...")
 
             def manifest_progress(done, total):
-                self.scan_progress = f"Refreshing update catalog ({done}/{total})"
+                self.scan_progress = tr("updater_refreshing_catalog_progress",
+                                        "Refreshing update catalog ({done}/{total})", done=done, total=total)
 
             manifest_refresh = (
                 ensure_global_manifest_current(manifest_progress)
@@ -9590,9 +9612,8 @@ class UpdaterScreen(BaseScreen):
             results = []
 
             for app_number, app in enumerate(installed_apps, 1):
-                self.scan_progress = (
-                    f"Checking {app} ({app_number}/{len(installed_apps)})"
-                )
+                self.scan_progress = tr("updater_checking_app", "Checking {app} ({number}/{total})",
+                                        app=app, number=app_number, total=len(installed_apps))
                 if (
                     use_cache
                     and app in GITHUB_CACHE
@@ -9620,14 +9641,14 @@ class UpdaterScreen(BaseScreen):
                 )
 
                 if blocked:
-                    status = "Blocked source"
+                    status = tr("updater_blocked_source", "Blocked source")
                     needs = False
 
                     detail = (
                         blocked.get("reason")
                         or blocked.get("source")
                         or
-                        "Required source is unavailable"
+                        tr("updater_source_unavailable", "Required source is unavailable")
                     )
 
                     GITHUB_CACHE[app] = (
@@ -9690,9 +9711,7 @@ class UpdaterScreen(BaseScreen):
                         )
                         needs = True
                     else:
-                        status = (
-                            "Update recipe unavailable"
-                        )
+                        status = tr("updater_recipe_unavailable", "Update recipe unavailable")
                         needs = False
 
                     if (
@@ -9706,8 +9725,7 @@ class UpdaterScreen(BaseScreen):
 
                     elif latest_version:
                         details.append(
-                            f"Latest "
-                            f"{latest_version}"
+                            tr("updater_latest_version", "Latest {version}", version=latest_version)
                         )
 
                     if update_error:
@@ -9732,8 +9750,7 @@ class UpdaterScreen(BaseScreen):
 
                     if installed_version:
                         details.append(
-                            f"Version "
-                            f"{installed_version}"
+                            tr("updater_version", "Version {version}", version=installed_version)
                         )
 
                     if app_status.get("component_summary"):
@@ -9746,21 +9763,17 @@ class UpdaterScreen(BaseScreen):
                     )
 
                 else:
-                    status = (
-                        "App version unknown"
-                    )
+                    status = tr("updater_version_unknown", "App version unknown")
                     needs = False
 
                     if installed_version:
                         details.append(
-                            f"Installed "
-                            f"{installed_version}"
+                            tr("updater_installed_version", "Installed {version}", version=installed_version)
                         )
 
                     if latest_version:
                         details.append(
-                            f"Latest "
-                            f"{latest_version}"
+                            tr("updater_latest_version", "Latest {version}", version=latest_version)
                         )
 
                     app_error = (
@@ -10038,9 +10051,9 @@ class UpdaterScreen(BaseScreen):
         if ignore_warnings and uninstall_cmd.rstrip().endswith("| bash"):
             uninstall_cmd = f"{uninstall_cmd} -s -- --ignore-warning"
 
-        message = [f"Uninstall {app}?"]
+        message = [tr("uninstall_confirm", "Uninstall {app}?", app=app)]
         if ignore_warnings:
-            message.append("Its warnings will be skipped.")
+            message.append(tr("uninstall_confirm_skip_warnings", "Its warnings will be skipped."))
 
         def on_confirm():
             # ConfirmDialog closes the top screen after this callback, so
@@ -10081,10 +10094,12 @@ class UpdaterScreen(BaseScreen):
 
         selected_count = sum(1 for value in self.selected.values() if value)
         if self.phase == self.PHASE_SCAN_SELECT:
-            subtitle = f"Choose installed apps to scan ({selected_count}/{len(self.items)} selected)"
+            subtitle = tr("updater_choose_scan", "Choose installed apps to scan ({selected}/{total} selected)",
+                          selected=selected_count, total=len(self.items))
         elif self.phase == self.PHASE_RESULTS and not self.loading and self.items:
             updates = sum(1 for item in self.items if item[2])
-            subtitle = f"{updates} update(s) available, {selected_count} selected"
+            subtitle = tr("updater_results_summary", "{updates} update(s) available, {selected} selected",
+                          updates=updates, selected=selected_count)
         else:
             subtitle = ""
         top = draw_screen_header(t("updater_title"), subtitle)
@@ -10094,15 +10109,16 @@ class UpdaterScreen(BaseScreen):
             if self.phase == self.PHASE_SCAN_SELECT:
                 all_selected = bool(self.items) and selected_count == len(self.items)
                 hint_parts.append(f"A={t('hint_toggle')}")
-                hint_parts.append("X=" + ("Deselect All" if all_selected else "Select All"))
-                hint_parts.append("Start=Scan Selected")
+                hint_parts.append("X=" + (tr("hint_deselect_all", "Deselect All") if all_selected
+                                          else tr("hint_select_all", "Select All")))
+                hint_parts.append("Start=" + tr("hint_scan_selected", "Scan Selected"))
             elif self.phase == self.PHASE_RESULTS:
                 try:
                     if self.items and self.items[self.idx][2]:
                         hint_parts.append(f"A={t('hint_toggle')}")
                 except Exception:
                     pass
-                hint_parts.append("Start=Update Selected")
+                hint_parts.append("Start=" + tr("hint_update_selected", "Update Selected"))
             if self.items:
                 hint_parts.append(f"Y={t('hint_uninstall')}")
                 hint_parts.append(f"LB+RB={t('hint_uninstall_ignore')}")
@@ -10111,7 +10127,8 @@ class UpdaterScreen(BaseScreen):
 
         if self.loading:
             if self.phase == self.PHASE_SCANNING:
-                text = self.scan_progress or f"Scanning selected applications ({self.scan_target_count})..."
+                text = self.scan_progress or tr("updater_scanning_selected", "Scanning selected applications ({count})...",
+                                                count=self.scan_target_count)
             else:
                 text = t("scanning_updates")
             draw_spinner(screen, (margin + S(14), top + S(14)), S(14), ACCENT)
