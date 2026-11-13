@@ -36,6 +36,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--only", action="append", default=[], help="audit only this app (repeatable)")
 parser.add_argument("--frontend", default=FRONTEND)
 parser.add_argument("--apps-json", help="read the app list from this file instead of the repo")
+parser.add_argument("--real-pygame", action="store_true", help="load BUA with the real pygame")
 args = parser.parse_args()
 
 # Work on a copy of the package state; never the real file.
@@ -45,9 +46,29 @@ if os.path.isfile(REAL_STATE):
     shutil.copy2(REAL_STATE, state_copy)
 os.environ["BUA_PACKAGE_STATE_FILE"] = state_copy
 
-# Headless: no window, no sound.
-os.environ["SDL_VIDEODRIVER"] = "dummy"
-os.environ["SDL_AUDIODRIVER"] = "dummy"
+parser_real = "--real-pygame" in sys.argv
+
+# Headless: the audit draws nothing, and Batocera's pygame has no
+# "dummy" video driver, so BUA is loaded with a stand-in pygame that
+# never touches the display. --real-pygame uses the real one.
+if not parser_real:
+    import types
+    from unittest import mock
+
+    _pg = mock.MagicMock(name="pygame")
+    _pg.joystick.get_count.return_value = 0
+    _pg.display.Info.return_value.current_w = 1280
+    _pg.display.Info.return_value.current_h = 720
+    _pg.display.set_mode.return_value.get_size.return_value = (1280, 720)
+
+    class _StandInPygame(types.ModuleType):
+        def __getattr__(self, name):
+            return getattr(_pg, name)
+
+    _module = _StandInPygame("pygame")
+    sys.modules["pygame"] = _module
+    for _sub in ("display", "font", "mixer", "joystick", "event", "time", "mouse", "draw", "image", "freetype", "gfxdraw", "transform"):
+        sys.modules["pygame." + _sub] = getattr(_pg, _sub)
 os.environ.pop("DISPLAY", None)
 
 import importlib.util  # noqa: E402
