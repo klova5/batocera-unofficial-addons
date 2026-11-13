@@ -332,6 +332,8 @@ def patch_ryujinx_generator():
             "[Nextendo] Ryujinx generator support already present."
         )
 
+    safe_deployment = '        # Deploy updater-managed Ryujinx-Nextendo archive.\n        # BUA_NEXTENDO_SAFE_DEPLOY_V3\n        if os.path.isfile(ryujinx_nextendo_archive):\n            import hashlib\n            import uuid\n            import tempfile\n            from pathlib import PurePosixPath\n\n            backup_dir = ryujinx_extracted_dir + ".nextendo-old"\n            parent_dir = os.path.dirname(ryujinx_extracted_dir)\n            config_dir = "/userdata/system/configs/Ryujinx"\n\n            def valid_install(directory, require_portable=False):\n                binary = os.path.join(directory, "Ryujinx")\n                legacy_binary = os.path.join(directory, "usr", "lib", "Ryujinx")\n                portable = os.path.join(directory, "portable")\n                return (os.path.isdir(directory)\n                        and not os.path.islink(directory)\n                        and ((os.path.isfile(binary) and not os.path.islink(binary))\n                             or (os.path.isfile(legacy_binary) and not os.path.islink(legacy_binary)))\n                        and ((os.path.islink(portable) and os.readlink(portable) == config_dir)\n                             or (not require_portable and not os.path.lexists(portable))))\n\n            # A crash between renaming the old directory and publishing the\n            # new one must never leave the emulator missing.\n            if os.path.lexists(backup_dir):\n                if os.path.islink(backup_dir) or not valid_install(backup_dir):\n                    raise RuntimeError("Unsafe or incomplete Nextendo recovery backup")\n                if not os.path.lexists(ryujinx_extracted_dir):\n                    os.rename(backup_dir, ryujinx_extracted_dir)\n                    writelog("Recovered previous authenticated-layout Ryujinx installation")\n                elif not valid_install(ryujinx_extracted_dir):\n                    raise RuntimeError("Ambiguous Ryujinx recovery state; retained both directories")\n\n            # Existing backups are archived, never discarded or overwritten.\n            # If a restart occurs during this rename, the active installation\n            # is still present and the historical backup remains recoverable.\n            if os.path.lexists(backup_dir):\n                history = backup_dir + ".history-" + uuid.uuid4().hex\n                os.rename(backup_dir, history)\n\n            if os.path.lexists(ryujinx_extracted_dir):\n                if os.path.islink(ryujinx_extracted_dir) or not valid_install(ryujinx_extracted_dir):\n                    raise RuntimeError("Existing Ryujinx installation failed safety checks")\n\n            staging_dir = tempfile.mkdtemp(prefix=".nextendo-stage-", dir=parent_dir)\n            old_moved = False\n            new_activated = False\n            try:\n                extracted = os.path.join(staging_dir, "publish")\n                os.mkdir(extracted)\n                count = 0\n                total = 0\n                seen = set()\n                with tarfile.open(ryujinx_nextendo_archive, "r:gz") as archive:\n                    for member in archive:\n                        pieces = tuple(p for p in PurePosixPath(member.name).parts if p not in ("", "."))\n                        if not pieces:\n                            if member.isdir():\n                                continue\n                            raise RuntimeError("Invalid Nextendo archive root")\n                        if (member.name.startswith("/") or ".." in pieces\n                                or pieces[0] != "publish"\n                                or not (member.isfile() or member.isdir())):\n                            raise RuntimeError("Unsafe Nextendo archive entry: " + member.name)\n                        if pieces in seen:\n                            raise RuntimeError("Duplicate Nextendo archive entry")\n                        seen.add(pieces)\n                        count += 1\n                        total += member.size\n                        if count > 4000 or total > 1024 * 1024 * 1024:\n                            raise RuntimeError("Nextendo archive size or entry limit exceeded")\n                        destination = os.path.join(staging_dir, *pieces)\n                        if member.isdir():\n                            os.makedirs(destination, exist_ok=True)\n                        else:\n                            os.makedirs(os.path.dirname(destination), exist_ok=True)\n                            stream = archive.extractfile(member)\n                            if stream is None:\n                                raise RuntimeError("Unreadable Nextendo archive member")\n                            with stream, open(destination, "xb") as target_file:\n                                shutil.copyfileobj(stream, target_file)\n\n                binary = os.path.join(extracted, "Ryujinx")\n                if not os.path.isfile(binary) or os.path.islink(binary):\n                    raise RuntimeError("Nextendo archive missing regular publish/Ryujinx")\n                if os.stat(binary).st_size < 1024:\n                    raise RuntimeError("Nextendo executable is unexpectedly small")\n                os.chmod(binary, os.stat(binary).st_mode | stat.S_IXUSR)\n\n                portable = os.path.join(extracted, "portable")\n                if os.path.lexists(portable):\n                    # Official releases ship publish/portable/.keep. Accept\n                    # only that empty placeholder; never erase user state.\n                    if os.path.islink(portable) or not os.path.isdir(portable):\n                        raise RuntimeError("Unsafe Nextendo portable entry")\n                    contents = os.listdir(portable)\n                    if any(name != ".keep" for name in contents):\n                        raise RuntimeError("Unexpected Nextendo portable data")\n                    placeholder = os.path.join(portable, ".keep")\n                    if os.path.lexists(placeholder):\n                        if os.path.islink(placeholder) or not os.path.isfile(placeholder) or os.stat(placeholder).st_size != 0:\n                            raise RuntimeError("Unsafe Nextendo portable placeholder")\n                        os.unlink(placeholder)\n                    os.rmdir(portable)\n                os.symlink(config_dir, portable)\n                if not valid_install(extracted, require_portable=True):\n                    raise RuntimeError("Staged Nextendo installation failed layout validation")\n\n                if os.path.lexists(ryujinx_extracted_dir):\n                    os.rename(ryujinx_extracted_dir, backup_dir)\n                    old_moved = True\n                os.rename(extracted, ryujinx_extracted_dir)\n                new_activated = True\n                if not valid_install(ryujinx_extracted_dir, require_portable=True):\n                    raise RuntimeError("Activated Nextendo installation failed validation")\n\n                # Retain rollback directory and downloaded archive until the\n                # new executable has passed layout validation. Do not delete\n                # Batocera configuration, keys, saves or AppImage fallbacks.\n                os.unlink(ryujinx_nextendo_archive)\n                writelog("Ryujinx-Nextendo installed; previous binaries retained for recovery")\n            except Exception:\n                if old_moved:\n                    if new_activated and os.path.isdir(ryujinx_extracted_dir):\n                        failed = ryujinx_extracted_dir + ".failed-" + uuid.uuid4().hex\n                        os.rename(ryujinx_extracted_dir, failed)\n                    if not os.path.lexists(ryujinx_extracted_dir) and os.path.isdir(backup_dir):\n                        os.rename(backup_dir, ryujinx_extracted_dir)\n                raise\n            finally:\n                # Only our unique temporary directory can be removed.\n                if os.path.isdir(staging_dir) and not os.path.islink(staging_dir):\n                    shutil.rmtree(staging_dir)\n\n'
+
     if not already_integrated:
         if not re.search(r'^import tarfile$', source, re.M):
             imports = list(
@@ -364,155 +366,7 @@ def patch_ryujinx_generator():
         ryujinx_extracted_dir = "/userdata/system/switch/appimages/ryujinx-extracted"
         ryujinx_wrapper = "/userdata/system/switch/extra/ryu_wrapper"
 
-        # Deploy updater-managed Ryujinx-Nextendo archive.
-        if os.path.isfile(ryujinx_nextendo_archive):
-            staging_dir = ryujinx_extracted_dir + ".nextendo-new"
-            backup_dir = ryujinx_extracted_dir + ".nextendo-old"
-
-            if os.path.exists(staging_dir):
-                shutil.rmtree(staging_dir)
-
-            if os.path.exists(backup_dir):
-                shutil.rmtree(backup_dir)
-
-            os.makedirs(staging_dir, exist_ok=True)
-
-            old_moved = False
-
-            try:
-                with tarfile.open(
-                    ryujinx_nextendo_archive,
-                    "r:gz",
-                ) as archive:
-                    archive.extractall(staging_dir)
-
-                publish_dir = os.path.join(
-                    staging_dir,
-                    "publish",
-                )
-
-                nextendo_binary = os.path.join(
-                    publish_dir,
-                    "Ryujinx",
-                )
-
-                if not os.path.isfile(nextendo_binary):
-                    raise RuntimeError(
-                        "Ryujinx-Nextendo archive missing "
-                        "publish/Ryujinx"
-                    )
-
-                st = os.stat(nextendo_binary)
-                os.chmod(
-                    nextendo_binary,
-                    st.st_mode | stat.S_IEXEC,
-                )
-
-                # Keep Ryujinx-Nextendo in portable mode while routing
-                # portable state into Batocera's persistent Ryujinx tree.
-                batocera_ryujinx_config = (
-                    "/userdata/system/configs/Ryujinx"
-                )
-
-                system_dir = os.path.join(
-                    batocera_ryujinx_config,
-                    "system",
-                )
-
-                os.makedirs(system_dir, exist_ok=True)
-
-                portable_dir = os.path.join(
-                    publish_dir,
-                    "portable",
-                )
-
-                if os.path.lexists(portable_dir):
-                    if (
-                        os.path.isdir(portable_dir)
-                        and not os.path.islink(portable_dir)
-                    ):
-                        shutil.rmtree(portable_dir)
-                    else:
-                        os.unlink(portable_dir)
-
-                os.symlink(
-                    batocera_ryujinx_config,
-                    portable_dir,
-                )
-
-                shared_keys = (
-                    (
-                        "prod.keys",
-                        "/userdata/bios/switch/keys/prod.keys",
-                    ),
-                    (
-                        "title.keys",
-                        "/userdata/bios/switch/keys/title.keys",
-                    ),
-                )
-
-                for key_name, shared_key in shared_keys:
-                    if not os.path.isfile(shared_key):
-                        continue
-
-                    destination = os.path.join(
-                        system_dir,
-                        key_name,
-                    )
-
-                    if os.path.lexists(destination):
-                        if os.path.isdir(destination):
-                            shutil.rmtree(destination)
-                        else:
-                            os.unlink(destination)
-
-                    os.symlink(
-                        shared_key,
-                        destination,
-                    )
-
-                if os.path.exists(ryujinx_extracted_dir):
-                    os.rename(
-                        ryujinx_extracted_dir,
-                        backup_dir,
-                    )
-                    old_moved = True
-
-                os.rename(
-                    publish_dir,
-                    ryujinx_extracted_dir,
-                )
-
-                if os.path.exists(staging_dir):
-                    shutil.rmtree(staging_dir)
-
-                os.remove(ryujinx_nextendo_archive)
-
-                if os.path.isfile(ryujinx_appimage):
-                    os.remove(ryujinx_appimage)
-
-                if os.path.exists(backup_dir):
-                    shutil.rmtree(backup_dir)
-
-                writelog(
-                    "Ryujinx-Nextendo archive deployed successfully"
-                )
-
-            except Exception:
-                if os.path.exists(ryujinx_extracted_dir):
-                    shutil.rmtree(ryujinx_extracted_dir)
-
-                if old_moved and os.path.exists(backup_dir):
-                    os.rename(
-                        backup_dir,
-                        ryujinx_extracted_dir,
-                    )
-
-                if os.path.exists(staging_dir):
-                    shutil.rmtree(staging_dir)
-
-                raise
-'''
+''' + safe_deployment
 
         if old_paths not in source:
             raise RuntimeError(
@@ -653,6 +507,16 @@ def patch_ryujinx_generator():
             1,
         )
 
+        changed = True
+
+    if already_integrated and "BUA_NEXTENDO_SAFE_DEPLOY_V3" not in source:
+        old_deploy_start = "        # Deploy updater-managed Ryujinx-Nextendo archive.\n"
+        old_deploy_end = "        # Si un AppImage est présent, l'extraire automatiquement\n"
+        if source.count(old_deploy_start) != 1 or source.count(old_deploy_end) != 1:
+            raise RuntimeError("Existing Ryujinx deployment anchors not unique")
+        begin = source.index(old_deploy_start)
+        finish = source.index(old_deploy_end, begin)
+        source = source[:begin] + safe_deployment + source[finish:]
         changed = True
 
     if not internet_integrated:

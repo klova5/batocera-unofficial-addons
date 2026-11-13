@@ -5,12 +5,12 @@
 SCRIPT_URL="https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/app/symlinks.sh"
 BATOCERA_ADDONS_URL="https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/app/BUA.sh"
 UPDATER_SUPPORT_URL="https://raw.githubusercontent.com/klova5/batocera-unofficial-addons/feature/global-parent-source-updater/app/bua-updater-support-x86_64.tar.gz"
-UPDATER_SUPPORT_SHA256="1d7a5792a1aab97379ae0ecb7872e6eff335b93158688fc1f44f7094561d511a"
+UPDATER_SUPPORT_SHA256="28d6aaa199c60e870bcb5180c3e18d1d3dc7f1a54fbc0f787b2230bfd8ce2c00"
 UPDATER_ROOT="/userdata/system/add-ons/bua/updater"
 
 # Authenticated updater verification metadata.
 UPDATER_VERIFICATION_URL="https://raw.githubusercontent.com/klova5/batocera-unofficial-addons/feature/global-parent-source-updater/app/bua-updater-verification-x86_64.tar.gz"
-UPDATER_VERIFICATION_SHA256="6498bda1ea34f863d9c07db9d232978a12c8e5f031eac58bfa64caa9b4472714"
+UPDATER_VERIFICATION_SHA256="7ce1b336f878dc1eea010db0a32c9928c596229c7ffe4a1e78d6a0fc0b40d3b6"
 # Only an exact, separately authenticated historical v70 install may be migrated.
 UPDATER_LEGACY_V70_VERIFICATION_URL="https://raw.githubusercontent.com/klova5/batocera-unofficial-addons/feature/global-parent-source-updater/app/bua-updater-verification-v70-x86_64.tar.gz"
 UPDATER_LEGACY_V70_VERIFICATION_SHA256="0ee758b3450587b71da870ef41c95e81b27a088f4de6a2257e95df78c08fd274"
@@ -453,6 +453,10 @@ if [ -e "$UPDATER_TRUSTED_CACHE" ]; then
         6498bda1ea34f863d9c07db9d232978a12c8e5f031eac58bfa64caa9b4472714)
             UPDATER_PREVIOUS_VERIFICATION_SHA256="6498bda1ea34f863d9c07db9d232978a12c8e5f031eac58bfa64caa9b4472714"
             UPDATER_PREVIOUS_SUPPORT_SHA256="1d7a5792a1aab97379ae0ecb7872e6eff335b93158688fc1f44f7094561d511a"
+            ;;
+        7ce1b336f878dc1eea010db0a32c9928c596229c7ffe4a1e78d6a0fc0b40d3b6)
+            UPDATER_PREVIOUS_VERIFICATION_SHA256="7ce1b336f878dc1eea010db0a32c9928c596229c7ffe4a1e78d6a0fc0b40d3b6"
+            UPDATER_PREVIOUS_SUPPORT_SHA256="28d6aaa199c60e870bcb5180c3e18d1d3dc7f1a54fbc0f787b2230bfd8ce2c00"
             ;;
         *)
             echo "Unrecognized previous trusted bundle; refusing unsafe replacement."

@@ -3144,6 +3144,278 @@ def _bua_release_fingerprint(status):
     if status.get("status")!="update_available" or status.get("needs_update") is not True:return None
     return (status.get("latest_source"),status.get("latest_version"),status.get("latest_update_identity"))
 
+# ============================================================
+# Switch: per-component identity (BUA_SWITCH_COMPONENT_VERIFY_V1)
+# ============================================================
+# Switch is five independent releases (Citron, Eden, Eden PGO, Eden
+# Nightly, Ryujinx-Nextendo). Its combined version string cannot be
+# ordered, and an install made before the updater has no recorded
+# identity, so the installed state is read from the files themselves:
+# each installed component is compared byte for byte with the exact
+# asset of the latest verified release.
+
+SWITCH_APP_NAME = "Switch"
+_SWITCH_CATALOG_DIR = "/userdata/system/add-ons/bua/updater/catalog"
+_SWITCH_LATEST_CACHE = {}
+# A scan resolves the release once; binding the update right after the
+# scan reuses it. Queueing later always re-resolves.
+_SWITCH_LATEST_TTL = 120
+
+
+def _bua_load_switch_binding():
+    """Load the bundled, integrity-verified Switch binding module."""
+    import importlib.util
+
+    if "module" in _SWITCH_LATEST_CACHE:
+        return _SWITCH_LATEST_CACHE["module"]
+
+    path = os.path.join(_SWITCH_CATALOG_DIR, "switch_component_binding.py")
+
+    if not os.path.isfile(path) or os.path.islink(path):
+        return None
+
+    spec = importlib.util.spec_from_file_location(
+        "bua_switch_component_binding", path
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    if not hasattr(module, "verify_installed_components"):
+        return None
+
+    _SWITCH_LATEST_CACHE["module"] = module
+    return module
+
+
+def _bua_switch_latest(binding, expected_identity=None,
+                       expected_display=None, use_cache=False):
+    """Resolve and validate the latest Switch component release set."""
+    cached = _SWITCH_LATEST_CACHE.get("latest")
+
+    if (
+        use_cache
+        and cached
+        and time.monotonic() - cached[0] < _SWITCH_LATEST_TTL
+    ):
+        latest = cached[1]
+    else:
+        script = os.path.join(_SWITCH_CATALOG_DIR, "switch_identity.py")
+
+        if not os.path.isfile(script) or os.path.islink(script):
+            raise RuntimeError("Switch identity resolver missing")
+
+        result = subprocess.run(
+            [sys.executable or "python3", "-I", script],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=180,
+        )
+
+        if result.returncode != 0:
+            reason = (result.stderr or "").strip().splitlines()
+            raise RuntimeError(
+                reason[-1] if reason else "Switch release lookup failed"
+            )
+
+        lines = [
+            line.strip()
+            for line in result.stdout.splitlines()
+            if line.strip()
+        ][-5:]
+
+        match = re.fullmatch(
+            r"switch:(\d+):components:[0-9a-f]{64}",
+            lines[1] if len(lines) == 5 else "",
+        )
+
+        if not match:
+            raise RuntimeError("Unexpected Switch identity output")
+
+        latest = binding.verify_switch_components(
+            lines,
+            major=int(match.group(1)),
+            architecture="x86_64",
+        )
+        _SWITCH_LATEST_CACHE["latest"] = (time.monotonic(), latest)
+
+    if expected_identity is not None and latest["identity"] != expected_identity:
+        raise RuntimeError("Switch identity changed since selection; rescan")
+
+    if expected_display is not None and latest["display_version"] != expected_display:
+        raise RuntimeError("Switch version changed since selection; rescan")
+
+    return latest
+
+
+def _bua_record_switch_baseline(app_name, latest):
+    """Record a Switch identity proven by byte-for-byte file matches."""
+    set_package_state(app_name, {
+        "app_version": latest["display_version"],
+        "update_identity": latest["identity"],
+        "update_method": "custom",
+        "upstream": {"type": "multi_parent"},
+        "update_recipe": {
+            "type": "multi_component",
+            "target": "/userdata/system/switch/appimages",
+            "components": latest["components"],
+        },
+        "registration_source": "verified_component_match",
+        "registration_schema": 2,
+    })
+
+
+def get_switch_version_status(app_name: str) -> Dict | None:
+    """
+    Switch status from per-component file verification.
+
+    Returns None when the bundled binding module is unavailable, so the
+    generic path is used instead.
+    """
+    binding = _bua_load_switch_binding()
+
+    if binding is None:
+        return None
+
+    metadata = get_registered_version_metadata(app_name)
+    registered_version = metadata.get("app_version")
+    installed_identity = (
+        metadata.get("update_identity") or registered_version
+    )
+
+    status = {
+        "status": "unknown",
+        "needs_update": False,
+        "installed_version": registered_version,
+        "latest_version": None,
+        "latest_source": None,
+        "installed_update_identity": installed_identity,
+        "latest_update_identity": None,
+        "registered_version": registered_version,
+        "probe_version": None,
+        "registration_mismatch": False,
+        "component_states": [],
+        "component_summary": "",
+        "error": None,
+    }
+
+    try:
+        latest = _bua_switch_latest(binding)
+    except Exception as exc:
+        status["error"] = f"Switch release check failed: {exc}"
+        return status
+
+    status.update({
+        "latest_version": latest["display_version"],
+        "latest_source": "bua",
+        "latest_update_identity": latest["identity"],
+    })
+
+    states = binding.verify_installed_components(latest["components"])
+    status["component_states"] = states
+
+    errors = [s for s in states if s["state"] == "error"]
+    present = [s for s in states if s["state"] != "missing"]
+    differs = [s for s in states if s["state"] == "differs"]
+    missing = [s for s in states if s["state"] == "missing"]
+
+    if errors:
+        status["error"] = "; ".join(
+            f"{s['name']}: {s['detail']}" for s in errors
+        )
+        return status
+
+    if not present:
+        status["error"] = "No Switch emulators found in appimages"
+        return status
+
+    summary = [f"{s['name']} out of date" for s in differs]
+    summary += [f"{s['name']} not installed" for s in missing]
+    status["component_summary"] = ", ".join(summary)
+
+    # Components the user never installed are reported, never added.
+    if not differs:
+        if installed_identity != latest["identity"] and not missing:
+            _bua_record_switch_baseline(app_name, latest)
+            status["installed_update_identity"] = latest["identity"]
+
+        status.update({
+            "status": "current",
+            "installed_version": latest["display_version"],
+        })
+        return status
+
+    status.update({
+        "status": "update_available",
+        "needs_update": True,
+        "installed_version": (
+            None
+            if registered_version == latest["display_version"]
+            else registered_version
+        ),
+    })
+    return status
+
+
+def _bua_bind_switch_components(app, selection, resolved):
+    """Bind a Switch update to the selected, freshly re-verified release.
+
+    Only components whose installed files differ are replaced.
+    """
+    if app != SWITCH_APP_NAME:
+        return None, "Multi-component updates are only defined for Switch"
+
+    binding = _bua_load_switch_binding()
+
+    if binding is None:
+        return None, "Switch verification module unavailable"
+
+    try:
+        latest = _bua_switch_latest(
+            binding,
+            expected_identity=selection.get("latest_update_identity"),
+            expected_display=selection.get("latest_version"),
+            use_cache=True,
+        )
+    except Exception as exc:
+        return None, str(exc)
+
+    registration = resolved.get("registration") or {}
+
+    if (
+        registration.get("app_version") != latest["display_version"]
+        or registration.get("update_identity") != latest["identity"]
+    ):
+        return None, "Switch registration does not match verified release"
+
+    states = {
+        s["name"]: s["state"]
+        for s in binding.verify_installed_components(latest["components"])
+    }
+
+    if any(state == "error" for state in states.values()):
+        return None, "Switch component verification failed; rescan"
+
+    pending = [
+        component
+        for component in latest["components"]
+        if states.get(component["name"]) == "differs"
+    ]
+
+    if not pending:
+        return None, "Switch is already up to date"
+
+    recipe = dict(resolved.get("recipe") or {})
+    recipe["type"] = "multi_component"
+    recipe["components"] = pending
+
+    bound = dict(resolved)
+    bound["recipe"] = recipe
+    bound["target"] = "/userdata/system/switch/appimages"
+
+    return bound, None
+
+
 def _bua_bind_selected_payload(app,selection):
     """Reject resolution of a different software asset than the selected one."""
     from urllib.parse import urlsplit,unquote
@@ -3161,7 +3433,7 @@ def _bua_bind_selected_payload(app,selection):
     if not isinstance(recipe,dict) or not isinstance(registration,dict):return None,"Invalid recipe or registration"
     # Switch is preserved, but its five separate independent releases must
     # each be verified before a global version can authorize replacement.
-    if recipe.get("type")=="multi_component":return None,"Switch needs per-component asset identity verification"
+    if recipe.get("type")=="multi_component":return _bua_bind_switch_components(app,selection,resolved)
     if recipe.get("type") not in ("replace_file","replace_archive","replace_bundle"):
         return None,"Unsupported payload recipe"
     target=resolved.get("target")
@@ -4004,6 +4276,12 @@ def get_app_version_status(app_name: str) -> Dict:
     app_version is human-readable.
     update_identity is the authoritative comparison key.
     """
+    if app_name == SWITCH_APP_NAME:
+        switch_status = get_switch_version_status(app_name)
+
+        if switch_status is not None:
+            return switch_status
+
     metadata = get_registered_version_metadata(
         app_name
     )
@@ -8588,6 +8866,11 @@ class UpdaterScreen(BaseScreen):
                             update_error
                         )
 
+                    if app_status.get("component_summary"):
+                        details.append(
+                            app_status["component_summary"]
+                        )
+
                     detail = " | ".join(
                         details
                     )
@@ -8602,6 +8885,11 @@ class UpdaterScreen(BaseScreen):
                         details.append(
                             f"Version "
                             f"{installed_version}"
+                        )
+
+                    if app_status.get("component_summary"):
+                        details.append(
+                            app_status["component_summary"]
                         )
 
                     detail = " | ".join(

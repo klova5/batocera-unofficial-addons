@@ -186,40 +186,53 @@ if arch in ("x86_64", "aarch64"):
 ryujinx_version = None
 
 if arch == "x86_64":
-    ryujinx_data = json.loads(
+    releases = json.loads(
         get_bytes(
             "https://api.github.com/repos/"
-            "NextendoNetwork/Ryujinx-Nextendo/releases/latest"
+            "NextendoNetwork/Ryujinx-Nextendo/releases?per_page=100"
         ).decode("utf-8")
     )
 
-    ryujinx_version = str(
-        ryujinx_data.get("tag_name") or ""
-    ).strip()
+    candidates = []
 
-    if not ryujinx_version:
-        raise SystemExit(
-            "Unable to resolve Ryujinx-Nextendo"
-        )
+    for release in releases:
+        if release.get("draft") or release.get("prerelease"):
+            continue
 
-    ryujinx_asset = None
+        version = str(release.get("tag_name") or "").strip()
+        match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", version)
 
-    for asset in ryujinx_data.get("assets", []):
-        name = str(asset.get("name") or "")
-        url = str(asset.get("browser_download_url") or "")
+        if not match:
+            continue
 
-        if (
-            name.startswith("Nextendo-")
-            and name.endswith("-linux-x64.tar.gz")
-            and url
-        ):
-            ryujinx_asset = url
-            break
+        for asset in release.get("assets", []):
+            name = str(asset.get("name") or "")
+            url = str(asset.get("browser_download_url") or "")
 
-    if not ryujinx_asset:
+            valid_name = (
+                name.startswith("Nextendo-")
+                and name.endswith("-linux-x64.tar.gz")
+            ) or (
+                name.startswith("Ryujinx-Nextendo-")
+                and name.endswith("-linux_x64.tar.gz")
+            )
+
+            if valid_name and url:
+                candidates.append((
+                    tuple(map(int, match.groups())),
+                    version,
+                    url,
+                ))
+                break
+
+    if not candidates:
         raise SystemExit(
             "Unable to resolve Ryujinx-Nextendo Linux x64 archive"
         )
+
+    _, ryujinx_version, ryujinx_asset = max(
+        candidates, key=lambda item: item[0]
+    )
 
     components.append({
         "name": "Ryujinx-Nextendo",
