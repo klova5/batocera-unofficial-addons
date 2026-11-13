@@ -1093,14 +1093,10 @@ print(
 )
 print()
 
-for index, app in enumerate(apps, 1):
+def _build_record(index, app):
     name = app["app"]
     url = app["installer_url"]
 
-    print(
-        f"[{index:03d}/{len(apps):03d}] "
-        f"{name}"
-    )
 
     record = dict(app)
 
@@ -1131,8 +1127,7 @@ for index, app in enumerate(apps, 1):
         )
         record["source_family"] = "unknown"
         record["conversion_status"] = "custom_required"
-        manifest.append(record)
-        continue
+        return record
 
     try:
         raw = fetch(url)
@@ -1228,10 +1223,35 @@ for index, app in enumerate(apps, 1):
             "fetch_error"
         )
 
-    manifest.append(record)
+    return record
 
-    # Be polite to remote hosts while scanning.
-    time.sleep(0.03)
+
+# Installer scripts are fetched in parallel (BUA_MANIFEST_PARALLEL_V1):
+# the rebuild is almost entirely network wait, so a small worker pool
+# cuts it from minutes to seconds. Results keep catalog order, and each
+# finished app prints one "[done/total] name" progress line.
+import concurrent.futures as _futures
+
+MANIFEST_WORKERS = 8
+_records = [None] * len(apps)
+_done = 0
+
+with _futures.ThreadPoolExecutor(max_workers=MANIFEST_WORKERS) as _pool:
+    _jobs = {
+        _pool.submit(_build_record, index, app): index
+        for index, app in enumerate(apps, 1)
+    }
+    for _job in _futures.as_completed(_jobs):
+        _index = _jobs[_job]
+        _records[_index - 1] = _job.result()
+        _done += 1
+        print(
+            f"[{_done:03d}/{len(apps):03d}] "
+            f"{apps[_index - 1]['app']}",
+            flush=True,
+        )
+
+manifest = list(_records)
 
 
 family_counts = {}

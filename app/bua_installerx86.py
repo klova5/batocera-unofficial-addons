@@ -9122,13 +9122,31 @@ def get_live_apps_fingerprint() -> str:
     ).hexdigest()
 
 
-def ensure_global_manifest_current() -> Dict:
+_GLOBAL_MANIFEST_LOCK = threading.Lock()
+GLOBAL_MANIFEST_LOCK_PATH = Path(
+    "/userdata/system/add-ons/bua/updater/catalog/global/"
+    ".manifest-rebuild.lock"
+)
+GLOBAL_MANIFEST_TIMEOUT = 300
+
+
+def _read_manifest_fingerprint() -> str:
+    try:
+        return GLOBAL_MANIFEST_FINGERPRINT_PATH.read_text(encoding="utf-8").strip()
+    except Exception:
+        return ""
+
+
+def ensure_global_manifest_current(progress=None) -> Dict:
     """
     Rebuild the canonical global update manifest only when the live
     APPS catalog has changed.
 
-    This runs inside the Updater scan thread, so network work does not
-    block the pygame UI thread.
+    Runs inside the updater scan thread, so network work never blocks
+    the pygame UI thread. Only one rebuild runs at a time
+    (BUA_SCAN_SINGLE_FLIGHT_V1): a second caller, from this process or
+    another BUA instance, waits for it and then reuses its result.
+    progress(done, total), when given, is called as installers finish.
     """
     result = {
         "rebuilt": False,
@@ -9136,104 +9154,119 @@ def ensure_global_manifest_current() -> Dict:
         "error": None,
     }
 
-    live_fingerprint = (
-        get_live_apps_fingerprint()
-    )
+    live_fingerprint = get_live_apps_fingerprint()
 
-    saved_fingerprint = ""
-
-    try:
-        saved_fingerprint = (
-            GLOBAL_MANIFEST_FINGERPRINT_PATH
-            .read_text(
-                encoding="utf-8"
-            )
-            .strip()
+    def current() -> bool:
+        return (
+            GLOBAL_MANIFEST_PATH.is_file()
+            and _read_manifest_fingerprint() == live_fingerprint
         )
-    except Exception:
-        pass
 
-    # Also verify that the manifest actually exists.
-    if (
-        GLOBAL_MANIFEST_PATH.is_file()
-        and saved_fingerprint
-        == live_fingerprint
-    ):
+    if current():
         result["current"] = True
         return result
 
     if not GLOBAL_MANIFEST_BUILDER.is_file():
-        result["error"] = (
-            "Global manifest builder is missing"
-        )
+        result["error"] = "Global manifest builder is missing"
         return result
 
-    try:
-        process = subprocess.run(
-            [
-                sys.executable,
-                str(GLOBAL_MANIFEST_BUILDER),
-            ],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            timeout=300,
-        )
-    except Exception as exc:
-        result["error"] = (
-            f"Manifest rebuild failed: {exc}"
-        )
-        return result
+    with _GLOBAL_MANIFEST_LOCK:
+        lock_handle = None
+        try:
+            GLOBAL_MANIFEST_LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
+            lock_handle = open(GLOBAL_MANIFEST_LOCK_PATH, "a")
+            fcntl.flock(lock_handle, fcntl.LOCK_EX)
+        except Exception:
+            lock_handle = None  # still serialized within this process
 
-    if process.returncode != 0:
-        output = (
-            process.stdout
-            or ""
-        ).strip()
+        try:
+            # Another scan may have finished the rebuild while we waited.
+            if current():
+                result["current"] = True
+                return result
 
-        result["error"] = (
-            "Manifest rebuild exited "
-            f"{process.returncode}"
-        )
+            output_tail: List[str] = []
+            try:
+                process = subprocess.Popen(
+                    [sys.executable, str(GLOBAL_MANIFEST_BUILDER)],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                )
+            except Exception as exc:
+                result["error"] = f"Manifest rebuild failed: {exc}"
+                return result
 
-        if output:
-            result["error"] += (
-                ": "
-                + output[-500:]
-            )
+            timed_out = threading.Event()
 
-        return result
+            def _kill_on_timeout():
+                timed_out.set()
+                process.kill()
 
-    if not GLOBAL_MANIFEST_PATH.is_file():
-        result["error"] = (
-            "Manifest rebuild completed but "
-            "no manifest was produced"
-        )
-        return result
+            timer = threading.Timer(GLOBAL_MANIFEST_TIMEOUT, _kill_on_timeout)
+            timer.start()
+            try:
+                assert process.stdout is not None
+                for line in process.stdout:
+                    line = line.rstrip("\n")
+                    output_tail = (output_tail + [line])[-20:]
+                    match = re.match(r"^\[(\d+)/(\d+)\]", line)
+                    if match and progress:
+                        try:
+                            progress(int(match.group(1)), int(match.group(2)))
+                        except Exception:
+                            pass
+                returncode = process.wait()
+            finally:
+                timer.cancel()
 
-    try:
-        GLOBAL_MANIFEST_FINGERPRINT_PATH.write_text(
-            live_fingerprint + "\n",
-            encoding="utf-8",
-        )
-    except Exception as exc:
-        result["error"] = (
-            "Manifest rebuilt but fingerprint "
-            f"could not be saved: {exc}"
-        )
+            if returncode != 0:
+                if timed_out.is_set():
+                    result["error"] = (
+                        f"Manifest rebuild timed out after {GLOBAL_MANIFEST_TIMEOUT}s"
+                    )
+                else:
+                    result["error"] = f"Manifest rebuild exited {returncode}"
+                    output = "\n".join(output_tail).strip()
+                    if output:
+                        result["error"] += ": " + output[-500:]
+                return result
 
-        # The rebuilt manifest itself is still usable.
-        result["rebuilt"] = True
-        result["current"] = True
-        return result
+            if not GLOBAL_MANIFEST_PATH.is_file():
+                result["error"] = (
+                    "Manifest rebuild completed but no manifest was produced"
+                )
+                return result
 
-    # Registration snapshots may have been generated from the old
-    # catalog. Force subsequent version checks to use the new manifest.
-    REGISTRATION_SNAPSHOT_CACHE.clear()
+            try:
+                GLOBAL_MANIFEST_FINGERPRINT_PATH.write_text(
+                    live_fingerprint + "\n",
+                    encoding="utf-8",
+                )
+            except Exception as exc:
+                result["error"] = (
+                    f"Manifest rebuilt but fingerprint could not be saved: {exc}"
+                )
+                # The rebuilt manifest itself is still usable.
+                result["rebuilt"] = True
+                result["current"] = True
+                return result
 
-    result["rebuilt"] = True
-    result["current"] = True
-    return result
+            # Registration snapshots may have been generated from the old
+            # catalog. Force subsequent version checks to use the new manifest.
+            REGISTRATION_SNAPSHOT_CACHE.clear()
+
+            result["rebuilt"] = True
+            result["current"] = True
+            return result
+        finally:
+            if lock_handle is not None:
+                try:
+                    fcntl.flock(lock_handle, fcntl.LOCK_UN)
+                    lock_handle.close()
+                except Exception:
+                    pass
 
 
 def repair_optional_integrations():
@@ -9270,6 +9303,36 @@ def repair_optional_integrations():
             )
 
 
+# The updater's scan runs on a shared object, not on the screen
+# (BUA_SCAN_SINGLE_FLIGHT_V1). Leaving the updater does not stop it, and
+# opening the updater again attaches to it instead of starting a second
+# scan; a scan that finished while the updater was closed shows its
+# results straight away.
+_UPDATER_SCAN = None
+_UPDATER_SCAN_RESULT_TTL = 600  # seconds an unseen result stays offered
+
+
+class _UpdaterScanState:
+    PHASE_SCAN_SELECT = "scan_select"
+    PHASE_SCANNING = "scanning"
+    PHASE_RESULTS = "results"
+
+    def __init__(self, apps: List[str]):
+        self.apps = list(apps)
+        self.phase = self.PHASE_SCANNING
+        self.loading = True
+        self.error: str | None = None
+        self.idx = 0
+        self.items: List[Tuple[str, str, bool, str]] = [
+            (app, "Waiting to scan", False, "") for app in apps
+        ]
+        self.selected: Dict[str, bool] = {}
+        self.scan_target_count = len(apps)
+        self.scan_progress = "Starting scan..."
+        self.finished_at: float | None = None
+        self.seen = False
+
+
 class UpdaterScreen(BaseScreen):
     """
     Two-stage updater (ported from PR #166 into the console-style GUI):
@@ -9302,8 +9365,21 @@ class UpdaterScreen(BaseScreen):
 
         self.phase = self.PHASE_SCAN_SELECT
         self.scan_target_count = 0
+        self.scan: _UpdaterScanState | None = None
+        self.scan_progress = ""
 
         self._prepare_scan_selection()
+
+        active = _UPDATER_SCAN
+        if active is not None and (
+            active.loading
+            or (
+                not active.seen
+                and active.finished_at is not None
+                and time.time() - active.finished_at < _UPDATER_SCAN_RESULT_TTL
+            )
+        ):
+            self._attach_scan(active)
 
 
     def _get_installed_apps(self) -> List[str]:
@@ -9458,13 +9534,21 @@ class UpdaterScreen(BaseScreen):
 
         self.selected = {}
 
-        threading.Thread(
-            target=lambda: self._scan_selected(
-                selected_apps,
-                use_cache=False,
-            ),
-            daemon=True,
-        ).start()
+        # A fresh scan supersedes any pending return-to-selection.
+        self.needs_rescan = False
+
+        global _UPDATER_SCAN
+        scan = _UpdaterScanState(selected_apps)
+        _UPDATER_SCAN = scan
+
+        def run_scan():
+            try:
+                UpdaterScreen._scan_selected(scan, selected_apps, use_cache=False)
+            finally:
+                scan.finished_at = time.time()
+
+        threading.Thread(target=run_scan, daemon=True).start()
+        self._attach_scan(scan)
 
 
     def _scan_selected(
@@ -9476,8 +9560,13 @@ class UpdaterScreen(BaseScreen):
         Scan only the apps explicitly selected by the user.
         """
         try:
+            self.scan_progress = "Refreshing update catalog..."
+
+            def manifest_progress(done, total):
+                self.scan_progress = f"Refreshing update catalog ({done}/{total})"
+
             manifest_refresh = (
-                ensure_global_manifest_current()
+                ensure_global_manifest_current(manifest_progress)
             )
 
             if manifest_refresh.get("error"):
@@ -9500,7 +9589,10 @@ class UpdaterScreen(BaseScreen):
 
             results = []
 
-            for app in installed_apps:
+            for app_number, app in enumerate(installed_apps, 1):
+                self.scan_progress = (
+                    f"Checking {app} ({app_number}/{len(installed_apps)})"
+                )
                 if (
                     use_cache
                     and app in GITHUB_CACHE
@@ -9819,6 +9911,38 @@ class UpdaterScreen(BaseScreen):
         )
 
     # ------------------------------------------------------------
+    # Shared scan
+    # ------------------------------------------------------------
+
+    def _attach_scan(self, scan: "_UpdaterScanState"):
+        self.scan = scan
+        self._sync_scan()
+
+    def _sync_scan(self):
+        """Mirror the shared scan; take its results once it finishes."""
+        scan = self.scan
+        if scan is None:
+            return
+        self.scan_target_count = scan.scan_target_count
+        self.scan_progress = scan.scan_progress
+        if scan.loading:
+            self.phase = self.PHASE_SCANNING
+            self.loading = True
+            self.error = None
+            self.items = list(scan.items)
+            self.selected = {}
+            self.idx = 0
+            return
+        self.phase = scan.phase
+        self.loading = False
+        self.error = scan.error
+        self.items = list(scan.items)
+        self.selected = dict(scan.selected)
+        self.idx = 0
+        scan.seen = True
+        self.scan = None
+
+    # ------------------------------------------------------------
     # Input
     # ------------------------------------------------------------
 
@@ -9929,6 +10053,8 @@ class UpdaterScreen(BaseScreen):
         push_screen(ConfirmDialog(f"{t('uninstall')}: {app}", message, on_confirm, on_cancel))
 
     def update(self):
+        if self.scan is not None:
+            self._sync_scan()
         if self.pending_uninstall:
             app, uninstall_cmd = self.pending_uninstall
             self.pending_uninstall = None
@@ -9985,7 +10111,7 @@ class UpdaterScreen(BaseScreen):
 
         if self.loading:
             if self.phase == self.PHASE_SCANNING:
-                text = f"Scanning selected applications ({self.scan_target_count})..."
+                text = self.scan_progress or f"Scanning selected applications ({self.scan_target_count})..."
             else:
                 text = t("scanning_updates")
             draw_spinner(screen, (margin + S(14), top + S(14)), S(14), ACCENT)

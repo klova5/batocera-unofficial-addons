@@ -130,8 +130,10 @@ import urllib.request
 from pathlib import PurePosixPath
 
 RYUJINX_EXTRACTED_DIR = "/userdata/system/switch/appimages/ryujinx-extracted"
-ASSET_CACHE_FILE = ("/userdata/system/add-ons/bua/updater/catalog/global/"
-                    "installer-cache/switch-component-assets.json")
+# Outside updater/, so reinstalling the updater keeps it: a new install
+# would otherwise download every Switch release again to compare.
+ASSET_CACHE_FILE = ("/userdata/system/add-ons/bua/.updater-cache/"
+                    "switch-component-assets.json")
 MAX_ASSET_BYTES = 2 * 1024 * 1024 * 1024
 MAX_ARCHIVE_MEMBERS = 4000
 _CHUNK = 1024 * 1024
