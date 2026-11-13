@@ -719,7 +719,14 @@ def init_display():
         display_info = pygame.display.Info()
         screen_width = display_info.current_w
         screen_height = display_info.current_h
-        screen = pygame.display.set_mode((screen_width, screen_height))
+        # Borderless, anchored at the top-left: a plain window gets a
+        # title bar from the window manager, which pushes a screen-sized
+        # window down so its bottom (the button hints) is cut off.
+        # NOFRAME covers the screen without changing the video mode;
+        # BUA_FULLSCREEN=1 asks for real fullscreen instead.
+        os.environ.setdefault("SDL_VIDEO_WINDOW_POS", "0,0")
+        flags = pygame.FULLSCREEN if os.environ.get("BUA_FULLSCREEN") == "1" else pygame.NOFRAME
+        screen = pygame.display.set_mode((screen_width, screen_height), flags)
 
     W, H = screen.get_size()
     UI_SCALE = max(1.0, min(W / 1280.0, H / 720.0))
