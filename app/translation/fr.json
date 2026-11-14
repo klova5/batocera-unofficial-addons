@@ -191,5 +191,9 @@
   "switch_component_out_of_date": "{name} n'est pas à jour",
   "switch_component_unavailable": "{name} : source indisponible ({reason})",
   "switch_component_not_installed": "{name} non installé",
-  "switch_other_components_current": "Les autres émulateurs sont à jour"
+  "switch_other_components_current": "Les autres émulateurs sont à jour",
+  "updater_untracked": "Version non suivie",
+  "updater_update_reinstall": "Mettre à jour en réinstallant",
+  "updater_method_reinstall": "mise à jour par réinstallation",
+  "updater_reinstall_confirm": "Ces applications se mettent à jour en relançant leur installateur BUA, ce qui peut réinitialiser leurs réglages :"
 }

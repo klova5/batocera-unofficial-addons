@@ -192,5 +192,9 @@
   "switch_component_out_of_date": "{name}: устарел",
   "switch_component_unavailable": "{name}: источник недоступен ({reason})",
   "switch_component_not_installed": "{name}: не установлен",
-  "switch_other_components_current": "Остальные эмуляторы актуальны"
+  "switch_other_components_current": "Остальные эмуляторы актуальны",
+  "updater_untracked": "Версия не отслеживается",
+  "updater_update_reinstall": "Обновить переустановкой",
+  "updater_method_reinstall": "обновляется переустановкой",
+  "updater_reinstall_confirm": "Они обновляются повторным запуском установщика BUA, при этом их настройки могут быть сброшены:"
 }

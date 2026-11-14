@@ -192,5 +192,9 @@
   "switch_component_out_of_date": "{name} out of date",
   "switch_component_unavailable": "{name} source unavailable ({reason})",
   "switch_component_not_installed": "{name} not installed",
-  "switch_other_components_current": "Other emulators up to date"
+  "switch_other_components_current": "Other emulators up to date",
+  "updater_untracked": "Version not tracked",
+  "updater_update_reinstall": "Update by reinstalling",
+  "updater_method_reinstall": "updates by reinstalling",
+  "updater_reinstall_confirm": "These update by running their BUA installer again, which can reset their settings:"
 }

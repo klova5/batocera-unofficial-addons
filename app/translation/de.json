@@ -190,5 +190,9 @@
   "switch_component_out_of_date": "{name} veraltet",
   "switch_component_unavailable": "{name}: Quelle nicht verfügbar ({reason})",
   "switch_component_not_installed": "{name} nicht installiert",
-  "switch_other_components_current": "Andere Emulatoren aktuell"
+  "switch_other_components_current": "Andere Emulatoren aktuell",
+  "updater_untracked": "Version nicht erfasst",
+  "updater_update_reinstall": "Durch Neuinstallation aktualisieren",
+  "updater_method_reinstall": "Aktualisierung durch Neuinstallation",
+  "updater_reinstall_confirm": "Diese werden aktualisiert, indem ihr BUA-Installer erneut ausgeführt wird; dabei können Einstellungen zurückgesetzt werden:"
 }

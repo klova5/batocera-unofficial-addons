@@ -192,5 +192,9 @@
   "switch_component_out_of_date": "{name}: nieaktualne",
   "switch_component_unavailable": "{name}: źródło niedostępne ({reason})",
   "switch_component_not_installed": "{name}: nie zainstalowano",
-  "switch_other_components_current": "Pozostałe emulatory są aktualne"
+  "switch_other_components_current": "Pozostałe emulatory są aktualne",
+  "updater_untracked": "Wersja nieśledzona",
+  "updater_update_reinstall": "Aktualizuj przez ponowną instalację",
+  "updater_method_reinstall": "aktualizacja przez ponowną instalację",
+  "updater_reinstall_confirm": "Te aplikacje aktualizują się przez ponowne uruchomienie instalatora BUA, co może przywrócić ich ustawienia domyślne:"
 }

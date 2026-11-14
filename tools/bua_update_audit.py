@@ -110,18 +110,26 @@ def mock_previous(version):
         return "payload@2000-01-01"
     if v.startswith("sha256@"):
         return "sha256@000000000000"
+    if v.startswith("installer@"):
+        return "installer@2000-01-01"
     stripped = v.lstrip("vV")
     if stripped and all(p.isdigit() for p in stripped.split(".")):
         return ("v" if v[:1] in "vV" else "") + "0.0.1"
     return "mock-previous"
 
 
-def classify(status, cmd_error=None):
+def classify(status, cmd_error=None, method=None):
     if status.get("status") == "update_available":
-        return "OK" if not cmd_error else "NO_UPDATE_COMMAND"
+        if cmd_error:
+            return "NO_UPDATE_COMMAND"
+        return "OK_" + (method or "payload").upper()
     if status.get("status") == "current":
         return "SAYS_CURRENT"
     err = str(status.get("error") or "")
+    if "Download link is broken" in err:
+        return "BROKEN_DOWNLOAD"
+    if "rate limit" in err.lower():
+        return "GITHUB_RATE_LIMIT"
     if "Installed application version is unknown" in err:
         return "UNKNOWN_NO_INSTALLED_VERSION"
     if "not safely orderable" in err or "cannot be ordered" in err.lower():
@@ -158,7 +166,12 @@ for number, app in enumerate(apps, 1):
         if row["installed_here"]:
             real = bua.get_app_version_status(app)
             row["real"] = {k: real.get(k) for k in ("status", "installed_version", "latest_version", "latest_source", "error")}
-            row["real"]["class"] = classify(real)
+            real_method = None
+            if real.get("status") == "update_available":
+                _cmd, _err = bua.build_parent_update_command(app, real)
+                real_method = getattr(bua, "UPDATE_METHODS", {}).get(app)
+                row["real"]["update_command_error"] = None if _cmd else _err
+            row["real"]["class"] = classify(real, row["real"].get("update_command_error"), real_method)
 
         # Mock: an older release is recorded as installed.
         saved = bua.get_package_state(app)
@@ -180,10 +193,21 @@ for number, app in enumerate(apps, 1):
                 "error": mock.get("error"),
                 "update_command": bool(cmd),
                 "update_command_error": cmd_error,
-                "class": classify(mock, cmd_error if not cmd else None),
+                "method": getattr(bua, "UPDATE_METHODS", {}).get(app),
+                "class": classify(mock, cmd_error if not cmd else None, getattr(bua, "UPDATE_METHODS", {}).get(app)),
             }
+            if app == getattr(bua, "SWITCH_APP_NAME", "Switch") and mock.get("status") == "current":
+                # Switch is checked emulator by emulator from the files on
+                # disk, so a recorded older release does not apply.
+                row["mock"]["class"] = "OK_SWITCH_FILES"
         else:
-            row["mock"] = {"class": "UNKNOWN_NO_LATEST", "error": snap.get("error")}
+            error = snap.get("error") or ""
+        row["mock"] = {
+            "class": "BROKEN_DOWNLOAD" if "Download link is broken" in error
+            else "GITHUB_RATE_LIMIT" if "rate limit" in error.lower()
+            else "UNKNOWN_NO_LATEST",
+            "error": error,
+        }
         # Leave the temporary state as it was for the next app.
         if saved:
             bua.set_package_state(app, saved)
@@ -213,7 +237,7 @@ lines.append("== FAILURES (mock update), grouped by reason")
 groups = defaultdict(list)
 for r in report:
     m = r["mock"]
-    if m["class"] != "OK":
+    if not m["class"].startswith("OK"):
         reason = r.get("crash") or m.get("update_command_error") or m.get("error") or (r.get("latest") or {}).get("error") or m["class"]
         groups[(m["class"], str(reason)[:110])].append(r["app"])
 for (cls, reason), names in sorted(groups.items(), key=lambda kv: -len(kv[1])):
@@ -222,7 +246,7 @@ for (cls, reason), names in sorted(groups.items(), key=lambda kv: -len(kv[1])):
 lines.append("")
 lines.append("== REAL SCAN not OK (installed here)")
 for r in report:
-    if "real" in r and r["real"]["class"] not in ("OK", "SAYS_CURRENT"):
+    if "real" in r and not (r["real"]["class"].startswith("OK") or r["real"]["class"] == "SAYS_CURRENT"):
         lines.append(f"- {r['app']}: {r['real']['class']} | {r['real'].get('error')}")
 
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -230,6 +254,17 @@ with open(os.path.join(OUT_DIR, "update-audit.json"), "w") as f:
     json.dump(report, f, indent=1, sort_keys=True)
 with open(os.path.join(OUT_DIR, "update-audit.txt"), "w") as f:
     f.write("\n".join(lines) + "\n")
+# The check: every app must have a latest release and a way to update.
+problems = [r["app"] for r in report if not r["mock"]["class"].startswith("OK") and r["mock"]["class"] != "BROKEN_DOWNLOAD"]
+broken = [r["app"] for r in report if r["mock"]["class"] == "BROKEN_DOWNLOAD"]
+lines.append("")
+lines.append(f"== VERDICT: {len(report) - len(problems) - len(broken)}/{len(report)} apps can be updated; "
+             f"{len(broken)} have a broken download link; {len(problems)} cannot be updated")
+if problems:
+    lines.append("   cannot be updated: " + ", ".join(problems))
+if broken:
+    lines.append("   broken download (fix the installer): " + ", ".join(broken))
 print("\n".join(lines))
 print(f"\n[audit] full report: {OUT_DIR}/update-audit.json and update-audit.txt")
 shutil.rmtree(work, ignore_errors=True)
+sys.exit(1 if problems else 0)

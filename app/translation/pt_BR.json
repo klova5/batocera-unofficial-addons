@@ -192,5 +192,9 @@
   "switch_component_out_of_date": "{name} desatualizado",
   "switch_component_unavailable": "{name}: fonte indisponível ({reason})",
   "switch_component_not_installed": "{name} não instalado",
-  "switch_other_components_current": "Os outros emuladores estão atualizados"
+  "switch_other_components_current": "Os outros emuladores estão atualizados",
+  "updater_untracked": "Versão não rastreada",
+  "updater_update_reinstall": "Atualizar reinstalando",
+  "updater_method_reinstall": "atualiza reinstalando",
+  "updater_reinstall_confirm": "Estes são atualizados executando de novo o instalador do BUA, o que pode redefinir as configurações:"
 }

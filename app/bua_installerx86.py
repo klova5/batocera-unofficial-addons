@@ -15,13 +15,24 @@ import pty
 import fcntl
 import termios
 from datetime import datetime, timezone
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlsplit
 import urllib.error
 import urllib.request
 import urllib.parse
 import time
 from typing import Dict, List, Tuple
 from pathlib import Path
+
+# Route the updater's GitHub API requests through its shared cache, which
+# also stops calling GitHub once the rate limit is reached
+# (BUA_GITHUB_API_CACHE_V1).
+try:
+    sys.path.append("/userdata/system/add-ons/bua/updater/catalog")
+    import bua_github_api as _bua_github_api
+
+    _bua_github_api.install()
+except Exception:
+    _bua_github_api = None
 import hashlib
 
 # ------------------------------
@@ -5571,6 +5582,11 @@ def apply_install_registration(
 def get_bua_registration_shell_helper() -> str:
     """Return the shell helper injected into BUA installers."""
     return r"""
+# GitHub API requests from python3 helpers go through the updater's cache
+# (BUA_GITHUB_API_CACHE_V1).
+if [ -d /userdata/system/add-ons/bua/updater/catalog/pyhooks ]; then
+    export PYTHONPATH="/userdata/system/add-ons/bua/updater/catalog/pyhooks${PYTHONPATH:+:$PYTHONPATH}"
+fi
 bua_register() {
     local app_version="$1"
     local upstream_type="$2"
@@ -6338,6 +6354,21 @@ def _generic_payload_url_from_manifest(
 
         path = lower.split("?", 1)[0]
 
+        # Only real downloads count (BUA_PAYLOAD_URL_RULES_V1): never an
+        # API endpoint, an XML/schema namespace, a folder, plain HTTP, or
+        # another BUA installer script.
+        parsed = urlsplit(url)
+        host = (parsed.hostname or "").lower()
+        last = path.rstrip("/").rsplit("/", 1)[-1]
+        if (
+            parsed.scheme != "https"
+            or host.startswith("api.")
+            or host in ("www.w3.org", "w3.org", "schemas.xmlsoap.org")
+            or path.endswith("/")
+            or path.endswith(".sh")
+        ):
+            return -10000
+
         # Artwork and metadata are not application payloads.
         if path.endswith((
             ".png",
@@ -6391,10 +6422,12 @@ def _generic_payload_url_from_manifest(
 
         return value
 
+    # A payload needs positive evidence: a payload file extension, a
+    # release asset or a known file host (BUA_PAYLOAD_URL_RULES_V1).
     usable = [
         (score(url), url)
         for url in candidates
-        if score(url) > -10000
+        if score(url) >= 60
     ]
 
     if not usable:
@@ -6673,6 +6706,47 @@ def _http_payload_identity(
     return result
 
 
+def _bua_installer_identity_snapshot(app_name: str, entry: Dict, reason: str) -> Dict | None:
+    """Last-resort latest identity: the app's own BUA installer
+    (BUA_INSTALLER_IDENTITY_V1).
+
+    For apps with no usable payload or upstream release info: the
+    installer script's SHA-256, shown with its last-commit date from
+    SCRIPT_DATES.md. It changes whenever BUA's maintainers update the
+    installer, and the app is updated by running that installer again.
+    """
+    sha = str(entry.get("sha256") or "").strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", sha) or entry.get("fetch_status") != "ok":
+        return None
+    path = str(entry.get("installer_path") or "").strip()
+    stamp = ""
+    try:
+        stamp = str(get_script_dates().get(path) or "").split(" ", 1)[0]
+    except Exception:
+        stamp = ""
+    version = "installer@" + (stamp if re.fullmatch(r"\d{4}-\d{2}-\d{2}", stamp) else sha[:12])
+    return {
+        "supported": True,
+        "app": app_name,
+        "source": entry.get("installer_url"),
+        "registration": {
+            "app_version": version,
+            "update_identity": "installer:" + sha,
+            "update_method": "reinstall",
+            "upstream": {"type": "bua_installer", "url": entry.get("installer_url")},
+            "update_recipe": {"type": "reinstall"},
+        },
+        "lines": [],
+        "error": None,
+        "fallback": "installer",
+        "fallback_reason": reason,
+    }
+
+
+def _bua_broken_download(error: str) -> bool:
+    return bool(re.search(r"HTTP Error (404|410)\b", str(error or "")))
+
+
 def get_generic_catalog_registration_snapshot(
     app_name: str
 ) -> Dict:
@@ -6708,6 +6782,11 @@ def get_generic_catalog_registration_snapshot(
     )
 
     if not payload_url:
+        fallback = _bua_installer_identity_snapshot(
+            app_name, entry, "No application payload URL in its installer"
+        )
+        if fallback:
+            return fallback
         result["error"] = (
             "No generic application payload URL "
             "could be resolved"
@@ -6788,10 +6867,17 @@ def get_generic_catalog_registration_snapshot(
         )
 
     if not identity.get("supported"):
-        result["error"] = (
-            identity.get("error")
-            or "Unable to identify payload"
-        )
+        error = identity.get("error") or "Unable to identify payload"
+        # A dead download link means the installer itself is broken:
+        # say so instead of offering an update that cannot work.
+        if _bua_broken_download(error):
+            result["error"] = f"Download link is broken ({error}): {payload_url}"
+            result["broken_source"] = True
+            return result
+        fallback = _bua_installer_identity_snapshot(app_name, entry, error)
+        if fallback:
+            return fallback
+        result["error"] = error
         return result
 
     registration = {
@@ -6985,9 +7071,16 @@ def get_catalog_registration_snapshot(
     result_data["lines"] = lines
 
     if process.returncode != 0:
+        detail = ""
+        for line in reversed(lines):
+            line = line.strip()
+            if line and not line.startswith(BUA_REGISTRATION_PREFIX):
+                detail = line[:160]
+                break
         result_data["error"] = (
             f"Registration-only mode exited "
             f"{process.returncode}"
+            + (f": {detail}" if detail else "")
         )
 
         return result_data
@@ -8050,15 +8143,122 @@ def _bua_bind_selected_payload(app,selection):
     return resolved,None
 
 
+# How each app's update will run, set when its command is built
+# (BUA_UPDATE_METHODS_V1): "payload", "flatpak" or "reinstall".
+UPDATE_METHODS: Dict[str, str] = {}
+
+# Errors that mean "scan again", never "use another update method".
+_UPDATE_NO_FALLBACK = (
+    "rescan",
+    "changed since selection",
+    "No selected release",
+    "Missing selected source",
+)
+
+
+def _flatpak_app_id(identity) -> str | None:
+    match = re.fullmatch(r"flathub:([A-Za-z0-9._-]+):[^:]*:[0-9a-f]+", str(identity or ""))
+    return match.group(1) if match else None
+
+
+def _flatpak_installed_identity(app_id: str, branch: str = "") -> str | None:
+    """flathub:<id>:<branch>:<commit> of the installed Flatpak, or None."""
+    for scope in ("--system", "--user"):
+        try:
+            result = subprocess.run(
+                ["flatpak", "info", scope, "--show-commit", app_id],
+                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, timeout=20,
+            )
+        except Exception:
+            return None
+        commit = (result.stdout or "").strip().splitlines()[-1:] if result.returncode == 0 else []
+        if commit and re.fullmatch(r"[0-9a-f]{20,}", commit[0].strip()):
+            return f"flathub:{app_id}:{branch or 'stable'}:{commit[0].strip()}"
+    return None
+
+
+def _bua_registration_marker(app_name: str, selected_status: Dict) -> str | None:
+    """The registration an update records once it succeeds: the release
+    that was scanned."""
+    snapshot = get_catalog_registration_snapshot(app_name)
+    registration = dict((snapshot.get("registration") or {}) if snapshot.get("supported") else {})
+    if not registration or (
+        registration.get("update_identity") or registration.get("app_version")
+    ) != selected_status.get("latest_update_identity"):
+        return None
+    return "__BUA_REGISTER__=" + json.dumps(registration, sort_keys=True, separators=(",", ":"))
+
+
+def _flatpak_update_command(app_name: str, selected_status: Dict) -> tuple[str | None, str | None]:
+    import shlex
+
+    app_id = _flatpak_app_id(selected_status.get("latest_update_identity"))
+    if not app_id:
+        return None, "Not a Flathub release"
+    marker = _bua_registration_marker(app_name, selected_status)
+    if not marker:
+        return None, "Flathub release changed since selection; rescan"
+    q_id = shlex.quote(app_id)
+    command = (
+        "BUA_PARENT_UPDATE=1; "
+        f"if flatpak info --system {q_id} >/dev/null 2>&1; then scope=--system; else scope=--user; fi; "
+        f"echo \"[BUA] Updating {app_id} from Flathub\"; "
+        f"flatpak update -y --noninteractive $scope {q_id}; rc=$?; "
+        f"if [ $rc -eq 0 ]; then echo {shlex.quote(marker)}; fi; exit $rc"
+    )
+    return command, None
+
+
 def build_parent_update_command(
+    app_name: str,
+    selected_status: Dict | None = None,
+) -> tuple[str | None, str | None]:
+    """
+    One update job for an app, by the best method available:
+
+      1. Flathub apps: flatpak update of that app only.
+      2. A complete payload recipe: replace only the app's payload,
+         keeping its launchers, settings and integration.
+      3. Otherwise: run the app's BUA installer again (reinstall), which
+         the updater shows as such and asks to confirm.
+
+    A release that changed since the scan never falls back: it needs a
+    rescan.
+    """
+    status = selected_status or {}
+    UPDATE_METHODS.pop(app_name, None)
+
+    if _flatpak_app_id(status.get("latest_update_identity")):
+        command, error = _flatpak_update_command(app_name, status)
+        if command:
+            UPDATE_METHODS[app_name] = "flatpak"
+        return command, error
+
+    command, error = _build_payload_update_command(app_name, selected_status)
+    if command:
+        UPDATE_METHODS[app_name] = "payload"
+        return command, None
+    if error and any(word in str(error) for word in _UPDATE_NO_FALLBACK):
+        return None, error
+    if _bua_release_fingerprint(status) is None:
+        return None, error
+
+    installer = APPS.get(app_name)
+    if installer:
+        UPDATE_METHODS[app_name] = "reinstall"
+        return installer, None
+    return None, error
+
+
+def _build_payload_update_command(
     app_name: str,
     selected_status: Dict | None = None,
 ) -> tuple[str | None, str | None]:
     """
     Build one generic parent-source payload update job.
 
-    This NEVER reruns the original BUA installer.
-    Reinstall remains a separate repair action.
+    This never reruns the original BUA installer; build_parent_update_command
+    falls back to that when no payload recipe applies.
     """
     import shlex
 
@@ -8913,11 +9113,9 @@ def get_app_version_status(app_name: str) -> Dict:
             latest_version = parent_version
             latest_identity = parent_version
             latest_source = "parent"
-        elif order is None and str(parent_version).strip() != str(latest_version).strip():
-            source_comparison_error = (
-                "Cannot order official BUA and parent release versions"
-            )
-            latest_source = None
+        # When the parent release and BUA's own identity cannot be
+        # ordered, BUA's identity (what its installer installs today)
+        # stays the latest (BUA_VERSION_FALLBACK_V1).
 
     registration_mismatch = bool(
         probe_version
@@ -8953,7 +9151,34 @@ def get_app_version_status(app_name: str) -> Dict:
                 or registered_version
             )
 
+        flatpak_id = _flatpak_app_id(latest_identity)
+        if not installed_version and flatpak_id:
+            branch = str(latest_identity).split(":")[2]
+            local = _flatpak_installed_identity(flatpak_id, branch)
+            if local:
+                installed_version = registered_version = "rolling"
+                installed_identity = local
+
         if not installed_version:
+            # Installed before the updater (or by hand): nothing records
+            # which release is on disk. When the latest release is known,
+            # offer the update; installing it records the version from
+            # then on (BUA_VERSION_FALLBACK_V1).
+            if latest_identity and latest_source:
+                return {
+                    "status": "update_available",
+                    "needs_update": True,
+                    "untracked": True,
+                    "installed_version": None,
+                    "latest_version": latest_version,
+                    "latest_source": latest_source,
+                    "installed_update_identity": None,
+                    "latest_update_identity": latest_identity,
+                    "registered_version": registered_version,
+                    "probe_version": probe_version,
+                    "registration_mismatch": registration_mismatch,
+                    "error": None,
+                }
             return {
                 "status": "unknown",
                 "needs_update": False,
@@ -8965,7 +9190,7 @@ def get_app_version_status(app_name: str) -> Dict:
                 "registered_version": registered_version,
                 "probe_version": probe_version,
                 "registration_mismatch": registration_mismatch,
-                "error": "Installed application version is unknown",
+                "error": snapshot_error or "Latest release could not be determined",
             }
 
     if not installed_identity:
@@ -8980,12 +9205,12 @@ def get_app_version_status(app_name: str) -> Dict:
                 latest_cmp = latest_cmp[1:]
 
             order = _bua_order_software_versions(latest_version, installed_version)
+            same = installed_cmp == latest_cmp
+            differs = order is None and not same
             needs_update = (
-                order is not None
-                and order > 0
-                and source_comparison_error is None
-            )
-            unknown = order is None or source_comparison_error is not None
+                (order is not None and order > 0) or differs
+            ) and source_comparison_error is None
+            unknown = (order is None and not differs and not same) or source_comparison_error is not None
 
             return {
                 "status": (
@@ -9064,18 +9289,10 @@ def get_app_version_status(app_name: str) -> Dict:
     ):
         needs_update = installed_identity != latest_identity
     else:
-        return {
-            "status": "unknown", "needs_update": False,
-            "installed_version": installed_version,
-            "latest_version": latest_version,
-            "latest_source": latest_source,
-            "installed_update_identity": installed_identity,
-            "latest_update_identity": latest_identity,
-            "registered_version": registered_version,
-            "probe_version": probe_version,
-            "registration_mismatch": registration_mismatch,
-            "error": "Installed and offered versions are not safely orderable",
-        }
+        # Nightlies, payload dates, commit hashes: no numeric order, but
+        # a different identity from the latest release is not the latest
+        # release (BUA_VERSION_FALLBACK_V1).
+        needs_update = installed_identity != latest_identity
 
     return {
         "status": (
@@ -9393,6 +9610,7 @@ class UpdaterScreen(BaseScreen):
         self.needs_rescan = False
 
         self.pending_uninstall: Tuple[str, str] | None = None
+        self.pending_queue: List[Tuple[str, str]] | None = None
 
         self.phase = self.PHASE_SCAN_SELECT
         self.scan_target_count = 0
@@ -9617,6 +9835,9 @@ class UpdaterScreen(BaseScreen):
                 )
 
             results = []
+            # Apps offered an update only because no installed version is
+            # recorded: shown, but not ticked by default.
+            untracked_apps = set()
 
             for app_number, app in enumerate(installed_apps, 1):
                 self.scan_progress = tr("updater_checking_app", "Checking {app} ({number}/{total})",
@@ -9712,7 +9933,16 @@ class UpdaterScreen(BaseScreen):
                         )
                     )
 
-                    if update_cmd:
+                    reinstall = bool(update_cmd) and UPDATE_METHODS.get(app) == "reinstall"
+                    if update_cmd and app_status.get("untracked"):
+                        status = tr("updater_untracked", "Version not tracked")
+                        needs = True
+                        untracked_apps.add(app)
+                    elif reinstall:
+                        status = tr("updater_update_reinstall", "Update by reinstalling")
+                        needs = True
+                        untracked_apps.add(app)  # may reset settings: not pre-ticked
+                    elif update_cmd:
                         status = t(
                             "update_available"
                         )
@@ -9739,6 +9969,9 @@ class UpdaterScreen(BaseScreen):
                         details.append(
                             update_error
                         )
+
+                    if reinstall and app_status.get("untracked"):
+                        details.append(tr("updater_method_reinstall", "updates by reinstalling"))
 
                     if app_status.get("component_summary"):
                         details.append(
@@ -9833,7 +10066,7 @@ class UpdaterScreen(BaseScreen):
                     needs,
                     _detail,
                 ) in self.items
-                if needs
+                if needs and app not in untracked_apps
             }
 
             self.idx = 0
@@ -9886,6 +10119,7 @@ class UpdaterScreen(BaseScreen):
             return
 
         unavailable = []
+        queued = []
 
         for app in selected_apps:
             current_status = get_app_version_status(app)
@@ -9906,8 +10140,30 @@ class UpdaterScreen(BaseScreen):
                 )
                 continue
 
-            item = (app, cmd)
+            queued.append((app, cmd))
 
+        reinstalls = [app for app, _cmd in queued if UPDATE_METHODS.get(app) == "reinstall"]
+        if reinstalls:
+            names = ", ".join(reinstalls[:6]) + (f" (+{len(reinstalls) - 6})" if len(reinstalls) > 6 else "")
+            message = [
+                tr("updater_reinstall_confirm",
+                   "These update by running their BUA installer again, which can reset their settings:"),
+                names,
+            ] + unavailable[:3]
+
+            def on_confirm():
+                self.pending_queue = queued
+
+            def on_cancel():
+                pass
+
+            push_screen(ConfirmDialog(t("updater"), message, on_confirm, on_cancel))
+            return
+
+        self._enqueue(queued, unavailable)
+
+    def _enqueue(self, queued, unavailable=()):
+        for item in queued:
             if item not in INSTALL_QUEUE:
                 INSTALL_QUEUE.append(item)
 
@@ -10075,6 +10331,11 @@ class UpdaterScreen(BaseScreen):
     def update(self):
         if self.scan is not None:
             self._sync_scan()
+        if self.pending_queue:
+            queued, self.pending_queue = self.pending_queue, None
+            # ConfirmDialog has closed; now leave for the queue screen.
+            self._enqueue(queued)
+            return
         if self.pending_uninstall:
             app, uninstall_cmd = self.pending_uninstall
             self.pending_uninstall = None

@@ -187,5 +187,9 @@
   "switch_component_out_of_date": "{name} non aggiornato",
   "switch_component_unavailable": "{name}: fonte non disponibile ({reason})",
   "switch_component_not_installed": "{name} non installato",
-  "switch_other_components_current": "Gli altri emulatori sono aggiornati"
+  "switch_other_components_current": "Gli altri emulatori sono aggiornati",
+  "updater_untracked": "Versione non registrata",
+  "updater_update_reinstall": "Aggiorna reinstallando",
+  "updater_method_reinstall": "si aggiorna reinstallando",
+  "updater_reinstall_confirm": "Si aggiornano eseguendo di nuovo il loro installer BUA, il che può reimpostare le loro impostazioni:"
 }
