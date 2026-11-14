@@ -8631,6 +8631,12 @@ def _build_payload_update_command(
             'fi; '
             'SOURCE_ROOT="$EXTRACT"; '
             'if [ -n "$SUBPATH" ]; then SOURCE_ROOT="$EXTRACT/$SUBPATH"; fi; '
+            # Archives such as tailscale_1.90.6_amd64.tgz wrap everything in
+            # one versioned folder: look inside it (BUA_BUNDLE_WRAPPER_DIR_V1).
+            'if [ -z "$SUBPATH" ] && [ ! -e "$SOURCE_ROOT/${MEMBERS[0]}" ]; then '
+            '  TOP=("$EXTRACT"/*); '
+            '  if [ "${#TOP[@]}" -eq 1 ] && [ -d "${TOP[0]}" ]; then SOURCE_ROOT="${TOP[0]}"; fi; '
+            'fi; '
             'test -d "$SOURCE_ROOT"; '
 
             # Stage every new member before touching installed payloads.
