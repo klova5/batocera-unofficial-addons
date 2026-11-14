@@ -3,7 +3,7 @@
 
 # URLs
 SCRIPT_URL="https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/app/symlinks.sh"
-BATOCERA_ADDONS_URL="https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/app/BUA.sh"
+BATOCERA_ADDONS_URL="https://raw.githubusercontent.com/klova5/batocera-unofficial-addons/console-gui-updater/app/BUA.sh"
 UPDATER_SUPPORT_URL="https://raw.githubusercontent.com/klova5/batocera-unofficial-addons/console-gui-updater/app/bua-updater-support-x86_64.tar.gz"
 UPDATER_SUPPORT_SHA256="afe7e815dbc116f4c37e6c7dc05a23d94938e134fdbc29e5d4488891e5b27563"
 UPDATER_ROOT="/userdata/system/add-ons/bua/updater"
