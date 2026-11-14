@@ -1,7 +1,7 @@
 {
   "backend_api_version": 1,
   "file_hashes": {
-    "bua_installerx86.py": "c36ba158950119718b3ab94542c9579c845712b7ecc281f46d342a2978fc0852",
+    "bua_installerx86.py": "ccb072137b3125fb4f6501149e6ca67855068c77c0db60d4e727758a159d288d",
     "catalog/audit_github_parent_sources.py": "d86df49130168de2b87944d27b971e5d76925941a6906dcbf5f9bb1fa143453d",
     "catalog/audit_mirror_backed_sources.py": "be55e0f006c33126ae7fd80d4c1afc0b0d973c920f9faa3b7fb1380557cf7261",
     "catalog/blissos_sourceforge_identity.py": "3b7e34a3d9203531b75945d6db072f9069ab129f98a5b83b6d6e97e15cb0a8e1",
@@ -11,7 +11,7 @@
     "catalog/build_github_release_adapters.py": "d2eeff8176a3c69a0b461ef6de7c8f773beee43672a3b56f3c75b1ef50f2d88e",
     "catalog/build_github_release_download_adapters.py": "bcb34fb3fdb3d33634e27191c1477c137b5e60dbbd16e3a364c55ca40e31cbf3",
     "catalog/build_github_web_parent_adapters.py": "b6640dd3c214b2e314099a1e3add5abeb74e148d026018ded32bb6e52c25526d",
-    "catalog/build_global_update_manifest.py": "b04897048ed5ebad78864176977bf8e5c75209110ec400da1adddf900d4d3a89",
+    "catalog/build_global_update_manifest.py": "ff7212f32304f1d6efbd09943306b74e92115940551382e3a324459c39f445c2",
     "catalog/build_trusted_github_parent_adapters.py": "7cb3e4deeff4b8046b9386c8d29e2c3f9af7aa0fa885003c6b5f8a97901fddca",
     "catalog/downstream/custom-wine/ge-proton.sh": "87a04ba81930a7dc25f586bc5f1f316eba6851b65b92d4139ed240b9e4645b7e",
     "catalog/downstream/custom-wine/steamy.sh": "2be4df2a8eb6309d5e045d0d1b07c4e38dae9ca7d951a3ea8b3d1f5bafc76959",
@@ -99,6 +99,7 @@
     "catalog/openrgb_release_identity.py": "c1406d6a0f7418bfd27d6f3d85f171b0e0f1e60a198d18d4b2e29c7795c81294",
     "catalog/ps3i_identity.py": "d418ca7b3680b5d7f5b7121f71e15d65e794e5456a2d27cfd76a115f41a028d5",
     "catalog/pyhooks/sitecustomize.py": "f674b8f486e0bf36782b42f821b6a7509e964bd779e43328c96f2f555312fd08",
+    "catalog/reinstall_safety.py": "dc78c0649e6fdd9096d3840f13abdda0f60aadf06a01f5a3cd056ec1b0d4ae95",
     "catalog/repair_github_release_repos.py": "7e33039d1dc3f30314e5ff96fdd436cbc0b4b513f6f730438f5524350bdaba13",
     "catalog/resolve_variable_github_sources.py": "0c073399c043cd212be3ac0fb85845785289e1ad74fdacfd4d8d9447a8b71ffa",
     "catalog/rgsx_identity.py": "a4929fc55c9da0256e6e2e734913b8baa84c335f2f8c5e1275a70330c18f6f66",
@@ -281,6 +282,6 @@
     "integrations/nextendo-browser-select.py": "e99358d15d85a2dcedb6bdc2d68d9902320f54acc72925575a78571d687c85ff",
     "integrations/switch-motion-restore.sh": "267636f85b8096c1c387e99f3b571174b77bb693e7653966f79f487b7995083c"
   },
-  "package_sha256": "bd95cede76384e9c8b7a9c95e548c52d67cb4ef4fa6cb5c82ca120749a32b639",
+  "package_sha256": "afe7e815dbc116f4c37e6c7dc05a23d94938e134fdbc29e5d4488891e5b27563",
   "schema_version": 1
 }

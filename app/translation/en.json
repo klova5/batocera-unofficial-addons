@@ -196,5 +196,8 @@
   "updater_untracked": "Version not tracked",
   "updater_update_reinstall": "Update by reinstalling",
   "updater_method_reinstall": "updates by reinstalling",
-  "updater_reinstall_confirm": "These update by running their BUA installer again, which can reset their settings:"
+  "updater_reinstall_resets": "Reinstalling these deletes their add-on folder, so their settings will be reset:",
+  "updater_reinstall_unchecked": "Could not check whether these keep their settings:",
+  "updater_not_queued": "These could not be queued:",
+  "updater_queue_rest": "Queue the other updates?"
 }

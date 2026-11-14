@@ -196,5 +196,8 @@
   "updater_untracked": "Wersja nieśledzona",
   "updater_update_reinstall": "Aktualizuj przez ponowną instalację",
   "updater_method_reinstall": "aktualizacja przez ponowną instalację",
-  "updater_reinstall_confirm": "Te aplikacje aktualizują się przez ponowne uruchomienie instalatora BUA, co może przywrócić ich ustawienia domyślne:"
+  "updater_reinstall_resets": "Ponowna instalacja usuwa ich folder dodatku, więc ich ustawienia zostaną zresetowane:",
+  "updater_reinstall_unchecked": "Nie udało się sprawdzić, czy zachowają swoje ustawienia:",
+  "updater_not_queued": "Nie udało się dodać do kolejki:",
+  "updater_queue_rest": "Dodać pozostałe aktualizacje do kolejki?"
 }

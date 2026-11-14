@@ -6743,6 +6743,31 @@ def _bua_installer_identity_snapshot(app_name: str, entry: Dict, reason: str) ->
     }
 
 
+def get_reinstall_safety(app_name: str) -> Dict:
+    """Would updating this app by re-running its installer reset its
+    settings? (BUA_REINSTALL_SAFETY_V1)
+
+    The global manifest records a verdict for every installer when it is
+    built, so apps added to BUA later are covered too. Older manifests
+    without it fall back to checking the cached installer here.
+    """
+    entry = get_global_manifest_entry(app_name) or {}
+    found = entry.get("reinstall_safety")
+    if isinstance(found, dict) and found.get("verdict") in ("keeps_settings", "may_reset", "unknown"):
+        return found
+    cached = str(entry.get("cached_installer") or "")
+    try:
+        import reinstall_safety as _rs
+
+        text = Path(cached).read_text(encoding="utf-8", errors="replace")
+        result = _rs.analyze(text)
+        if result.get("nested") and result.get("verdict") == "keeps_settings":
+            result["verdict"] = "unknown"
+        return result
+    except Exception:
+        return {"verdict": "unknown", "paths": []}
+
+
 def _bua_broken_download(error: str) -> bool:
     return bool(re.search(r"HTTP Error (404|410)\b", str(error or "")))
 
@@ -10143,13 +10168,34 @@ class UpdaterScreen(BaseScreen):
             queued.append((app, cmd))
 
         reinstalls = [app for app, _cmd in queued if UPDATE_METHODS.get(app) == "reinstall"]
-        if reinstalls:
-            names = ", ".join(reinstalls[:6]) + (f" (+{len(reinstalls) - 6})" if len(reinstalls) > 6 else "")
-            message = [
-                tr("updater_reinstall_confirm",
-                   "These update by running their BUA installer again, which can reset their settings:"),
-                names,
-            ] + unavailable[:3]
+
+        # Never drop a ticked app silently (BUA_QUEUE_REPORT_V1): say which
+        # could not be queued and why, then offer to go on with the rest.
+        # Warn only about the apps whose installer deletes their settings,
+        # or that could not be checked (BUA_REINSTALL_SAFETY_V1).
+        verdicts = {app: get_reinstall_safety(app).get("verdict") for app in reinstalls}
+        resets = [app for app in reinstalls if verdicts[app] == "may_reset"]
+        unchecked = [app for app in reinstalls if verdicts[app] == "unknown"]
+
+        def _names(apps, limit=6):
+            return ", ".join(apps[:limit]) + (f" (+{len(apps) - limit})" if len(apps) > limit else "")
+
+        if resets or unchecked:
+            message = []
+            if resets:
+                message += [
+                    tr("updater_reinstall_resets",
+                       "Reinstalling these deletes their add-on folder, so their settings will be reset:"),
+                    _names(resets),
+                ]
+            if unchecked:
+                message += [
+                    tr("updater_reinstall_unchecked",
+                       "Could not check whether these keep their settings:"),
+                    _names(unchecked),
+                ]
+            if unavailable:
+                message += [tr("updater_not_queued", "These could not be queued:")] + unavailable[:3]
 
             def on_confirm():
                 self.pending_queue = queued
@@ -10158,6 +10204,17 @@ class UpdaterScreen(BaseScreen):
                 pass
 
             push_screen(ConfirmDialog(t("updater"), message, on_confirm, on_cancel))
+            return
+
+        if unavailable and queued:
+            message = [tr("updater_not_queued", "These could not be queued:")] + unavailable[:6] + [
+                tr("updater_queue_rest", "Queue the other updates?")
+            ]
+
+            def on_confirm_rest():
+                self.pending_queue = queued
+
+            push_screen(ConfirmDialog(t("updater"), message, on_confirm_rest, lambda: None))
             return
 
         self._enqueue(queued, unavailable)

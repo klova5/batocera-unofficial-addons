@@ -195,5 +195,8 @@
   "updater_untracked": "Versión no registrada",
   "updater_update_reinstall": "Actualizar reinstalando",
   "updater_method_reinstall": "se actualiza reinstalando",
-  "updater_reinstall_confirm": "Se actualizan ejecutando de nuevo su instalador de BUA, lo que puede restablecer su configuración:"
+  "updater_reinstall_resets": "Al reinstalar estos se borra su carpeta de complemento, así que se restablecerá su configuración:",
+  "updater_reinstall_unchecked": "No se pudo comprobar si estos conservan su configuración:",
+  "updater_not_queued": "No se pudieron poner en cola:",
+  "updater_queue_rest": "¿Poner en cola las demás actualizaciones?"
 }

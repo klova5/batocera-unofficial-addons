@@ -194,5 +194,8 @@
   "updater_untracked": "Version nicht erfasst",
   "updater_update_reinstall": "Durch Neuinstallation aktualisieren",
   "updater_method_reinstall": "Aktualisierung durch Neuinstallation",
-  "updater_reinstall_confirm": "Diese werden aktualisiert, indem ihr BUA-Installer erneut ausgeführt wird; dabei können Einstellungen zurückgesetzt werden:"
+  "updater_reinstall_resets": "Bei der Neuinstallation wird ihr Add-on-Ordner gelöscht, ihre Einstellungen werden zurückgesetzt:",
+  "updater_reinstall_unchecked": "Konnte nicht prüfen, ob diese ihre Einstellungen behalten:",
+  "updater_not_queued": "Diese konnten nicht eingereiht werden:",
+  "updater_queue_rest": "Die anderen Updates einreihen?"
 }

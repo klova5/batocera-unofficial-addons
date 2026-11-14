@@ -191,5 +191,8 @@
   "updater_untracked": "Versione non registrata",
   "updater_update_reinstall": "Aggiorna reinstallando",
   "updater_method_reinstall": "si aggiorna reinstallando",
-  "updater_reinstall_confirm": "Si aggiornano eseguendo di nuovo il loro installer BUA, il che può reimpostare le loro impostazioni:"
+  "updater_reinstall_resets": "La reinstallazione elimina la loro cartella add-on, quindi le impostazioni verranno ripristinate:",
+  "updater_reinstall_unchecked": "Impossibile verificare se questi mantengono le impostazioni:",
+  "updater_not_queued": "Non è stato possibile mettere in coda:",
+  "updater_queue_rest": "Mettere in coda gli altri aggiornamenti?"
 }

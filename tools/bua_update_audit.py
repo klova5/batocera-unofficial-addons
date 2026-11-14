@@ -196,6 +196,11 @@ for number, app in enumerate(apps, 1):
                 "method": getattr(bua, "UPDATE_METHODS", {}).get(app),
                 "class": classify(mock, cmd_error if not cmd else None, getattr(bua, "UPDATE_METHODS", {}).get(app)),
             }
+            if row["mock"]["method"] == "reinstall" and hasattr(bua, "get_reinstall_safety"):
+                # BUA_REINSTALL_SAFETY_V1: does re-running the installer keep settings?
+                safety = bua.get_reinstall_safety(app)
+                row["mock"]["reinstall_safety"] = safety.get("verdict")
+                row["mock"]["reinstall_deletes"] = safety.get("paths", [])
             if app == getattr(bua, "SWITCH_APP_NAME", "Switch") and mock.get("status") == "current":
                 # Switch is checked emulator by emulator from the files on
                 # disk, so a recorded older release does not apply.
@@ -243,6 +248,16 @@ for r in report:
 for (cls, reason), names in sorted(groups.items(), key=lambda kv: -len(kv[1])):
     lines.append(f"- {cls} x{len(names)}: {reason}")
     lines.append("    " + ", ".join(names))
+lines.append("")
+lines.append("== UPDATE BY REINSTALLING: settings (BUA_REINSTALL_SAFETY_V1)")
+safety = defaultdict(list)
+for r in report:
+    if r["mock"].get("reinstall_safety"):
+        safety[r["mock"]["reinstall_safety"]].append(r)
+for verdict in ("keeps_settings", "may_reset", "unknown"):
+    lines.append(f"  {verdict:30s} {len(safety[verdict])}")
+for r in safety["may_reset"] + safety["unknown"]:
+    lines.append(f"- {r['app']}: {r['mock']['reinstall_safety']} | deletes {', '.join(r['mock'].get('reinstall_deletes') or []) or '?'}")
 lines.append("")
 lines.append("== REAL SCAN not OK (installed here)")
 for r in report:

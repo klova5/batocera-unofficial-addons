@@ -196,5 +196,8 @@
   "updater_untracked": "Versão não rastreada",
   "updater_update_reinstall": "Atualizar reinstalando",
   "updater_method_reinstall": "atualiza reinstalando",
-  "updater_reinstall_confirm": "Estes são atualizados executando de novo o instalador do BUA, o que pode redefinir as configurações:"
+  "updater_reinstall_resets": "Reinstalar estes apaga a pasta do add-on, então as configurações serão redefinidas:",
+  "updater_reinstall_unchecked": "Não foi possível verificar se estes mantêm as configurações:",
+  "updater_not_queued": "Não foi possível adicionar à fila:",
+  "updater_queue_rest": "Adicionar as outras atualizações à fila?"
 }

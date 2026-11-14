@@ -195,5 +195,8 @@
   "updater_untracked": "Version non suivie",
   "updater_update_reinstall": "Mettre à jour en réinstallant",
   "updater_method_reinstall": "mise à jour par réinstallation",
-  "updater_reinstall_confirm": "Ces applications se mettent à jour en relançant leur installateur BUA, ce qui peut réinitialiser leurs réglages :"
+  "updater_reinstall_resets": "La réinstallation supprime leur dossier d'add-on, leurs réglages seront donc réinitialisés :",
+  "updater_reinstall_unchecked": "Impossible de vérifier si ceux-ci conservent leurs réglages :",
+  "updater_not_queued": "Impossible de mettre en file d'attente :",
+  "updater_queue_rest": "Mettre les autres mises à jour en file d'attente ?"
 }
