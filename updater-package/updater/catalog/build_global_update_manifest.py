@@ -11,6 +11,14 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import urlparse, urlsplit
 
+import sys as _sys
+
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    import reinstall_safety  # BUA_REINSTALL_SAFETY_V1
+except Exception:  # pragma: no cover - keep the builder working without it
+    reinstall_safety = None
+
 FRONTEND = Path("/userdata/system/add-ons/bua/updater/bua_installerx86.py")
 
 OUTDIR = Path("/userdata/system/add-ons/bua/updater/catalog/global")
@@ -1093,6 +1101,41 @@ print(
 )
 print()
 
+_NESTED_SCRIPTS = {}
+
+
+def _reinstall_safety(script):
+    """Would re-running this installer reset the app's settings?
+    Checks the installer and up to two levels of BUA scripts it runs
+    (BUA_REINSTALL_SAFETY_V1)."""
+    if reinstall_safety is None:
+        return {"verdict": "unknown", "paths": [], "error": "reinstall_safety missing"}
+    results, seen = [], set()
+
+    def walk(text, depth):
+        result = reinstall_safety.analyze(text)
+        results.append(result)
+        for url in result.get("nested", []):
+            if url in seen or depth >= 2:
+                continue
+            seen.add(url)
+            if url not in _NESTED_SCRIPTS:
+                try:
+                    _NESTED_SCRIPTS[url] = fetch(url).decode("utf-8", "replace")
+                except Exception:
+                    _NESTED_SCRIPTS[url] = None
+            if _NESTED_SCRIPTS[url] is None:
+                results.append(None)
+            else:
+                walk(_NESTED_SCRIPTS[url], depth + 1)
+
+    try:
+        walk(script, 0)
+    except Exception as exc:
+        return {"verdict": "unknown", "paths": [], "error": str(exc)[:200]}
+    return reinstall_safety.combine(results)
+
+
 def _build_record(index, app):
     name = app["app"]
     url = app["installer_url"]
@@ -1118,6 +1161,7 @@ def _build_record(index, app):
         "safety_flags": [],
         "conversion_status": None,
         "cached_installer": None,
+        "reinstall_safety": None,
     })
 
     if not url:
@@ -1152,6 +1196,7 @@ def _build_record(index, app):
         record["cached_installer"] = str(
             cache_path
         )
+        record["reinstall_safety"] = _reinstall_safety(script)
 
         urls = extract_urls(script)
         ext_urls = external_urls(urls)
