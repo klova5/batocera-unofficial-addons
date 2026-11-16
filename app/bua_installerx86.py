@@ -8253,6 +8253,11 @@ def build_parent_update_command(
     status = selected_status or {}
     UPDATE_METHODS.pop(app_name, None)
 
+    if status.get("installer_changed") and APPS.get(app_name):
+        # The installer itself changed: only re-running it applies that.
+        UPDATE_METHODS[app_name] = "reinstall"
+        return APPS[app_name], None
+
     if _flatpak_app_id(status.get("latest_update_identity")):
         command, error = _flatpak_update_command(app_name, status)
         if command:
@@ -9065,7 +9070,100 @@ def _bua_order_software_versions(left, right):
     return (a > b) - (a < b)
 
 
+_BUA_SCRIPT_PATH = re.compile(
+    r"batocera-unofficial-addons/batocera-unofficial-addons/(?:raw/)?(?:refs/heads/)?main/([^\s\"'|;)]+?\.sh)"
+)
+
+
+def _bua_script_date(path: str) -> float | None:
+    """Last commit time of a repo script, from SCRIPT_DATES.md (with its
+    UTC offset)."""
+    value = get_script_dates().get(path)
+    if not value:
+        return None
+    try:
+        return datetime.strptime(value, "%Y-%m-%d %H:%M:%S %z").timestamp()
+    except ValueError:
+        return github_latest_commit_date("", "", "", path)
+
+
+def _bua_install_time(app_name: str) -> float | None:
+    """When BUA last installed or updated this app (history or package
+    state), or None if it never recorded one."""
+    times = []
+    stamps = [get_last_install_date(app_name)]
+    entry = get_package_state(app_name) or {}
+    stamps += [entry.get("updated_at"), entry.get("installed_at")]
+    for stamp in stamps:
+        try:
+            times.append(datetime.strptime(str(stamp), "%Y-%m-%d %H:%M:%S").timestamp())
+        except (TypeError, ValueError):
+            pass
+    return max(times) if times else None
+
+
+def get_installer_change(app_name: str) -> Dict | None:
+    """Has the app's BUA installer changed since it was installed?
+    (BUA_INSTALLER_CHANGED_V1)
+
+    The release check only sees the app's own version. BUA's installer
+    scripts change too, e.g. to install a different launcher on
+    Batocera 44, and users get that fix only by reinstalling. This is the
+    commit-date check the old updater did, using SCRIPT_DATES.md: the
+    installer and the BUA scripts it runs are compared with the time BUA
+    last installed or updated the app. Apps BUA has no install time for
+    are not flagged.
+    """
+    paths = []
+    for text in (APPS.get(app_name, ""),):
+        paths += _BUA_SCRIPT_PATH.findall(text)
+    cached = str((get_global_manifest_entry(app_name) or {}).get("cached_installer") or "")
+    if cached:
+        try:
+            paths += _BUA_SCRIPT_PATH.findall(Path(cached).read_text(encoding="utf-8", errors="replace"))
+        except OSError:
+            pass
+    paths = [p for p in dict.fromkeys(paths) if not p.endswith("_uninstall.sh")]
+    if not paths:
+        return None
+    installed = _bua_install_time(app_name)
+    if installed is None:
+        return None
+    changed = [(when, path) for path in paths for when in [_bua_script_date(path)] if when]
+    if not changed:
+        return None
+    when, path = max(changed)
+    if when <= installed + 60:
+        return None
+    return {
+        "script": path,
+        "date": datetime.fromtimestamp(when, timezone.utc).strftime("%Y-%m-%d"),
+    }
+
+
 def get_app_version_status(app_name: str) -> Dict:
+    """Release check plus installer check: an app whose BUA installer
+    changed since it was installed is offered a reinstall even when its
+    version is current (BUA_INSTALLER_CHANGED_V1)."""
+    status = _get_release_version_status(app_name)
+    try:
+        change = get_installer_change(app_name)
+    except Exception:
+        change = None
+    if not change or not isinstance(status, dict):
+        return status
+    status = dict(status)
+    status["installer_changed"] = change
+    if status.get("status") != "update_available" or status.get("needs_update") is not True:
+        status["status"] = "update_available"
+        status["needs_update"] = True
+        status["latest_version"] = status.get("latest_version") or status.get("installed_version") or ""
+    # Bind the reinstall to this exact installer revision.
+    status["latest_update_identity"] = f"{status.get('latest_update_identity')}|installer@{change['date']}"
+    return status
+
+
+def _get_release_version_status(app_name: str) -> Dict:
     """
     Compare the installed update identity with the latest identity
     reported by the app's current BUA installer.
@@ -9965,7 +10063,14 @@ class UpdaterScreen(BaseScreen):
                     )
 
                     reinstall = bool(update_cmd) and UPDATE_METHODS.get(app) == "reinstall"
-                    if update_cmd and app_status.get("untracked"):
+                    script_change = app_status.get("installer_changed")
+                    if update_cmd and script_change:
+                        status = tr("updater_script_updated", "BUA script updated")
+                        needs = True
+                        if get_reinstall_safety(app).get("verdict") != "keeps_settings":
+                            untracked_apps.add(app)  # may reset settings: not pre-ticked
+                        details.append(tr("updater_script_date", "Script {date}", date=script_change["date"]))
+                    elif update_cmd and app_status.get("untracked"):
                         status = tr("updater_untracked", "Version not tracked")
                         needs = True
                         untracked_apps.add(app)
@@ -9985,6 +10090,7 @@ class UpdaterScreen(BaseScreen):
                     if (
                         installed_version
                         and latest_version
+                        and installed_version != latest_version
                     ):
                         details.append(
                             f"{installed_version} "

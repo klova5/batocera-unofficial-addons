@@ -193,6 +193,8 @@
   "updater_method_reinstall": "si aggiorna reinstallando",
   "updater_reinstall_resets": "La reinstallazione elimina la loro cartella add-on, quindi le impostazioni verranno ripristinate:",
   "updater_reinstall_unchecked": "Impossibile verificare se questi mantengono le impostazioni:",
+  "updater_script_updated": "Script BUA aggiornato",
+  "updater_script_date": "Script {date}",
   "updater_not_queued": "Non è stato possibile mettere in coda:",
   "updater_queue_rest": "Mettere in coda gli altri aggiornamenti?"
 }

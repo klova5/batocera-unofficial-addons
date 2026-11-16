@@ -197,6 +197,8 @@
   "updater_method_reinstall": "se actualiza reinstalando",
   "updater_reinstall_resets": "Al reinstalar estos se borra su carpeta de complemento, así que se restablecerá su configuración:",
   "updater_reinstall_unchecked": "No se pudo comprobar si estos conservan su configuración:",
+  "updater_script_updated": "Script de BUA actualizado",
+  "updater_script_date": "Script {date}",
   "updater_not_queued": "No se pudieron poner en cola:",
   "updater_queue_rest": "¿Poner en cola las demás actualizaciones?"
 }

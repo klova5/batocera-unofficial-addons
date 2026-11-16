@@ -198,6 +198,8 @@
   "updater_method_reinstall": "обновляется переустановкой",
   "updater_reinstall_resets": "Переустановка удаляет их папку дополнения, поэтому их настройки будут сброшены:",
   "updater_reinstall_unchecked": "Не удалось проверить, сохранят ли они свои настройки:",
+  "updater_script_updated": "Скрипт BUA обновлён",
+  "updater_script_date": "Скрипт {date}",
   "updater_not_queued": "Не удалось поставить в очередь:",
   "updater_queue_rest": "Поставить остальные обновления в очередь?"
 }

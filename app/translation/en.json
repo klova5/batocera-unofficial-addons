@@ -198,6 +198,8 @@
   "updater_method_reinstall": "updates by reinstalling",
   "updater_reinstall_resets": "Reinstalling these deletes their add-on folder, so their settings will be reset:",
   "updater_reinstall_unchecked": "Could not check whether these keep their settings:",
+  "updater_script_updated": "BUA script updated",
+  "updater_script_date": "Script {date}",
   "updater_not_queued": "These could not be queued:",
   "updater_queue_rest": "Queue the other updates?"
 }

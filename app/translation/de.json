@@ -196,6 +196,8 @@
   "updater_method_reinstall": "Aktualisierung durch Neuinstallation",
   "updater_reinstall_resets": "Bei der Neuinstallation wird ihr Add-on-Ordner gelöscht, ihre Einstellungen werden zurückgesetzt:",
   "updater_reinstall_unchecked": "Konnte nicht prüfen, ob diese ihre Einstellungen behalten:",
+  "updater_script_updated": "BUA-Skript aktualisiert",
+  "updater_script_date": "Skript {date}",
   "updater_not_queued": "Diese konnten nicht eingereiht werden:",
   "updater_queue_rest": "Die anderen Updates einreihen?"
 }

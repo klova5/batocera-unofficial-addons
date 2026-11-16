@@ -197,6 +197,8 @@
   "updater_method_reinstall": "mise à jour par réinstallation",
   "updater_reinstall_resets": "La réinstallation supprime leur dossier d'add-on, leurs réglages seront donc réinitialisés :",
   "updater_reinstall_unchecked": "Impossible de vérifier si ceux-ci conservent leurs réglages :",
+  "updater_script_updated": "Script BUA mis à jour",
+  "updater_script_date": "Script {date}",
   "updater_not_queued": "Impossible de mettre en file d'attente :",
   "updater_queue_rest": "Mettre les autres mises à jour en file d'attente ?"
 }
