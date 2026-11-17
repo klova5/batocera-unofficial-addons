@@ -1,0 +1,10 @@
+{
+  "package_id": "sandtrix",
+  "display_version": "3.0",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/sandtrix/extra/Sandtrix_3.0_LINUX.tar.gz"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "package_id": "gamescope",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/gamescope/extra/gamescope.tar.gz"
+    }
+  ]
+}

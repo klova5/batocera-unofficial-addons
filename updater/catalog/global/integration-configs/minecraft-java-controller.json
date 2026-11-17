@@ -1,0 +1,34 @@
+{
+  "package_id": "minecraft-java-controller",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/Minecraft"
+    },
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/lib/liblauncher.tar.bz2.partaa"
+    },
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/lib/liblauncher.tar.bz2.partab"
+    },
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/lib/liblauncher.tar.bz2.partac"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/lib/libselinux.so.1"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/lib/libsecret-1.so.0"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/extra/Minecraft.sh.keys"
+    }
+  ]
+}

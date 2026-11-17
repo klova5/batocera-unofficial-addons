@@ -1,0 +1,10 @@
+{
+  "package_id": "filezilla",
+  "display_version": "3.68.1",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/filezilla/extra/FileZilla_3.68.1_x86_64-linux-gnu.tar.xz"
+    }
+  ]
+}

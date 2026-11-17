@@ -1,0 +1,10 @@
+{
+  "package_id": "desktop-for-batocera",
+  "display_version": "8.8",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/Desktop_for_batocera_8.8.squashfs"
+    }
+  ]
+}

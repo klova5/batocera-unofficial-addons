@@ -1,0 +1,38 @@
+{
+  "package_id": "steam",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/steam.AppImage"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/Launcher2"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/create-steam-launchers2.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/lbfix.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/ensure_steam_batocera_conf.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/es_systems_steam.cfg"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/steam/extra/es_features_steam.cfg"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/steam/extra/Steam.sh.keys"
+    }
+  ]
+}

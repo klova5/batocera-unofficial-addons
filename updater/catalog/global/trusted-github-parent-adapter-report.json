@@ -1,0 +1,153 @@
+{
+  "failed": 7,
+  "passed": 4,
+  "results": [
+    {
+      "app": "Arcade Manager",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/arcademanager/arcademanager.sh",
+      "owner": "cosmo0",
+      "registration_ok": false,
+      "repo": "arcade-manager",
+      "syntax_ok": true
+    },
+    {
+      "app": "Conty",
+      "error": null,
+      "marker": {
+        "app_version": "1.29.4",
+        "update_identity": "github-release:397748929:afb8c9963a7982dbfdef2dc2d2224d1faddc22559b49f49a3cddbabd4280ad70",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Kron4ek",
+          "repo": "Conty",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/conty/conty.sh",
+      "owner": "Kron4ek",
+      "registration_ok": true,
+      "repo": "Conty",
+      "syntax_ok": true
+    },
+    {
+      "app": "Nazi Zombies Portable",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/nzp/nzp.sh",
+      "owner": "nzp-team",
+      "registration_ok": false,
+      "repo": "nzportable",
+      "syntax_ok": true
+    },
+    {
+      "app": "Telegraf",
+      "error": null,
+      "marker": {
+        "app_version": "v1.40.1",
+        "update_identity": "github-release:393201818:a6afa655a7f38eb47ea0be495ad150bb43e70cb1246ca4c6e826a8fd40840f28",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "influxdata",
+          "repo": "telegraf",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/telegraf/telegraf.sh",
+      "owner": "influxdata",
+      "registration_ok": true,
+      "repo": "telegraf",
+      "syntax_ok": true
+    },
+    {
+      "app": "OpenRA",
+      "error": null,
+      "marker": {
+        "app_version": "release-20250330",
+        "update_identity": "github-release:209218224:cbdf12a790c772675f2d9e0f5d6b09b981ea93dab0da03978d1a29afd04b1558",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "OpenRA",
+          "repo": "OpenRA",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/openra/openra.sh",
+      "owner": "OpenRA",
+      "registration_ok": true,
+      "repo": "OpenRA",
+      "syntax_ok": true
+    },
+    {
+      "app": "SuperTux",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/supertux/supertux.sh",
+      "owner": "SuperTux",
+      "registration_ok": false,
+      "repo": "supertux",
+      "syntax_ok": true
+    },
+    {
+      "app": "Luanti",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/luanti/luanti.sh",
+      "owner": "rollerozxa",
+      "registration_ok": false,
+      "repo": "luanti-appimage",
+      "syntax_ok": true
+    },
+    {
+      "app": "Tidal",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/tidal/tidal.sh",
+      "owner": "Mastermindzh",
+      "registration_ok": false,
+      "repo": "tidal-hifi",
+      "syntax_ok": true
+    },
+    {
+      "app": "Celeste 64",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/celeste64/celeste64.sh",
+      "owner": "ExOK",
+      "registration_ok": false,
+      "repo": "Celeste64",
+      "syntax_ok": true
+    },
+    {
+      "app": "UltraStar",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: rate limit exceeded",
+      "marker": null,
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/usdeluxe/usdeluxe.sh",
+      "owner": "UltraStar-Deluxe",
+      "registration_ok": false,
+      "repo": "USDX",
+      "syntax_ok": true
+    },
+    {
+      "app": "Raspberry Pi Imager",
+      "error": null,
+      "marker": {
+        "app_version": "v2.0.11.1",
+        "update_identity": "github-release:371831394:3396626c572c62d928d4995bff71c6b7bd9dac0d11f749d79b43b19e716a6c58",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "raspberrypi",
+          "repo": "rpi-imager",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/trusted-github-parents/rpi/rpi.sh",
+      "owner": "raspberrypi",
+      "registration_ok": true,
+      "repo": "rpi-imager",
+      "syntax_ok": true
+    }
+  ],
+  "targets": 11
+}

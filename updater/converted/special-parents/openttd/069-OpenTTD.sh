@@ -1,0 +1,224 @@
+#!/bin/bash
+
+# ===== BUA OpenTTD integration registration adapter =====
+
+bua_openttd_identity() {
+    python3 - <<'PYBUAOTT'
+import hashlib
+import json
+import subprocess
+
+config = json.loads('{"package_id":"openttd","display_version":"rolling","artifacts":[{"kind":"large","url":"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/openttd/extra/openttd.AppImage"}]}')
+
+artifacts = []
+
+for item in config["artifacts"]:
+    url = item["url"]
+
+    result = subprocess.run(
+        ["curl", "-fsSIL", url],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=30,
+    )
+
+    if result.returncode != 0:
+        raise SystemExit(
+            "Unable to inspect OpenTTD artifact"
+        )
+
+    etag = ""
+    modified = ""
+    length = ""
+
+    for line in result.stdout.splitlines():
+        low = line.lower()
+
+        if low.startswith("etag:"):
+            etag = line.split(":", 1)[1].strip()
+        elif low.startswith("last-modified:"):
+            modified = line.split(":", 1)[1].strip()
+        elif low.startswith("content-length:"):
+            length = line.split(":", 1)[1].strip()
+
+    artifacts.append({
+        "url": url,
+        "etag": etag,
+        "last_modified": modified,
+        "content_length": length,
+    })
+
+payload = {
+    "package_id": config["package_id"],
+    "display_version": config["display_version"],
+    "artifacts": artifacts,
+}
+
+serialized = json.dumps(
+    payload,
+    sort_keys=True,
+    separators=(",", ":"),
+).encode("utf-8")
+
+digest = hashlib.sha256(
+    serialized
+).hexdigest()
+
+print(config["display_version"])
+print(
+    "integration:"
+    + config["package_id"]
+    + ":"
+    + digest
+)
+PYBUAOTT
+}
+
+if [[ "${BUA_REGISTRATION_ONLY:-0}" == "1" ]]; then
+    if ! declare -F bua_register >/dev/null 2>&1; then
+        echo "BUA registration helper unavailable." >&2
+        exit 1
+    fi
+
+    values="$(
+        bua_openttd_identity
+    )" || exit 1
+
+    version="$(
+        printf '%s\n' "$values" |
+            sed -n '1p'
+    )"
+
+    identity="$(
+        printf '%s\n' "$values" |
+            sed -n '2p'
+    )"
+
+    bua_register \
+        "$version" \
+        "integration_asset" \
+        "BUA" \
+        "openttd" \
+        "custom" \
+        "" \
+        "" \
+        "" \
+        "$identity"
+
+    exit $?
+fi
+
+# ===== end BUA OpenTTD integration registration adapter =====
+
+
+# Variables to update for different apps
+APP_NAME="OpenTTD"
+AMD_SUFFIX="openttd/extra/openttd.AppImage"
+ARM_SUFFIX=""
+LOGO_URL="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/openttd/extra/openttd-logo.png"
+REPO_BASE_URL="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main"
+
+# -----------------------------------------------------------------------------------------------------------------
+
+ADDONS_DIR="/userdata/system/add-ons"
+PORTS_DIR="/userdata/roms/ports"
+LOGS_DIR="/userdata/system/logs"
+GAME_LIST="/userdata/roms/ports/gamelist.xml"
+PORT_SCRIPT="${PORTS_DIR}/${APP_NAME}.sh"
+LOGO_PATH="${PORTS_DIR}/images/${APP_NAME,,}-logo.png"
+
+# Step 1: Detect system architecture
+echo "Detecting system architecture..."
+arch=$(uname -m)
+
+if [ "$arch" == "x86_64" ]; then
+    echo "Architecture: x86_64 detected."
+    appimage_url="${REPO_BASE_URL}/${AMD_SUFFIX}"
+elif [ "$arch" == "aarch64" ]; then
+    echo "Architecture: arm64 detected."
+    if [ -n "$ARM_SUFFIX" ]; then
+        appimage_url="${REPO_BASE_URL}/${ARM_SUFFIX}"
+    else
+        echo "No ARM64 AppImage suffix provided. Skipping download. Exiting."
+        exit 1
+    fi
+else
+    echo "Unsupported architecture: $arch. Exiting."
+    exit 1
+fi
+
+if [ -z "$appimage_url" ]; then
+    echo "No suitable AppImage found for architecture: $arch. Exiting."
+    exit 1
+fi
+
+# Step 2: Download the AppImage
+echo "Downloading $APP_NAME AppImage from $appimage_url..."
+mkdir -p "$ADDONS_DIR/${APP_NAME,,}"
+wget -q --show-progress -O "$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage" "$appimage_url"
+
+if [ $? -ne 0 ]; then
+    echo "Failed to download $APP_NAME AppImage."
+    exit 1
+fi
+
+chmod a+x "$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage"
+echo "$APP_NAME AppImage downloaded and marked as executable."
+
+# Create persistent log directory
+mkdir -p "$LOGS_DIR"
+
+# Step 3: Create the app launch script
+echo "Creating $APP_NAME script in Ports..."
+mkdir -p "$PORTS_DIR"
+cat << EOF > "$PORT_SCRIPT"
+#!/bin/bash
+
+# Environment setup
+export \$(cat /proc/1/environ | tr '\0' '\n')
+export DISPLAY=:0.0
+
+# Directories and file paths
+app_dir="$ADDONS_DIR/${APP_NAME,,}"
+app_image="\${app_dir}/${APP_NAME,,}.AppImage"
+log_dir="$LOGS_DIR"
+log_file="\${log_dir}/${APP_NAME,,}.log"
+
+# Ensure log directory exists
+mkdir -p "\${log_dir}"
+
+# Append all output to the log file
+exec &> >(tee -a "\$log_file")
+echo "\$(date): Launching $APP_NAME"
+
+# Launch AppImage
+if [ -x "\${app_image}" ]; then
+    cd "\${app_dir}"
+    ./${APP_NAME,,}.AppImage "\$@" > "\${log_file}" 2>&1
+    echo "$APP_NAME exited."
+else
+    echo "$APP_NAME.AppImage not found or not executable."
+    exit 1
+fi
+EOF
+
+chmod +x "$PORT_SCRIPT"
+
+# Step 4: Refresh the Ports menu
+echo "Refreshing Ports menu..."
+curl http://127.0.0.1:1234/reloadgames
+
+# Download the logo
+echo "Downloading $APP_NAME logo..."
+curl -L -o "$LOGO_PATH" "$LOGO_URL"
+echo "Adding logo to $APP_NAME entry in gamelist.xml..."
+xmlstarlet ed -s "/gameList" -t elem -n "game" -v "" \
+  -s "/gameList/game[last()]" -t elem -n "path" -v "./${APP_NAME}.sh" \
+  -s "/gameList/game[last()]" -t elem -n "name" -v "$APP_NAME" \
+  -s "/gameList/game[last()]" -t elem -n "image" -v "./images/${APP_NAME,,}-logo.png" \
+  "$GAME_LIST" > "$GAME_LIST.tmp" && mv "$GAME_LIST.tmp" "$GAME_LIST"
+curl http://127.0.0.1:1234/reloadgames
+
+echo
+echo "Installation complete! You can now launch $APP_NAME from the Ports menu."

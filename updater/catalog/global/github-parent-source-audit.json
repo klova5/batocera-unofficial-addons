@@ -1,0 +1,1090 @@
+{
+  "distribution_or_mirror": 17,
+  "needs_other_source": 13,
+  "probable_parent": 5,
+  "results": [
+    {
+      "app": "Amazon Luna",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/zencodes1/amazonluna-client/releases/download/release/amazonluna-electron-client.tar.xz"
+        }
+      ],
+      "installer_path": "amazonluna/amazonluna.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Android",
+      "chosen": {
+        "count": 2,
+        "owner": "DRLEdition19",
+        "repo": "DRLEdition_Interface",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 218121749,
+          "tag_name": "files",
+          "url": "https://api.github.com/repos/DRLEdition19/DRLEdition_Interface/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Android_5.6.2.DRL"
+        },
+        {
+          "host": "sinalbr.dl.sourceforge.net",
+          "url": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS14/OpenGApps/Go/Bliss-Go-v14.10.3-x86_64-OFFICIAL-opengapps-20241012.iso?viasf=1"
+        },
+        {
+          "host": "sinalbr.dl.sourceforge.net",
+          "url": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Generic/Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso?viasf=1"
+        },
+        {
+          "host": "sinalbr.dl.sourceforge.net",
+          "url": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Go/Bliss-Go-v16.9.7-x86_64-OFFICIAL-gapps-20241012.iso?viasf=1"
+        }
+      ],
+      "installer_path": "Android/Install_Android.sh",
+      "mirror_score": 80,
+      "reasons": [
+        "mirror_repo_pattern:interface",
+        "suspicious_release_tag:files"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Arcade Manager",
+      "chosen": {
+        "count": 2,
+        "owner": "cosmo0",
+        "repo": "arcade-manager",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 205431112,
+          "tag_name": "v25.1",
+          "url": "https://api.github.com/repos/cosmo0/arcade-manager/releases/latest"
+        }
+      },
+      "classification": "probable_parent",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/cosmo0/arcade-manager/releases/download"
+        }
+      ],
+      "installer_path": "arcademanager/arcademanager.sh",
+      "mirror_score": 0,
+      "reasons": [],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Conty",
+      "chosen": {
+        "count": 2,
+        "owner": "Kron4ek",
+        "repo": "Conty",
+        "score": 112,
+        "sources": [
+          "release_latest",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 397748929,
+          "tag_name": "1.29.4",
+          "url": "https://api.github.com/repos/Kron4ek/Conty/releases/latest"
+        }
+      },
+      "classification": "probable_parent",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/Kron4ek/Conty/releases/latest/download/conty.sh"
+        }
+      ],
+      "installer_path": "conty/conty.sh",
+      "mirror_score": 0,
+      "reasons": [],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "CLI Tools",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "docker/cli.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "EGGNOGG+",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "img.itch.zone",
+          "url": "https://img.itch.zone/aW1hZ2UvMzM5LzUxNjY1LnBuZw==/original/F%2F9iSJ.png"
+        }
+      ],
+      "installer_path": "eggnoggplus/eggnoggplus.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Fightcade",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "fightcade.download",
+          "url": "https://fightcade.download/fc2json.zip"
+        },
+        {
+          "host": "web.fightcade.com",
+          "url": "https://web.fightcade.com/download/"
+        }
+      ],
+      "installer_path": "fightcade/fightcade.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Freej2me",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [],
+      "installer_path": "Freej2me/Install_j2me.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Winconfig (Windows Game Fix)",
+      "chosen": {
+        "count": 2,
+        "owner": "DRLEdition19",
+        "repo": "DRLEdition_Interface",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 218121749,
+          "tag_name": "files",
+          "url": "https://api.github.com/repos/DRLEdition19/DRLEdition_Interface/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/DRLEdition_Interface/raw/refs/heads/main/extra/Winconfig_gamelist_config.sh"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Winconfig_Files_full_6.5.DRL"
+        }
+      ],
+      "installer_path": "Winconfig_Windows_Game_Fix/Install_Winconfig.sh",
+      "mirror_score": 80,
+      "reasons": [
+        "mirror_repo_pattern:interface",
+        "suspicious_release_tag:files"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Desktop For Batocera",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "Desktop_for_Batocera/Install_Desktop.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Jellyfin Player",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "jellyfin-client/jellyfin-client.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Nazi Zombies Portable",
+      "chosen": {
+        "count": 4,
+        "owner": "nzp-team",
+        "repo": "nzportable",
+        "score": 124,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 395675635,
+          "tag_name": "nightly",
+          "url": "https://api.github.com/repos/nzp-team/nzportable/releases/latest"
+        }
+      },
+      "classification": "probable_parent",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-linux64.zip"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/nzp-team/nzportable/releases/download/nightly/nzportable-linuxarm64.zip"
+        },
+        {
+          "host": "media.moddb.com",
+          "url": "https://media.moddb.com/images/articles/1/51/50682/nzp.png"
+        }
+      ],
+      "installer_path": "nzp/nzp.sh",
+      "mirror_score": 0,
+      "reasons": [],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "OBS",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "obs/obs.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "OpenRA",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        }
+      ],
+      "installer_path": "openra/openra.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "OpenRGB",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "openrgb.org",
+          "url": "https://openrgb.org/releases/release_0.9/"
+        }
+      ],
+      "installer_path": "openrgb/openrgb.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "ShadPS4",
+      "chosen": {
+        "count": 2,
+        "owner": "AzaharPlus",
+        "repo": "shadPS4Plus",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 278568153,
+          "tag_name": "PKG_EXTRACTOR_1_1",
+          "url": "https://api.github.com/repos/AzaharPlus/shadPS4Plus/releases/latest"
+        }
+      },
+      "classification": "probable_parent",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/AzaharPlus/shadPS4Plus/releases/download/SHAD_PS4_PLUS_0_12_0_A/ShadPs4Plus-0.12.0-A-linux.zip"
+        }
+      ],
+      "installer_path": "shadps4plus/shadps4plus.sh",
+      "mirror_score": 0,
+      "reasons": [],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "SuperTux",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        }
+      ],
+      "installer_path": "supertux/supertux.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Telegraf",
+      "chosen": {
+        "count": 1,
+        "owner": "influxdata",
+        "repo": "telegraf",
+        "score": 41,
+        "sources": [
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 393201818,
+          "tag_name": "v1.40.1",
+          "url": "https://api.github.com/repos/influxdata/telegraf/releases/latest"
+        }
+      },
+      "classification": "probable_parent",
+      "external_urls": [
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/${REPO"
+        },
+        {
+          "host": "dl.influxdata.com",
+          "url": "https://dl.influxdata.com/telegraf/releases/${FILE"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/influxdata/telegraf/releases"
+        }
+      ],
+      "installer_path": "telegraf/telegraf.sh",
+      "mirror_score": 0,
+      "reasons": [],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Warzone 2100",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "warzone2100/warzone2100.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Wine Dependencies x86",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/directx.7z"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2005.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2008.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2010.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2012.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2013.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2015.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2015_2019.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2017.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x86_2019.exe"
+        }
+      ],
+      "installer_path": "winemanager/install_redist_dependencies32.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Wine Dependencies x64",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/directx.7z"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2005.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2008.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2010.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2012.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2013.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2015.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2015_2019.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2017.exe"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2019.exe"
+        }
+      ],
+      "installer_path": "winemanager/install_redist_dependencies64.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "YouTube",
+      "chosen": {
+        "count": 4,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 124,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "youtubetv/youtubetv.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "GParted",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "gparted/gparted.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Luanti",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        }
+      ],
+      "installer_path": "luanti/luanti.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Tidal",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        },
+        {
+          "host": "tidal.com",
+          "url": "https://tidal.com/_nuxt/img/brand.fdc53bc.jpg"
+        }
+      ],
+      "installer_path": "tidal/tidal.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Celeste 64",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        },
+        {
+          "host": "upload.wikimedia.org",
+          "url": "https://upload.wikimedia.org/wikipedia/en/7/7f/Celeste_64_logo.png"
+        }
+      ],
+      "installer_path": "celeste64/celeste64.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Steam",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "www.pcworld.com",
+          "url": "https://www.pcworld.com/wp-content/uploads/2025/09/Steam-logo-over-a-blurred-background-of-Steam-game-library-1.jpg"
+        }
+      ],
+      "installer_path": "steam/steam2.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "Lutris",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "lutris/lutris.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "PeaZip",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "peazip/peazip.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "VLC",
+      "chosen": {
+        "count": 2,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "vlc/vlc.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Docker",
+      "chosen": {
+        "count": 4,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 124,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [],
+      "installer_path": "docker/docker.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "UltraStar",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        },
+        {
+          "host": "hansimcklaus.iwr.sh",
+          "url": "https://hansimcklaus.iwr.sh/post/how-to-create-a-song-for-ultrastar-deluxe-updated/img/UltraStarDeluxe.jpg"
+        }
+      ],
+      "installer_path": "usdeluxe/usdeluxe.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    },
+    {
+      "app": "F1",
+      "chosen": {
+        "count": 2,
+        "owner": "DRLEdition19",
+        "repo": "DRLEdition_Interface",
+        "score": 122,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 218121749,
+          "tag_name": "files",
+          "url": "https://api.github.com/repos/DRLEdition19/DRLEdition_Interface/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "host": "github.com",
+          "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Antimicrox.DRL"
+        }
+      ],
+      "installer_path": "f1/f1.sh",
+      "mirror_score": 80,
+      "reasons": [
+        "mirror_repo_pattern:interface",
+        "suspicious_release_tag:files"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Desktop",
+      "chosen": {
+        "count": 8,
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "score": 128,
+        "sources": [
+          "release_download",
+          "releases_root"
+        ],
+        "verification": {
+          "ok": true,
+          "release_id": 194275201,
+          "tag_name": "AppImages",
+          "url": "https://api.github.com/repos/batocera-unofficial-addons/batocera-unofficial-addons/releases/latest"
+        }
+      },
+      "classification": "distribution_or_mirror",
+      "external_urls": [
+        {
+          "host": "127.0.0.1:1234",
+          "url": "http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "installer_path": "desktop/desktop.sh",
+      "mirror_score": 180,
+      "reasons": [
+        "known_bua_owner",
+        "mirror_repo_pattern:batocera",
+        "suspicious_release_tag:AppImages"
+      ],
+      "resolution_status": "resolved"
+    },
+    {
+      "app": "Raspberry Pi Imager",
+      "chosen": null,
+      "classification": "needs_other_source",
+      "external_urls": [
+        {
+          "host": "api.github.com",
+          "url": "https://api.github.com/repos/$REPO/releases/latest"
+        },
+        {
+          "host": "raw.githubusercontent.com",
+          "url": "https://raw.githubusercontent.com/iiiypuk/rpi-icon/master/raspberry-pi-logo_resized_256.png"
+        }
+      ],
+      "installer_path": "rpi/rpi.sh",
+      "mirror_score": null,
+      "reasons": [
+        "no_verified_github_release_repo"
+      ],
+      "resolution_status": "no_verified_release_repo"
+    }
+  ],
+  "total": 35
+}

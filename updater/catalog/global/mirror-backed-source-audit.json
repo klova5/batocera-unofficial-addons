@@ -1,0 +1,1844 @@
+{
+  "results": [
+    {
+      "app": "Android",
+      "assignments": {
+        "URL": "$URL_ISO_GO16",
+        "URL_ISO_GE16": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Generic/Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso?viasf=1",
+        "URL_ISO_GO14": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS14/OpenGApps/Go/Bliss-Go-v14.10.3-x86_64-OFFICIAL-opengapps-20241012.iso?viasf=1",
+        "URL_ISO_GO16": "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Go/Bliss-Go-v16.9.7-x86_64-OFFICIAL-gapps-20241012.iso?viasf=1"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/004-Android.sh",
+      "command_context": [
+        {
+          "line": 96,
+          "text": "# Temporary directory for download"
+        },
+        {
+          "line": 109,
+          "text": "URL_ISO_GE16=\"https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Generic/Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso?viasf=1\""
+        },
+        {
+          "line": 110,
+          "text": "URL_ISO_GO14=\"https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS14/OpenGApps/Go/Bliss-Go-v14.10.3-x86_64-OFFICIAL-opengapps-20241012.iso?viasf=1\""
+        },
+        {
+          "line": 111,
+          "text": "URL_ISO_GO16=\"https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Go/Bliss-Go-v16.9.7-x86_64-OFFICIAL-gapps-20241012.iso?viasf=1\""
+        },
+        {
+          "line": 154,
+          "text": "<?xml version=\"1.0\"?>"
+        },
+        {
+          "line": 215,
+          "text": "# Download the DRL file"
+        },
+        {
+          "line": 219,
+          "text": "# Function that encapsulates the entire selection and download process."
+        },
+        {
+          "line": 221,
+          "text": "start_download_process() {"
+        },
+        {
+          "line": 224,
+          "text": "# Use dialog for version selection"
+        },
+        {
+          "line": 225,
+          "text": "choice=$(dialog --stdout --title \"Android Version Selection\" --menu \\"
+        },
+        {
+          "line": 226,
+          "text": "\"Which version of Android would you like to install?\" 15 70 2 \\"
+        },
+        {
+          "line": 227,
+          "text": "\"1\" \"BlissOS 16 Generic Version (Recommended for most hardware)\" \\"
+        },
+        {
+          "line": 228,
+          "text": "\"2\" \"BlissOS 16 GO Version (Optimized for low-end hardware)\")"
+        },
+        {
+          "line": 238,
+          "text": "echo \"You have selected the BlissOS 16 Generic Version.\""
+        },
+        {
+          "line": 242,
+          "text": "echo \"You have selected the BlissOS 16 GO Version.\""
+        },
+        {
+          "line": 248,
+          "text": "echo \"Starting download of: $DEST_FILE\""
+        },
+        {
+          "line": 251,
+          "text": "# Downloads the file using the defined URL and filename"
+        },
+        {
+          "line": 252,
+          "text": "if curl -L -o \"$DEST_FILE\" \"$URL\"; then"
+        },
+        {
+          "line": 253,
+          "text": "echo \"Download completed successfully!\""
+        },
+        {
+          "line": 255,
+          "text": "echo \"ERROR: An error occurred during the download.\""
+        },
+        {
+          "line": 270,
+          "text": "# Use dialog to ask if user wants to re-download"
+        },
+        {
+          "line": 272,
+          "text": "\"An ISO installation file was already found.\\n\\nDo you want to remove the existing file and download a new one?\" 10 60; then"
+        },
+        {
+          "line": 275,
+          "text": "echo \"Files removed. Starting download process...\""
+        },
+        {
+          "line": 277,
+          "text": "start_download_process # Calls the download function"
+        },
+        {
+          "line": 279,
+          "text": "echo \"Keeping the existing file. Download will be skipped.\""
+        },
+        {
+          "line": 284,
+          "text": "# If NO file is found, it starts the download process directly."
+        },
+        {
+          "line": 286,
+          "text": "echo \"The download process will be initiated.\""
+        },
+        {
+          "line": 288,
+          "text": "start_download_process # Calls the download function"
+        },
+        {
+          "line": 292,
+          "text": "echo \"Downloading Android addon...\""
+        },
+        {
+          "line": 293,
+          "text": "curl -L -o \"$DRL_FILE\" \"https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Android_5.6.2.DRL\""
+        },
+        {
+          "line": 295,
+          "text": "# Check if download was successful"
+        },
+        {
+          "line": 297,
+          "text": "echo \"Error: Failed to download DRL file\""
+        }
+      ],
+      "domains": [
+        {
+          "count": 3,
+          "domain": "sinalbr.dl.sourceforge.net"
+        },
+        {
+          "count": 1,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface"
+        }
+      ],
+      "installer_path": "Android/Install_Android.sh",
+      "suggested_family": "sourceforge",
+      "urls": [
+        "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Generic/Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso?viasf=1",
+        "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS14/OpenGApps/Go/Bliss-Go-v14.10.3-x86_64-OFFICIAL-opengapps-20241012.iso?viasf=1",
+        "https://sinalbr.dl.sourceforge.net/project/blissos-x86/Official/BlissOS16/Gapps/Go/Bliss-Go-v16.9.7-x86_64-OFFICIAL-gapps-20241012.iso?viasf=1",
+        "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Android_5.6.2.DRL"
+      ]
+    },
+    {
+      "app": "CLI Tools",
+      "assignments": {
+        "DOWNLOAD_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/cli.tar.xz"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/016-CLI_Tools.sh",
+      "command_context": [
+        {
+          "line": 61,
+          "text": "# Start download"
+        },
+        {
+          "line": 62,
+          "text": "dialog --title \"Downloading\" --msgbox \"Downloading and extracting Batocera-CLI...\" 8 60"
+        },
+        {
+          "line": 66,
+          "text": "DOWNLOAD_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/cli.tar.xz\""
+        },
+        {
+          "line": 71,
+          "text": "curl -L \"$DOWNLOAD_URL\" -o \"$FILENAME\""
+        },
+        {
+          "line": 73,
+          "text": "dialog --title \"Error\" --msgbox \"Download failed. Please check your connection and try again.\" 8 60"
+        }
+      ],
+      "domains": [
+        {
+          "count": 1,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "docker/cli.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/cli.tar.xz"
+      ]
+    },
+    {
+      "app": "EGGNOGG+",
+      "assignments": {
+        "DOWNLOAD_PATH": "$ADDONS_DIR/${APP_NAME,,}/${APP_NAME}.${ARCHIVE_EXTENSION}",
+        "FILE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/eggnoggplus.zip",
+        "LOGO_URL": "https://img.itch.zone/aW1hZ2UvMzM5LzUxNjY1LnBuZw==/original/F%2F9iSJ.png"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/018-EGGNOGG.sh",
+      "command_context": [
+        {
+          "line": 6,
+          "text": "FILE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/eggnoggplus.zip\"  # Insert the download URL for the tar.bz2, tar.gz, or zip file"
+        },
+        {
+          "line": 49,
+          "text": "DOWNLOAD_PATH=\"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME}.${ARCHIVE_EXTENSION}\""
+        },
+        {
+          "line": 55,
+          "text": "# Step 2: Download the file"
+        },
+        {
+          "line": 56,
+          "text": "echo \"Downloading $APP_NAME...\""
+        },
+        {
+          "line": 57,
+          "text": "wget -q --show-progress -O \"$DOWNLOAD_PATH\" \"$FILE_URL\""
+        },
+        {
+          "line": 60,
+          "text": "echo \"Failed to download $APP_NAME. Exiting.\""
+        },
+        {
+          "line": 64,
+          "text": "# Step 3: Extract the downloaded file"
+        },
+        {
+          "line": 67,
+          "text": "$EXTRACT_CMD \"$DOWNLOAD_PATH\" $STRIP_COMPONENTS"
+        },
+        {
+          "line": 75,
+          "text": "rm -f \"$DOWNLOAD_PATH\""
+        },
+        {
+          "line": 93,
+          "text": "# Step 5: Download the logo if URL is provided"
+        },
+        {
+          "line": 95,
+          "text": "echo \"Downloading logo...\""
+        },
+        {
+          "line": 96,
+          "text": "wget -q --show-progress -O \"$LOGO_PATH\" \"$LOGO_URL\""
+        },
+        {
+          "line": 98,
+          "text": "echo \"Warning: Failed to download logo from $LOGO_URL\""
+        },
+        {
+          "line": 104,
+          "text": "echo '<?xml version=\"1.0\" encoding=\"UTF-8\"?><gameList></gameList>' > \"$GAME_LIST\""
+        },
+        {
+          "line": 122,
+          "text": "curl -s http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 1,
+          "domain": "img.itch.zone"
+        },
+        {
+          "count": 1,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "eggnoggplus/eggnoggplus.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://img.itch.zone/aW1hZ2UvMzM5LzUxNjY1LnBuZw==/original/F%2F9iSJ.png",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/eggnoggplus.zip",
+        "http://127.0.0.1:1234/reloadgames"
+      ]
+    },
+    {
+      "app": "Fightcade",
+      "assignments": {
+        "KEYS_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/Fightcade.sh.keys",
+        "LOGO_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/fightcade-logo.png",
+        "REPO_BASE_URL": "https://web.fightcade.com/download/",
+        "RESOURCES_DIR": "$ADDONS_DIR/${APP_NAME,,}/Resources",
+        "SYM_WINE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/sym_wine.sh",
+        "TEMPLATE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/switchres_fightcade_wrap.template.sh",
+        "appimage_url": "${REPO_BASE_URL}${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/021-Fightcade.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "REPO_BASE_URL=\"https://web.fightcade.com/download/\""
+        },
+        {
+          "line": 8,
+          "text": "LOGO_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/fightcade-logo.png\""
+        },
+        {
+          "line": 9,
+          "text": "KEYS_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/Fightcade.sh.keys\""
+        },
+        {
+          "line": 10,
+          "text": "SYM_WINE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/sym_wine.sh\""
+        },
+        {
+          "line": 11,
+          "text": "TEMPLATE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/switchres_fightcade_wrap.template.sh\""
+        },
+        {
+          "line": 40,
+          "text": "appimage_url=\"${REPO_BASE_URL}${AMD_SUFFIX}\""
+        },
+        {
+          "line": 44,
+          "text": "appimage_url=\"${REPO_BASE_URL}${ARM_SUFFIX}\""
+        },
+        {
+          "line": 46,
+          "text": "echo \"No ARM64 AppImage suffix provided. Skipping download. Exiting.\""
+        },
+        {
+          "line": 54,
+          "text": "if [ -z \"$appimage_url\" ]; then"
+        },
+        {
+          "line": 55,
+          "text": "echo \"No suitable AppImage found for architecture: $arch. Exiting.\""
+        },
+        {
+          "line": 59,
+          "text": "# Step 2: Download"
+        },
+        {
+          "line": 60,
+          "text": "echo \"Downloading $APP_NAME from $appimage_url...\""
+        },
+        {
+          "line": 62,
+          "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/Fightcade-linux-latest.tar.gz\" \"$appimage_url\""
+        },
+        {
+          "line": 64,
+          "text": "# Extract the downloaded tar.gz file"
+        },
+        {
+          "line": 85,
+          "text": "echo \"Failed to download $APP_NAME.\""
+        },
+        {
+          "line": 93,
+          "text": "# Download the wine AppImage and save it as \"wine\""
+        },
+        {
+          "line": 94,
+          "text": "echo \"Downloading wine AppImage into $BIN_DIR as 'wine'...\""
+        },
+        {
+          "line": 95,
+          "text": "wget -c -q --show-progress -O \"$BIN_DIR/wine\" \"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/wine-staging_ge-proton_8-26-x86_64.AppImage\""
+        },
+        {
+          "line": 98,
+          "text": "echo \"Failed to download the wine AppImage.\""
+        },
+        {
+          "line": 102,
+          "text": "# Make the downloaded file executable"
+        },
+        {
+          "line": 103,
+          "text": "echo \"Making the wine AppImage executable...\""
+        },
+        {
+          "line": 107,
+          "text": "echo \"Failed to make the wine AppImage executable.\""
+        },
+        {
+          "line": 111,
+          "text": "echo \"wine AppImage downloaded and saved as 'wine' in $BIN_DIR.\""
+        },
+        {
+          "line": 113,
+          "text": "echo \"Downloading sym_wine.sh...\""
+        },
+        {
+          "line": 114,
+          "text": "wget -q --show-progress -O \"$SYM_WINE_SCRIPT\" \"$SYM_WINE_URL\""
+        },
+        {
+          "line": 117,
+          "text": "echo \"Failed to download sym_wine.sh.\""
+        },
+        {
+          "line": 141,
+          "text": "# Download the JSON file archive"
+        },
+        {
+          "line": 142,
+          "text": "echo \"Downloading json.zip into $EMULATOR_DIR...\""
+        },
+        {
+          "line": 143,
+          "text": "wget -q --show-progress -O \"json.zip\" \"https://fightcade.download/fc2json.zip\""
+        },
+        {
+          "line": 146,
+          "text": "echo \"Failed to download json.zip.\""
+        },
+        {
+          "line": 176,
+          "text": "echo \"JSON files downloaded, extracted, moved, and cleaned up successfully in $EMULATOR_DIR.\""
+        },
+        {
+          "line": 182,
+          "text": "echo \"Downloading Switchres wrapper template...\""
+        },
+        {
+          "line": 183,
+          "text": "wget -q --show-progress -O \"$TEMPLATE\" \"$TEMPLATE_URL\""
+        },
+        {
+          "line": 185,
+          "text": "echo \"ERROR: Failed to download switchres_fightcade_wrap.template.sh\" >&2"
+        },
+        {
+          "line": 260,
+          "text": "curl -L -o \"$PORTS_DIR/Fightcade.sh.keys\" \"$KEYS_URL\""
+        },
+        {
+          "line": 264,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 266,
+          "text": "# Download the logo"
+        },
+        {
+          "line": 267,
+          "text": "echo \"Downloading $APP_NAME logo...\""
+        },
+        {
+          "line": 268,
+          "text": "curl -L -o \"$LOGO_PATH\" \"$LOGO_URL\""
+        },
+        {
+          "line": 275,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 5,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "web.fightcade.com"
+        },
+        {
+          "count": 1,
+          "domain": "fightcade.download"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "fightcade/fightcade.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://web.fightcade.com/download/",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/fightcade-logo.png",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/fightcade/extra/Fightcade.sh.keys",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/sym_wine.sh",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/fightcade/switchres_fightcade_wrap.template.sh",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/wine-staging_ge-proton_8-26-x86_64.AppImage",
+        "https://fightcade.download/fc2json.zip",
+        "http://127.0.0.1:1234/reloadgames"
+      ]
+    },
+    {
+      "app": "Winconfig (Windows Game Fix)",
+      "assignments": {},
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/024-Winconfig_Windows_Game_Fix.sh",
+      "command_context": [
+        {
+          "line": 95,
+          "text": "# Temporary directory for download"
+        },
+        {
+          "line": 109,
+          "text": "# Download the DRL file"
+        },
+        {
+          "line": 110,
+          "text": "echo \"Downloading the DRL file...\""
+        },
+        {
+          "line": 111,
+          "text": "curl -L -o $DRL_FILE \"https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Winconfig_Files_full_6.5.DRL\""
+        },
+        {
+          "line": 113,
+          "text": "# Check if download was successful"
+        },
+        {
+          "line": 115,
+          "text": "echo \"Error: Failed to download DRL file\""
+        },
+        {
+          "line": 166,
+          "text": "echo \"Iniciando o processo de download e instala\u00e7\u00e3o...\""
+        },
+        {
+          "line": 168,
+          "text": "# Download do arquivo"
+        },
+        {
+          "line": 170,
+          "text": "wget -O /tmp/gamelistconfig.sh https://github.com/DRLEdition19/DRLEdition_Interface/raw/refs/heads/main/extra/Winconfig_gamelist_config.sh"
+        },
+        {
+          "line": 171,
+          "text": "echo \"Download conclu\u00eddo com sucesso.\""
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface"
+        }
+      ],
+      "installer_path": "Winconfig_Windows_Game_Fix/Install_Winconfig.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Winconfig_Files_full_6.5.DRL",
+        "https://github.com/DRLEdition19/DRLEdition_Interface/raw/refs/heads/main/extra/Winconfig_gamelist_config.sh"
+      ]
+    },
+    {
+      "app": "Desktop For Batocera",
+      "assignments": {
+        "BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/025-Desktop_For_Batocera.sh",
+      "command_context": [
+        {
+          "line": 13,
+          "text": "BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages\""
+        },
+        {
+          "line": 32,
+          "text": "# different version numbers from DRL's copies and are visible alongside them."
+        },
+        {
+          "line": 116,
+          "text": "--yesno \"An existing Desktop for Batocera (DRL) installation was detected.\\n\\nIt must be removed before installing the new version.\\n\\nRun the uninstaller now?\" 12 55"
+        },
+        {
+          "line": 182,
+          "text": "# Download squashfs"
+        },
+        {
+          "line": 183,
+          "text": "echo \"Downloading...\""
+        },
+        {
+          "line": 184,
+          "text": "curl -L -o \"$SFS_FILE\" \"$SFS_URL\""
+        },
+        {
+          "line": 187,
+          "text": "echo \"Error: Download failed.\""
+        },
+        {
+          "line": 228,
+          "text": "# Re-apply system Desktop files from squashfs \u2014 overwrite any stale versions restored from backup"
+        }
+      ],
+      "domains": [
+        {
+          "count": 1,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "Desktop_for_Batocera/Install_Desktop.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages"
+      ]
+    },
+    {
+      "app": "Jellyfin Player",
+      "assignments": {
+        "KEYS_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/jellyfin-client/extra/JellyfinPlayer.sh.keys",
+        "LOGO_URL": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/jellyfin-client/extra/jellyfin-player-logo.jpg",
+        "RELEASE_BASE": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "VERSION": "1.0.0"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/032-Jellyfin_Player.sh",
+      "command_context": [
+        {
+          "line": 6,
+          "text": "VERSION=\"1.0.0\""
+        },
+        {
+          "line": 7,
+          "text": "RELEASE_BASE=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages\""
+        },
+        {
+          "line": 8,
+          "text": "KEYS_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/jellyfin-client/extra/JellyfinPlayer.sh.keys\""
+        },
+        {
+          "line": 9,
+          "text": "LOGO_URL=\"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/jellyfin-client/extra/jellyfin-player-logo.jpg\""
+        },
+        {
+          "line": 23,
+          "text": "x86_64)  APPIMAGE_URL=\"${RELEASE_BASE}/JellyfinPlayer-x86_64.AppImage\" ;;"
+        },
+        {
+          "line": 24,
+          "text": "aarch64) APPIMAGE_URL=\"${RELEASE_BASE}/JellyfinPlayer-aarch64.AppImage\" ;;"
+        },
+        {
+          "line": 35,
+          "text": "# Download AppImage"
+        },
+        {
+          "line": 36,
+          "text": "echo \"Downloading ${APP_NAME} (${arch})...\""
+        },
+        {
+          "line": 37,
+          "text": "if ! wget -q --show-progress -O \"${APP_INSTALL_DIR}/JellyfinPlayer.AppImage\" \"${APPIMAGE_URL}\"; then"
+        },
+        {
+          "line": 38,
+          "text": "echo \"Failed to download ${APP_NAME}. Exiting.\""
+        },
+        {
+          "line": 41,
+          "text": "chmod +x \"${APP_INSTALL_DIR}/JellyfinPlayer.AppImage\""
+        },
+        {
+          "line": 42,
+          "text": "echo \"AppImage ready at ${APP_INSTALL_DIR}/JellyfinPlayer.AppImage\""
+        },
+        {
+          "line": 54,
+          "text": "APP=\"/userdata/system/add-ons/jellyfin-player/JellyfinPlayer.AppImage\""
+        },
+        {
+          "line": 70,
+          "text": "# Download keys file"
+        },
+        {
+          "line": 71,
+          "text": "echo \"Downloading keys file...\""
+        },
+        {
+          "line": 72,
+          "text": "if ! curl -fsSL -o \"${KEYS_PATH}\" \"${KEYS_URL}\"; then"
+        },
+        {
+          "line": 73,
+          "text": "echo \"Warning: failed to download keys file. Controller mapping may not work.\""
+        },
+        {
+          "line": 76,
+          "text": "# Download logo"
+        },
+        {
+          "line": 77,
+          "text": "echo \"Downloading logo...\""
+        },
+        {
+          "line": 79,
+          "text": "curl -fsSL -o \"${LOGO_PATH}\" \"${LOGO_URL}\" || echo \"Warning: failed to download logo.\""
+        },
+        {
+          "line": 95,
+          "text": "-s \"/gameList/game[last()]\" -t elem -n releasedate -v \"19700101T010000\" \\"
+        },
+        {
+          "line": 100,
+          "text": "curl -s http://127.0.0.1:1234/reloadgames > /dev/null"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "raw.githubusercontent.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "jellyfin-client/jellyfin-client.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/jellyfin-client/extra/JellyfinPlayer.sh.keys",
+        "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/jellyfin-client/extra/jellyfin-player-logo.jpg",
+        "http://127.0.0.1:1234/reloadgames"
+      ]
+    },
+    {
+      "app": "OBS",
+      "assignments": {
+        "ICON_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/obs/extra/icon.png",
+        "REPO_BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "Version": "1.0",
+        "appimage_url": "${REPO_BASE_URL}${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/041-OBS.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "REPO_BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/\""
+        },
+        {
+          "line": 6,
+          "text": "AMD_SUFFIX=\"obs.AppImage\""
+        },
+        {
+          "line": 8,
+          "text": "ICON_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/obs/extra/icon.png\""
+        },
+        {
+          "line": 26,
+          "text": "appimage_url=\"${REPO_BASE_URL}${AMD_SUFFIX}\""
+        },
+        {
+          "line": 30,
+          "text": "appimage_url=\"${REPO_BASE_URL}${ARM_SUFFIX}\""
+        },
+        {
+          "line": 32,
+          "text": "echo \"No ARM64 AppImage available. Exiting.\""
+        },
+        {
+          "line": 42,
+          "text": "# Download the AppImage"
+        },
+        {
+          "line": 43,
+          "text": "if ! wget -q --show-progress -O \"$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage\" \"$appimage_url\"; then"
+        },
+        {
+          "line": 44,
+          "text": "echo \"Failed to download $APPNAME AppImage. Exiting.\""
+        },
+        {
+          "line": 47,
+          "text": "chmod a+x \"$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage\""
+        },
+        {
+          "line": 49,
+          "text": "# Download the application icon"
+        },
+        {
+          "line": 50,
+          "text": "if ! wget -q --show-progress -O \"$ADDONS_DIR/${APPNAME,,}/extra/${APPNAME,,}-icon.png\" \"$ICON_URL\"; then"
+        },
+        {
+          "line": 51,
+          "text": "echo \"Failed to download $APPNAME icon. Exiting.\""
+        },
+        {
+          "line": 58,
+          "text": "Version=1.0"
+        },
+        {
+          "line": 61,
+          "text": "Exec=$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "obs/obs.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/obs/extra/icon.png"
+      ]
+    },
+    {
+      "app": "Warzone 2100",
+      "assignments": {
+        "LOGO_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/warzone2100/extra/warzone-logo.png",
+        "REPO_BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "appimage_url": "${REPO_BASE_URL}/${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/058-Warzone_2100.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "AMD_SUFFIX=\"warzone2100-x86_64.AppImage\""
+        },
+        {
+          "line": 7,
+          "text": "LOGO_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/warzone2100/extra/warzone-logo.png\""
+        },
+        {
+          "line": 8,
+          "text": "REPO_BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages\""
+        },
+        {
+          "line": 25,
+          "text": "appimage_url=\"${REPO_BASE_URL}/${AMD_SUFFIX}\""
+        },
+        {
+          "line": 29,
+          "text": "appimage_url=\"${REPO_BASE_URL}/${ARM_SUFFIX}\""
+        },
+        {
+          "line": 31,
+          "text": "echo \"No ARM64 AppImage suffix provided. Skipping download. Exiting.\""
+        },
+        {
+          "line": 39,
+          "text": "if [ -z \"$appimage_url\" ]; then"
+        },
+        {
+          "line": 40,
+          "text": "echo \"No suitable AppImage found for architecture: $arch. Exiting.\""
+        },
+        {
+          "line": 44,
+          "text": "# Step 2: Download the AppImage"
+        },
+        {
+          "line": 45,
+          "text": "echo \"Downloading $APP_NAME AppImage from $appimage_url...\""
+        },
+        {
+          "line": 47,
+          "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\" \"$appimage_url\""
+        },
+        {
+          "line": 50,
+          "text": "echo \"Failed to download $APP_NAME AppImage.\""
+        },
+        {
+          "line": 54,
+          "text": "chmod a+x \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\""
+        },
+        {
+          "line": 55,
+          "text": "echo \"$APP_NAME AppImage downloaded and marked as executable.\""
+        },
+        {
+          "line": 72,
+          "text": "app_image=\"\\${app_dir}/${APP_NAME,,}.AppImage\""
+        },
+        {
+          "line": 83,
+          "text": "# Launch AppImage"
+        },
+        {
+          "line": 86,
+          "text": "./\"${APP_NAME,,}.AppImage\" \"\\$@\" > \"\\${log_file}\" 2>&1"
+        },
+        {
+          "line": 89,
+          "text": "echo \"$APP_NAME.AppImage not found or not executable.\""
+        },
+        {
+          "line": 98,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 100,
+          "text": "# Download the logo"
+        },
+        {
+          "line": 101,
+          "text": "echo \"Downloading $APP_NAME logo...\""
+        },
+        {
+          "line": 102,
+          "text": "curl -L -o \"$LOGO_PATH\" \"$LOGO_URL\""
+        },
+        {
+          "line": 109,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "warzone2100/warzone2100.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/warzone2100/extra/warzone-logo.png",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "http://127.0.0.1:1234/reloadgames"
+      ]
+    },
+    {
+      "app": "YouTube",
+      "assignments": {
+        "app_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv-arm64.tar.xz",
+        "keys_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/youtubetv/extra/YoutubeTV.sh.keys",
+        "logo_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/youtubetv/extra/youtubetv-logo.jpg"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/063-YouTube.sh",
+      "command_context": [
+        {
+          "line": 12,
+          "text": "app_url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv.tar.xz\""
+        },
+        {
+          "line": 15,
+          "text": "app_url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv-arm64.tar.xz\""
+        },
+        {
+          "line": 21,
+          "text": "# Step 2: Download the archive"
+        },
+        {
+          "line": 25,
+          "text": "echo \"\u2b07Downloading YouTube TV from $app_url...\""
+        },
+        {
+          "line": 27,
+          "text": "wget -q --show-progress -O \"$archive_path\" \"$app_url\""
+        },
+        {
+          "line": 30,
+          "text": "echo \"Failed to download YouTube TV archive.\""
+        },
+        {
+          "line": 34,
+          "text": "# Step 3: Extract the downloaded archive"
+        },
+        {
+          "line": 59,
+          "text": "# Step 6: Download keys file"
+        },
+        {
+          "line": 60,
+          "text": "echo \"Downloading keys file...\""
+        },
+        {
+          "line": 61,
+          "text": "keys_url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/youtubetv/extra/YoutubeTV.sh.keys\""
+        },
+        {
+          "line": 63,
+          "text": "curl -L -o \"$keys_file\" \"$keys_url\""
+        },
+        {
+          "line": 66,
+          "text": "echo \"Failed to download keys file.\""
+        },
+        {
+          "line": 70,
+          "text": "echo \"Keys file downloaded to $keys_file.\""
+        },
+        {
+          "line": 74,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 79,
+          "text": "logo_url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/youtubetv/extra/youtubetv-logo.jpg\""
+        },
+        {
+          "line": 82,
+          "text": "# Ensure the logo directory exists and download the logo"
+        },
+        {
+          "line": 84,
+          "text": "curl -L -o \"$logo_path\" \"$logo_url\""
+        },
+        {
+          "line": 88,
+          "text": "echo '<?xml version=\"1.0\" encoding=\"UTF-8\"?><gameList></gameList>' > \"$gamelist_file\""
+        },
+        {
+          "line": 91,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 102,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 4,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "youtubetv/youtubetv.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv.tar.xz",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv-arm64.tar.xz",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/youtubetv/extra/YoutubeTV.sh.keys",
+        "http://127.0.0.1:1234/reloadgames",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/youtubetv/extra/youtubetv-logo.jpg"
+      ]
+    },
+    {
+      "app": "GParted",
+      "assignments": {
+        "ICON_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/gparted/extra/icon.png",
+        "REPO_BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "Version": "1.0",
+        "appimage_url": "${REPO_BASE_URL}${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/066-GParted.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "REPO_BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/\""
+        },
+        {
+          "line": 6,
+          "text": "AMD_SUFFIX=\"gparted.AppImage\""
+        },
+        {
+          "line": 8,
+          "text": "ICON_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/gparted/extra/icon.png\""
+        },
+        {
+          "line": 26,
+          "text": "appimage_url=\"${REPO_BASE_URL}${AMD_SUFFIX}\""
+        },
+        {
+          "line": 30,
+          "text": "appimage_url=\"${REPO_BASE_URL}${ARM_SUFFIX}\""
+        },
+        {
+          "line": 32,
+          "text": "echo \"No ARM64 AppImage available. Exiting.\""
+        },
+        {
+          "line": 42,
+          "text": "# Download the AppImage"
+        },
+        {
+          "line": 43,
+          "text": "if ! wget -q --show-progress -O \"$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage\" \"$appimage_url\"; then"
+        },
+        {
+          "line": 44,
+          "text": "echo \"Failed to download $APPNAME AppImage. Exiting.\""
+        },
+        {
+          "line": 47,
+          "text": "chmod a+x \"$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage\""
+        },
+        {
+          "line": 49,
+          "text": "# Download the application icon"
+        },
+        {
+          "line": 50,
+          "text": "if ! wget -q --show-progress -O \"$ADDONS_DIR/${APPNAME,,}/extra/${APPNAME,,}-icon.png\" \"$ICON_URL\"; then"
+        },
+        {
+          "line": 51,
+          "text": "echo \"Failed to download $APPNAME icon. Exiting.\""
+        },
+        {
+          "line": 58,
+          "text": "Version=1.0"
+        },
+        {
+          "line": 61,
+          "text": "Exec=$ADDONS_DIR/${APPNAME,,}/${APPNAME,,}.AppImage"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "gparted/gparted.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/gparted/extra/icon.png"
+      ]
+    },
+    {
+      "app": "Lutris",
+      "assignments": {
+        "ICON_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/lutris/extra/icon.png",
+        "KEYS_URL": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/lutris/extra/Lutris.sh.keys",
+        "Version": "1.0",
+        "appimage_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/081-Lutris.sh",
+      "command_context": [
+        {
+          "line": 9,
+          "text": "appimage_url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/\""
+        },
+        {
+          "line": 19,
+          "text": "dialog --stdout --yesno \"BUA needs to be updated to the latest version for this app to run. Do you want to continue?\" 10 60"
+        },
+        {
+          "line": 24,
+          "text": "curl -L bit.ly/BUAinstaller | bash"
+        },
+        {
+          "line": 31,
+          "text": "# Step 2: Download Lutris Parts"
+        },
+        {
+          "line": 32,
+          "text": "echo \"Downloading Lutris parts...\""
+        },
+        {
+          "line": 34,
+          "text": "wget -q --show-progress -O /userdata/system/add-ons/lutris/lutris_part_aa \"$appimage_url/lutris_part_aa\""
+        },
+        {
+          "line": 35,
+          "text": "wget -q --show-progress -O /userdata/system/add-ons/lutris/lutris_part_bb \"$appimage_url/lutris_part_ab\""
+        },
+        {
+          "line": 38,
+          "text": "echo \"Failed to download Lutris parts.\""
+        },
+        {
+          "line": 63,
+          "text": "ICON_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/lutris/extra/icon.png\""
+        },
+        {
+          "line": 87,
+          "text": "echo \"Downloading icon...\""
+        },
+        {
+          "line": 88,
+          "text": "wget --show-progress -qO \"${INSTALL_DIR}/extra/icon.png\" \"$ICON_URL\""
+        },
+        {
+          "line": 94,
+          "text": "Version=1.0"
+        },
+        {
+          "line": 133,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 135,
+          "text": "KEYS_URL=\"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/lutris/extra/Lutris.sh.keys\""
+        },
+        {
+          "line": 136,
+          "text": "# Step 5: Download the key mapping file"
+        },
+        {
+          "line": 137,
+          "text": "echo \"Downloading key mapping file...\""
+        },
+        {
+          "line": 138,
+          "text": "curl -L -o \"/userdata/roms/ports/Lutris.sh.keys\" \"$KEYS_URL\""
+        },
+        {
+          "line": 139,
+          "text": "# Download the image"
+        },
+        {
+          "line": 140,
+          "text": "echo \"Downloading Lutris logo...\""
+        },
+        {
+          "line": 141,
+          "text": "curl -L -o /userdata/roms/ports/images/lutrislogo.jpg https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/lutris/extra/logo.jpg"
+        },
+        {
+          "line": 150,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 3,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        },
+        {
+          "count": 1,
+          "domain": "raw.githubusercontent.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "lutris/lutris.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/lutris/extra/icon.png",
+        "http://127.0.0.1:1234/reloadgames",
+        "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/lutris/extra/Lutris.sh.keys",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/lutris/extra/logo.jpg"
+      ]
+    },
+    {
+      "app": "PeaZip",
+      "assignments": {
+        "ICON_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/peazip-icon.png",
+        "REPO_BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "Version": "1.0",
+        "appimage_url": "${REPO_BASE_URL}${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/083-PeaZip.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "AMD_SUFFIX=\"peazip.AppImage\""
+        },
+        {
+          "line": 7,
+          "text": "REPO_BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/\""
+        },
+        {
+          "line": 19,
+          "text": "ICON_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/peazip-icon.png\""
+        },
+        {
+          "line": 31,
+          "text": "appimage_url=\"${REPO_BASE_URL}${AMD_SUFFIX}\""
+        },
+        {
+          "line": 35,
+          "text": "appimage_url=\"${REPO_BASE_URL}${ARM_SUFFIX}\""
+        },
+        {
+          "line": 37,
+          "text": "echo \"No ARM64 AppImage suffix provided. Skipping download. Exiting.\""
+        },
+        {
+          "line": 45,
+          "text": "if [ -z \"$appimage_url\" ]; then"
+        },
+        {
+          "line": 46,
+          "text": "echo \"No suitable AppImage found for architecture: $arch. Exiting.\""
+        },
+        {
+          "line": 50,
+          "text": "# Step 2: Download the AppImage"
+        },
+        {
+          "line": 51,
+          "text": "echo \"Downloading $APP_NAME AppImage from $appimage_url...\""
+        },
+        {
+          "line": 53,
+          "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\" \"$appimage_url\""
+        },
+        {
+          "line": 56,
+          "text": "echo \"Failed to download $APP_NAME AppImage.\""
+        },
+        {
+          "line": 60,
+          "text": "chmod a+x \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\""
+        },
+        {
+          "line": 61,
+          "text": "echo \"$APP_NAME AppImage downloaded and marked as executable.\""
+        },
+        {
+          "line": 63,
+          "text": "# Step 2.5: Download the application icon"
+        },
+        {
+          "line": 64,
+          "text": "echo \"Downloading $APP_NAME icon...\""
+        },
+        {
+          "line": 65,
+          "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/extra/icon.png\" \"$ICON_URL\""
+        },
+        {
+          "line": 68,
+          "text": "echo \"Failed to download $APP_NAME icon.\""
+        },
+        {
+          "line": 72,
+          "text": "# Update ICON_PATH to use the downloaded icon"
+        },
+        {
+          "line": 79,
+          "text": "Version=1.0"
+        },
+        {
+          "line": 82,
+          "text": "Exec=$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "peazip/peazip.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/peazip-icon.png"
+      ]
+    },
+    {
+      "app": "VLC",
+      "assignments": {
+        "ICON_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/icon.png",
+        "LOGO_URL": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/vlc/extra/VLC-Logo.jpg",
+        "REPO_BASE_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "Version": "1.0",
+        "appimage_url": "${REPO_BASE_URL}/${ARM_SUFFIX}"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/084-VLC.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "AMD_SUFFIX=\"vlc.AppImage\""
+        },
+        {
+          "line": 7,
+          "text": "LOGO_URL=\"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/vlc/extra/VLC-Logo.jpg\""
+        },
+        {
+          "line": 8,
+          "text": "REPO_BASE_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages\""
+        },
+        {
+          "line": 25,
+          "text": "appimage_url=\"${REPO_BASE_URL}/${AMD_SUFFIX}\""
+        },
+        {
+          "line": 29,
+          "text": "appimage_url=\"${REPO_BASE_URL}/${ARM_SUFFIX}\""
+        },
+        {
+          "line": 31,
+          "text": "echo \"No ARM64 AppImage suffix provided. Skipping download. Exiting.\""
+        },
+        {
+          "line": 39,
+          "text": "if [ -z \"$appimage_url\" ]; then"
+        },
+        {
+          "line": 40,
+          "text": "echo \"No suitable AppImage found for architecture: $arch. Exiting.\""
+        },
+        {
+          "line": 44,
+          "text": "# Step 2: Download the AppImage"
+        },
+        {
+          "line": 45,
+          "text": "echo \"Downloading $APP_NAME AppImage from $appimage_url...\""
+        },
+        {
+          "line": 47,
+          "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\" \"$appimage_url\""
+        },
+        {
+          "line": 50,
+          "text": "echo \"Failed to download $APP_NAME AppImage.\""
+        },
+        {
+          "line": 54,
+          "text": "chmod a+x \"$ADDONS_DIR/${APP_NAME,,}/${APP_NAME,,}.AppImage\""
+        },
+        {
+          "line": 55,
+          "text": "echo \"$APP_NAME AppImage downloaded and marked as executable.\""
+        },
+        {
+          "line": 72,
+          "text": "app_image=\"\\${app_dir}/${APP_NAME,,}.AppImage\""
+        },
+        {
+          "line": 83,
+          "text": "# Launch AppImage"
+        },
+        {
+          "line": 86,
+          "text": "./${APP_NAME,,}.AppImage \"\\$@\" > \"\\${log_file}\" 2>&1"
+        },
+        {
+          "line": 89,
+          "text": "echo \"$APP_NAME.AppImage not found or not executable.\""
+        },
+        {
+          "line": 98,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 100,
+          "text": "# Download the logo"
+        },
+        {
+          "line": 101,
+          "text": "echo \"Downloading $APP_NAME logo...\""
+        },
+        {
+          "line": 102,
+          "text": "curl -L -o \"$LOGO_PATH\" \"$LOGO_URL\""
+        },
+        {
+          "line": 109,
+          "text": "curl http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 115,
+          "text": "ICON_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/icon.png\""
+        },
+        {
+          "line": 120,
+          "text": "echo \"Downloading icon...\""
+        },
+        {
+          "line": 121,
+          "text": "wget --show-progress -qO \"/userdata/system/add-ons/${APPNAME,,}/extra/icon.png\" \"$ICON_URL\""
+        },
+        {
+          "line": 127,
+          "text": "Version=1.0"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "raw.githubusercontent.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "vlc/vlc.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/vlc/extra/VLC-Logo.jpg",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages",
+        "http://127.0.0.1:1234/reloadgames",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/${APPNAME,,}/extra/icon.png"
+      ]
+    },
+    {
+      "app": "Docker",
+      "assignments": {
+        "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers-aarch64"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/085-Docker.sh",
+      "command_context": [
+        {
+          "line": 10,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers\""
+        },
+        {
+          "line": 13,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers-aarch64\""
+        },
+        {
+          "line": 19,
+          "text": "echo \"Preparing & Downloading Docker & Podman...\""
+        },
+        {
+          "line": 31,
+          "text": "# Download the file with the specified filename"
+        },
+        {
+          "line": 32,
+          "text": "wget -q --show-progress \"$url\" -O \"$filename\""
+        },
+        {
+          "line": 37,
+          "text": "echo \"File '$filename' downloaded and made executable in '$directory/$filename'\""
+        },
+        {
+          "line": 62,
+          "text": "curl -Ls https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/docker/docker -o /userdata/system/services/docker && chmod +x /userdata/system/services/docker"
+        }
+      ],
+      "domains": [
+        {
+          "count": 3,
+          "domain": "github.com"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "docker/docker.sh",
+      "suggested_family": "bua_component_or_custom",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers-aarch64",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/docker/docker"
+      ]
+    },
+    {
+      "app": "F1",
+      "assignments": {
+        "LOGO_URL": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/blob/main/f1/extra/f1key.jpg?raw=true"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/089-F1.sh",
+      "command_context": [
+        {
+          "line": 5,
+          "text": "LOGO_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/blob/main/f1/extra/f1key.jpg?raw=true\"   # Replace with actual logo URL"
+        },
+        {
+          "line": 9,
+          "text": "# Temporary directory for download"
+        },
+        {
+          "line": 23,
+          "text": "# Download the DRL file"
+        },
+        {
+          "line": 24,
+          "text": "echo \"Downloading the DRL file...\""
+        },
+        {
+          "line": 25,
+          "text": "curl -L -o $DRL_FILE \"https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Antimicrox.DRL\""
+        },
+        {
+          "line": 27,
+          "text": "# Check if download was successful"
+        },
+        {
+          "line": 29,
+          "text": "echo \"Error: Failed to download DRL file\""
+        },
+        {
+          "line": 99,
+          "text": "curl -s http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 101,
+          "text": "# Step 3: Download the logo"
+        },
+        {
+          "line": 102,
+          "text": "echo \"Downloading logo...\""
+        },
+        {
+          "line": 103,
+          "text": "curl -s -L -o \"$LOGO_PATH\" \"$LOGO_URL\""
+        },
+        {
+          "line": 114,
+          "text": "curl -s http://127.0.0.1:1234/reloadgames"
+        }
+      ],
+      "domains": [
+        {
+          "count": 2,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        },
+        {
+          "mirror_like": true,
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface"
+        }
+      ],
+      "installer_path": "f1/f1.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/blob/main/f1/extra/f1key.jpg?raw=true",
+        "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Antimicrox.DRL",
+        "http://127.0.0.1:1234/reloadgames"
+      ]
+    },
+    {
+      "app": "Desktop",
+      "assignments": {
+        "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/${APPNAME}-arm64.AppImage"
+      },
+      "cached_installer": "/userdata/system/add-ons/bua/updater/catalog/global/installer-cache/090-Desktop.sh",
+      "command_context": [
+        {
+          "line": 6,
+          "text": "curl -Ls install.batoaddons.app | bash"
+        },
+        {
+          "line": 16,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers\""
+        },
+        {
+          "line": 20,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers-aarch64\""
+        },
+        {
+          "line": 30,
+          "text": "echo \"Preparing & Downloading Docker & Podman...\""
+        },
+        {
+          "line": 38,
+          "text": "wget -q --show-progress \"$url\" -O \"$filename\""
+        },
+        {
+          "line": 62,
+          "text": "curl -Ls https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/docker/docker -o /userdata/system/services/docker && chmod +x /userdata/system/services/docker"
+        },
+        {
+          "line": 83,
+          "text": "\"arch\" \"Arch (Rolling release)\" \\"
+        },
+        {
+          "line": 139,
+          "text": "# Step 6: Install Desktop AppImage"
+        },
+        {
+          "line": 142,
+          "text": "bin_path=\"$install_dir/${APPNAME}.AppImage\""
+        },
+        {
+          "line": 147,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/${APPNAME}.AppImage\""
+        },
+        {
+          "line": 150,
+          "text": "url=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/${APPNAME}-arm64.AppImage\""
+        },
+        {
+          "line": 155,
+          "text": "wget -q --show-progress -O \"$bin_path\" \"$url\""
+        },
+        {
+          "line": 195,
+          "text": "curl -s http://127.0.0.1:1234/reloadgames"
+        },
+        {
+          "line": 199,
+          "text": "curl -Ls -o /userdata/roms/ports/images/desktop-logo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/desktop/extra/desktop-logo.png"
+        },
+        {
+          "line": 200,
+          "text": "curl -Ls -o /userdata/roms/ports/images/desktop-marquee.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/desktop/extra/desktop-marquee.png"
+        },
+        {
+          "line": 204,
+          "text": "echo '<?xml version=\"1.0\" encoding=\"UTF-8\"?><gameList></gameList>' > \"$gamelist_file\""
+        }
+      ],
+      "domains": [
+        {
+          "count": 7,
+          "domain": "github.com"
+        },
+        {
+          "count": 1,
+          "domain": "127.0.0.1:1234"
+        }
+      ],
+      "github_candidates": [
+        {
+          "mirror_like": true,
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons"
+        }
+      ],
+      "installer_path": "desktop/desktop.sh",
+      "suggested_family": "inspect_vendor_web",
+      "urls": [
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers-aarch64",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/docker/docker",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/${APPNAME}.AppImage",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/${APPNAME}-arm64.AppImage",
+        "http://127.0.0.1:1234/reloadgames",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/desktop/extra/desktop-logo.png",
+        "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/desktop/extra/desktop-marquee.png"
+      ]
+    }
+  ],
+  "total": 17
+}

@@ -1,0 +1,230 @@
+#!/bin/bash
+
+# ===== BUA updater registration adapter =====
+bua_github_release_register() {
+    local bua_owner='AzaharPlus'
+    local bua_repo='shadPS4Plus'
+
+    local bua_values
+
+    bua_values=$(
+        python3 - "$bua_owner" "$bua_repo" <<'PYBUAGH'
+import hashlib
+import json
+import sys
+import urllib.request
+
+owner, repo = sys.argv[1:3]
+
+url = (
+    "https://api.github.com/repos/"
+    f"{owner}/{repo}/releases/latest"
+)
+
+req = urllib.request.Request(
+    url,
+    headers={
+        "User-Agent": "BUA-Updater",
+        "Accept": "application/vnd.github+json",
+        "Cache-Control": "no-cache",
+    },
+)
+
+with urllib.request.urlopen(
+    req,
+    timeout=25,
+) as response:
+    release = json.loads(
+        response.read().decode("utf-8")
+    )
+
+tag = str(
+    release.get("tag_name") or ""
+).strip()
+
+if not tag:
+    raise SystemExit(
+        "GitHub release has no tag_name"
+    )
+
+assets = []
+
+for asset in release.get("assets") or []:
+    assets.append({
+        "id": asset.get("id"),
+        "name": asset.get("name"),
+        "size": asset.get("size"),
+        "updated_at": asset.get("updated_at"),
+    })
+
+identity_payload = {
+    "release_id": release.get("id"),
+    "release_updated_at": release.get("updated_at"),
+    "assets": sorted(
+        assets,
+        key=lambda a: (
+            str(a.get("name") or ""),
+            str(a.get("id") or ""),
+        ),
+    ),
+}
+
+serialized = json.dumps(
+    identity_payload,
+    sort_keys=True,
+    separators=(",", ":"),
+).encode("utf-8")
+
+digest = hashlib.sha256(
+    serialized
+).hexdigest()
+
+identity = (
+    "github-release:"
+    + str(release.get("id") or "unknown")
+    + ":"
+    + digest
+)
+
+print(tag)
+print(identity)
+PYBUAGH
+    ) || return 1
+
+    local bua_version
+    local bua_identity
+
+    bua_version=$(
+        printf '%s\n' "$bua_values" |
+            sed -n '1p'
+    )
+
+    bua_identity=$(
+        printf '%s\n' "$bua_values" |
+            sed -n '2p'
+    )
+
+    if [[ -z "$bua_version" || -z "$bua_identity" ]]; then
+        echo "Unable to determine GitHub release identity." >&2
+        return 1
+    fi
+
+    bua_register \
+        "$bua_version" \
+        "github_release" \
+        "$bua_owner" \
+        "$bua_repo" \
+        "custom" \
+        "" \
+        "" \
+        "" \
+        "$bua_identity"
+}
+
+if [[ "${BUA_REGISTRATION_ONLY:-0}" == "1" ]]; then
+    if ! declare -F bua_register >/dev/null 2>&1; then
+        echo "BUA registration helper is unavailable." >&2
+        exit 1
+    fi
+
+    bua_github_release_register
+    exit $?
+fi
+# ===== end BUA updater registration adapter =====
+
+
+# Variables
+install_dir="/userdata/system/add-ons/shadps4"
+
+# URLs
+shadps4_release_url="https://github.com/AzaharPlus/shadPS4Plus/releases/download/SHAD_PS4_PLUS_0_12_0_A/ShadPs4Plus-0.12.0-A-linux.zip"
+
+# Prepare the installation directory
+echo "Setting up installation directory at $install_dir..."
+rm -rf "$install_dir"
+mkdir -p "$install_dir"
+mkdir -p /userdata/system/.local/share/shadPS4
+
+# Download ShadPS4 v0.7.0 QT build
+echo "Downloading ShadPS4 Plus build..."
+wget -q --show-progress -O "$install_dir/shadps4.zip" "$shadps4_release_url"
+
+# Unzip files
+echo "Unzipping downloaded files..."
+unzip -q "$install_dir/shadps4.zip" -d "$install_dir"
+
+# Cleanup zip files
+echo "Cleaning up zip files..."
+rm -f "$install_dir"/*.zip
+
+# Set executable permissions
+chmod a+x "$install_dir/shadps4plus.AppImage"
+
+# Download supporting scripts
+monitor_script_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/shadps4plus/monitor_shadps4.sh"
+launchers_script_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/shadps4plus/create_game_launchers.sh"
+
+wget -q --show-progress -O "$install_dir/monitor_shadps4.sh" "$monitor_script_url"
+wget -q --show-progress -O "$install_dir/create_game_launchers.sh" "$launchers_script_url"
+chmod +x "$install_dir/monitor_shadps4.sh" "$install_dir/create_game_launchers.sh"
+
+# Create launcher script
+cat <<EOF > "$install_dir/launch_shadps4.sh"
+#!/bin/bash
+# Start monitor script
+"$install_dir/monitor_shadps4.sh" &
+# Launch the ShadPS4 QT AppImage
+DISPLAY=:0.0 "$install_dir/shadps4plus.AppImage" "\$@"
+EOF
+chmod +x "$install_dir/launch_shadps4.sh"
+
+# Setup desktop entry
+icon_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/shadps4plus/extra/shadps4-icon.png"
+mkdir -p "$install_dir/extra"
+wget -q --show-progress -O "$install_dir/extra/shadps4-icon.png" "$icon_url"
+
+cat <<EOF > "$install_dir/shadps4.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ShadPS4 Emulator
+Exec=$install_dir/launch_shadps4.sh
+Icon=$install_dir/extra/shadps4-icon.png
+Terminal=false
+Categories=Game;batocera.linux;
+EOF
+
+chmod +x "$install_dir/shadps4.desktop"
+cp "$install_dir/shadps4.desktop" /usr/share/applications/shadps4.desktop
+
+# Restore desktop entry script
+cat <<EOF > "$install_dir/restore_desktop_entry.sh"
+#!/bin/bash
+desktop_file="/usr/share/applications/shadps4.desktop"
+if [ ! -f "\$desktop_file" ]; then
+    cp "$install_dir/shadps4.desktop" "\$desktop_file"
+    chmod +x "\$desktop_file"
+fi
+EOF
+chmod +x "$install_dir/restore_desktop_entry.sh"
+
+# Add to startup script
+custom_startup="/userdata/system/custom.sh"
+if ! grep -q "$install_dir/restore_desktop_entry.sh" "$custom_startup"; then
+    echo "bash $install_dir/restore_desktop_entry.sh &" >> "$custom_startup"
+fi
+chmod +x "$custom_startup"
+
+# Run ES System Script
+curl -L https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/shadps4plus/es_ps4/es_ps4_install.sh | bash
+
+# Finish
+killall -9 emulationstation
+
+
+# ===== BUA post-install registration =====
+if declare -F bua_register >/dev/null 2>&1; then
+    bua_github_release_register || true
+fi
+# ===== end BUA post-install registration =====
+

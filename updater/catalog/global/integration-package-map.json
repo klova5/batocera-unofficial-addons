@@ -1,0 +1,27 @@
+{
+  "CLI Tools": {
+    "source_type": "bua_release_asset",
+    "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/cli.tar.xz"
+  },
+  "Winconfig (Windows Game Fix)": {
+    "source_type": "drl_release_asset",
+    "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Winconfig_Files_full_6.5.DRL"
+  },
+  "Desktop For Batocera": {
+    "source_type": "bua_release_asset"
+  },
+  "YouTube": {
+    "source_type": "bua_release_asset",
+    "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/yttv-arm64.tar.xz"
+  },
+  "Docker": {
+    "source_type": "bua_release_asset"
+  },
+  "F1": {
+    "source_type": "drl_release_asset",
+    "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Antimicrox.DRL"
+  },
+  "Desktop": {
+    "source_type": "bua_release_asset"
+  }
+}

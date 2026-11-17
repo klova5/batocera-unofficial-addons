@@ -1,0 +1,10 @@
+{
+  "package_id": "vclean",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/vclean/extra/versionclean"
+    }
+  ]
+}

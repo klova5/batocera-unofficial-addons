@@ -1,0 +1,10 @@
+{
+  "package_id": "wine-manager",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera-unofficial-addons.add/raw/refs/heads/main/winemanager/extra/winemanager.zip"
+    }
+  ]
+}

@@ -1,0 +1,1756 @@
+[
+  {
+    "path": "ambermoon/ambermoon.sh",
+    "persistent_refs": [
+      {
+        "line": 9,
+        "text": "ADDONS_DIR=\"/userdata/system/add-ons\""
+      },
+      {
+        "line": 10,
+        "text": "PORTS_DIR=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 11,
+        "text": "LOGS_DIR=\"/userdata/system/logs\""
+      },
+      {
+        "line": 12,
+        "text": "GAME_LIST=\"/userdata/roms/ports/gamelist.xml\""
+      },
+      {
+        "line": 15,
+        "text": "CONFIG_FILE=\"${ADDONS_DIR}/${APP_NAME,,}/ambermoon.cfg\""
+      },
+      {
+        "line": 45,
+        "text": "if [ ! -f \"$CONFIG_FILE\" ]; then"
+      },
+      {
+        "line": 46,
+        "text": "echo \"Creating default configuration file for $APP_NAME...\""
+      },
+      {
+        "line": 47,
+        "text": "cat << EOF > \"$CONFIG_FILE\""
+      },
+      {
+        "line": 58,
+        "text": "\"DataPath\": \"/userdata/system/add-ons/ambermoon\","
+      },
+      {
+        "line": 59,
+        "text": "\"SaveOption\": 0,"
+      },
+      {
+        "line": 79,
+        "text": "\"ExtendedSavegameSlots\": true,"
+      },
+      {
+        "line": 80,
+        "text": "\"AdditionalSavegameSlots\": [],"
+      },
+      {
+        "line": 81,
+        "text": "\"ShowSaveLoadMessage\": false,"
+      },
+      {
+        "line": 88,
+        "text": "echo \"Configuration file already exists. Skipping creation.\""
+      },
+      {
+        "line": 109,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 122,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "Pyrdacor/Ambermoon.net",
+    "risk_findings": [
+      {
+        "line": 7,
+        "text": "FILE_URL=\"https://github.com/Pyrdacor/Ambermoon.net/releases/download/${LATEST}/Ambermoon.net-Linux.tar.gz\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 16,
+        "text": "TAR_FILE=\"$ADDONS_DIR/${APP_NAME,,}/Ambermoon.tar.gz\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 33,
+        "text": "tar -xzvf \"$TAR_FILE\" -C \"$ADDONS_DIR/${APP_NAME,,}\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 40,
+        "text": "# Remove the .tar.gz file after extraction",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "assaultcube/assaultcube.sh",
+    "persistent_refs": [
+      {
+        "line": 8,
+        "text": "ADDONS_DIR=\"/userdata/system/add-ons\""
+      },
+      {
+        "line": 9,
+        "text": "PORTS_DIR=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 10,
+        "text": "LOGS_DIR=\"/userdata/system/logs\""
+      },
+      {
+        "line": 11,
+        "text": "GAME_LIST=\"/userdata/roms/ports/gamelist.xml\""
+      },
+      {
+        "line": 55,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 68,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "assaultcube/AC",
+    "risk_findings": [
+      {
+        "line": 6,
+        "text": "FILE_URL=$(curl -s https://api.github.com/repos/assaultcube/AC/releases/latest | grep '\"browser_download_url\"' | grep '\\.tar\\.bz2' | cut -d'\"' -f4)",
+        "type": "extract_archive"
+      },
+      {
+        "line": 21,
+        "text": "wget -q --show-progress -O \"$ADDONS_DIR/${APP_NAME,,}/AssaultCube.tar.bz2\" \"$FILE_URL\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 30,
+        "text": "tar -xjvf \"$ADDONS_DIR/${APP_NAME,,}/AssaultCube.tar.bz2\" -C \"$ADDONS_DIR/${APP_NAME,,}\"",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "azaharplus/azaharplus.sh",
+    "persistent_refs": [
+      {
+        "line": 4,
+        "text": "install_dir=\"/userdata/system/add-ons/azaharplus\""
+      },
+      {
+        "line": 5,
+        "text": "es_config_dir=\"/userdata/system/configs/emulationstation\""
+      },
+      {
+        "line": 6,
+        "text": "user_site=\"/userdata/system/.local/lib/$(python3 -c 'import sys; print(f\"python{sys.version_info.major}.{sys.version_info.minor}\")')/site-packages\""
+      },
+      {
+        "line": 21,
+        "text": "mkdir -p \"$es_config_dir\""
+      },
+      {
+        "line": 50,
+        "text": "# Download and deploy ES config files"
+      },
+      {
+        "line": 51,
+        "text": "echo \"Downloading ES configs...\""
+      },
+      {
+        "line": 52,
+        "text": "wget -q --show-progress -O \"$es_config_dir/es_systems_3ds.cfg\" \"$base_url/extra/es_systems_3ds.cfg\""
+      },
+      {
+        "line": 53,
+        "text": "wget -q --show-progress -O \"$es_config_dir/es_features_azaharplus.cfg\" \"$base_url/extra/es_features_azaharplus.cfg\""
+      },
+      {
+        "line": 71,
+        "text": "persistent_desktop=\"/userdata/system/configs/azaharplus/AzaharPlus.desktop\""
+      },
+      {
+        "line": 72,
+        "text": "mkdir -p /userdata/system/configs/azaharplus"
+      },
+      {
+        "line": 88,
+        "text": "restore_script=\"/userdata/system/configs/azaharplus/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 97,
+        "text": "if ! grep -q \"$restore_script\" /userdata/system/custom.sh; then"
+      },
+      {
+        "line": 98,
+        "text": "echo \"bash \\\"$restore_script\\\" &\" >> /userdata/system/custom.sh"
+      },
+      {
+        "line": 100,
+        "text": "chmod +x /userdata/system/custom.sh"
+      }
+    ],
+    "repo": "AzaharPlus/AzaharPlus",
+    "risk_findings": [
+      {
+        "line": 19,
+        "text": "rm -rf \"$install_dir\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 58,
+        "text": "rm -rf /tmp/azahar-icon-extract",
+        "type": "rm_rf"
+      },
+      {
+        "line": 65,
+        "text": "rm -rf /tmp/azahar-icon-extract",
+        "type": "rm_rf"
+      },
+      {
+        "line": 19,
+        "text": "rm -rf \"$install_dir\"",
+        "type": "rm_appdir"
+      }
+    ]
+  },
+  {
+    "path": "bridge/bridge.sh",
+    "persistent_refs": [
+      {
+        "line": 11,
+        "text": "ADDONS_DIR=\"/userdata/system/add-ons\""
+      },
+      {
+        "line": 12,
+        "text": "CONFIGS_DIR=\"/userdata/system/configs\""
+      },
+      {
+        "line": 14,
+        "text": "CUSTOM_SCRIPT=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 15,
+        "text": "APP_CONFIG_DIR=\"${CONFIGS_DIR}/${APPNAME,,}\""
+      },
+      {
+        "line": 16,
+        "text": "PERSISTENT_DESKTOP=\"${APP_CONFIG_DIR}/${APPNAME,,}.desktop\""
+      },
+      {
+        "line": 21,
+        "text": "mkdir -p \"$APP_CONFIG_DIR\" \"$EXTRA_DIR\""
+      },
+      {
+        "line": 76,
+        "text": "cat <<EOF > \"${APP_CONFIG_DIR}/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 83,
+        "text": "chmod +x \"${APP_CONFIG_DIR}/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 86,
+        "text": "if ! grep -q \"${APP_CONFIG_DIR}/restore_desktop_entry.sh\" \"$CUSTOM_SCRIPT\"; then"
+      },
+      {
+        "line": 87,
+        "text": "echo \"\\\"${APP_CONFIG_DIR}/restore_desktop_entry.sh\\\" &\" >> \"$CUSTOM_SCRIPT\""
+      }
+    ],
+    "repo": "Geomitron/Bridge",
+    "risk_findings": []
+  },
+  {
+    "path": "chiaki/chiaki.sh",
+    "persistent_refs": [
+      {
+        "line": 22,
+        "text": "mkdir -p /userdata/system/add-ons/chiaki"
+      },
+      {
+        "line": 23,
+        "text": "mkdir -p /userdata/system/add-ons/chiaki/extra"
+      },
+      {
+        "line": 24,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 25,
+        "text": "mkdir -p /userdata/roms/ports/images"
+      },
+      {
+        "line": 26,
+        "text": "mkdir -p /userdata/system/configs/chiaki"
+      },
+      {
+        "line": 28,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/chiaki/chiaki.desktop\""
+      },
+      {
+        "line": 30,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/chiaki\""
+      },
+      {
+        "line": 33,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/chiaki/Chiaki.AppImage \"$appimage_url\""
+      },
+      {
+        "line": 39,
+        "text": "chmod a+x /userdata/system/add-ons/chiaki/Chiaki.AppImage"
+      },
+      {
+        "line": 47,
+        "text": "cat << 'EOF' > /userdata/roms/ports/Chiaki.sh"
+      },
+      {
+        "line": 56,
+        "text": "app_dir=\"/userdata/system/add-ons/chiaki\""
+      },
+      {
+        "line": 58,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 76,
+        "text": "chmod +x /userdata/roms/ports/Chiaki.sh"
+      },
+      {
+        "line": 85,
+        "text": "Exec=/userdata/roms/ports/Chiaki.sh"
+      },
+      {
+        "line": 86,
+        "text": "Icon=/userdata/system/add-ons/chiaki/extra/icon.png"
+      },
+      {
+        "line": 98,
+        "text": "cat <<EOF > \"/userdata/system/configs/chiaki/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 110,
+        "text": "chmod +x \"/userdata/system/configs/chiaki/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 113,
+        "text": "custom_startup=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 114,
+        "text": "if ! grep -q \"/userdata/system/configs/chiaki/restore_desktop_entry.sh\" \"$custom_startup\"; then"
+      },
+      {
+        "line": 116,
+        "text": "echo \"bash \"/userdata/system/configs/chiaki/restore_desktop_entry.sh\" &\" >> \"$custom_startup\""
+      },
+      {
+        "line": 127,
+        "text": "curl -L -o /userdata/roms/ports/images/chiakilogo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/chiaki/extra/chiakilogo.png"
+      },
+      {
+        "line": 132,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 136,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "streetpea/chiaki-ng",
+    "risk_findings": []
+  },
+  {
+    "path": "chrome/chrome.sh",
+    "persistent_refs": [
+      {
+        "line": 18,
+        "text": "mkdir -p /userdata/system/add-ons/google-chrome/extra"
+      },
+      {
+        "line": 19,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/google-chrome/GoogleChrome.AppImage \"$appimage_url\""
+      },
+      {
+        "line": 26,
+        "text": "chmod a+x /userdata/system/add-ons/google-chrome/GoogleChrome.AppImage"
+      },
+      {
+        "line": 30,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 34,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 35,
+        "text": "cat << 'EOF' > /userdata/roms/ports/GoogleChrome.sh"
+      },
+      {
+        "line": 41,
+        "text": "export HOME=\"/userdata/system/add-ons/google-chrome\""
+      },
+      {
+        "line": 44,
+        "text": "app_dir=\"/userdata/system/add-ons/google-chrome\""
+      },
+      {
+        "line": 46,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 68,
+        "text": "chmod +x /userdata/roms/ports/GoogleChrome.sh"
+      },
+      {
+        "line": 72,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/${APPNAME,,}/${APPNAME}.desktop\""
+      },
+      {
+        "line": 74,
+        "text": "mkdir -p \"/userdata/system/configs/${APPNAME,,}\""
+      },
+      {
+        "line": 77,
+        "text": "wget --show-progress -qO \"/userdata/system/add-ons/google-chrome/extra/icon.png\" \"$ICON_URL\""
+      },
+      {
+        "line": 87,
+        "text": "Exec=/userdata/roms/ports/GoogleChrome.sh"
+      },
+      {
+        "line": 88,
+        "text": "Icon=/userdata/system/add-ons/google-chrome/extra/icon.png"
+      },
+      {
+        "line": 100,
+        "text": "RESTORE_SCRIPT=\"/userdata/system/configs/${APPNAME,,}/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 118,
+        "text": "CUSTOM_STARTUP=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 130,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 134,
+        "text": "curl -L -o /userdata/roms/ports/images/chrome-logo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/chrome/extra/chrome-logo.png"
+      },
+      {
+        "line": 140,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 141,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "ivan-hc/Chrome-appimage",
+    "risk_findings": []
+  },
+  {
+    "path": "clonehero/clonehero.sh",
+    "persistent_refs": [
+      {
+        "line": 6,
+        "text": "APPDIR=\"/userdata/system/add-ons/${APPNAME,,}\""
+      },
+      {
+        "line": 43,
+        "text": "COMMAND='sysctl -w vm.max_map_count=2097152; ulimit -H -n 819200; ulimit -S -n 819200; ulimit -H -l 61634; ulimit -S -l 61634; ulimit -H -s 61634; ulimit -S -s 61634; mkdir '$APPDIR'/home 2>/dev/null; mkdir '$APPDIR'/config 2>/dev/null; mkdir '$APPDIR'/roms 2>/dev/null; HOME='$APPDIR'/home XDG_CONFIG_HOME='$APPDIR'/config XDG_DATA_HOME='$APPDIR'/home XDG_CURRENT_DESKTOP=XFCE DESKTOP_SESSION=XFCE DISPLAY=:0.0 '$BINARY' ${@} &'"
+      },
+      {
+        "line": 83,
+        "text": "PORT_SCRIPT=\"/userdata/roms/ports/${APPNAME}.sh\""
+      },
+      {
+        "line": 96,
+        "text": "CUSTOM_SH=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 103,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 106,
+        "text": "LOGO_PATH=\"/userdata/roms/ports/images/CloneHero_Logo.png\""
+      },
+      {
+        "line": 116,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 118,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "clonehero-game/releases",
+    "risk_findings": [
+      {
+        "line": 24,
+        "text": "rm -rf \"$APPDIR/*\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 33,
+        "text": "rm -rf \"$TEMP_DIR\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 24,
+        "text": "rm -rf \"$APPDIR/*\"",
+        "type": "rm_appdir"
+      },
+      {
+        "line": 11,
+        "text": "if echo \"$ASSETS\" | grep -q \"clonehero-linux.tar.xz\"; then",
+        "type": "extract_archive"
+      },
+      {
+        "line": 12,
+        "text": "APPLINK=$(echo \"$ASSETS\" | grep \"clonehero-linux.tar.xz\")",
+        "type": "extract_archive"
+      },
+      {
+        "line": 14,
+        "text": "elif echo \"$ASSETS\" | grep -q \"Linux.x86_64-Standalone.tar\"; then",
+        "type": "extract_archive"
+      },
+      {
+        "line": 15,
+        "text": "APPLINK=$(echo \"$ASSETS\" | grep \"Linux.x86_64-Standalone.tar\")",
+        "type": "extract_archive"
+      },
+      {
+        "line": 30,
+        "text": "wget -q --show-progress -O \"clonehero.tar\" \"$APPLINK\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 31,
+        "text": "tar $TARFLAGS \"clonehero.tar\" -C \"$APPDIR\" --strip-components=1",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "endlesssky/endlesssky.sh",
+    "persistent_refs": [
+      {
+        "line": 18,
+        "text": "mkdir -p /userdata/system/add-ons/endless-sky"
+      },
+      {
+        "line": 19,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/endless-sky/EndlessSky.AppImage \"$appimage_url\""
+      },
+      {
+        "line": 26,
+        "text": "chmod a+x /userdata/system/add-ons/endless-sky/EndlessSky.AppImage"
+      },
+      {
+        "line": 29,
+        "text": "# Create persistent configuration and log directories"
+      },
+      {
+        "line": 30,
+        "text": "mkdir -p /userdata/system/add-ons/endless-sky/endless-sky-config"
+      },
+      {
+        "line": 31,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 35,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 36,
+        "text": "cat << 'EOF' > /userdata/roms/ports/EndlessSky.sh"
+      },
+      {
+        "line": 44,
+        "text": "app_dir=\"/userdata/system/add-ons/endless-sky\""
+      },
+      {
+        "line": 45,
+        "text": "config_dir=\"${app_dir}/endless-sky-config\""
+      },
+      {
+        "line": 46,
+        "text": "config_symlink=\"${HOME}/.config/endless-sky\""
+      },
+      {
+        "line": 48,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 58,
+        "text": "# Create persistent directory for Endless Sky config"
+      },
+      {
+        "line": 59,
+        "text": "mkdir -p \"${config_dir}\""
+      },
+      {
+        "line": 61,
+        "text": "# Move existing config if present"
+      },
+      {
+        "line": 62,
+        "text": "if [ -d \"${config_symlink}\" ] && [ ! -L \"${config_symlink}\" ]; then"
+      },
+      {
+        "line": 63,
+        "text": "mv \"${config_symlink}\" \"${config_dir}\""
+      },
+      {
+        "line": 66,
+        "text": "# Ensure config directory is symlinked"
+      },
+      {
+        "line": 67,
+        "text": "if [ ! -L \"${config_symlink}\" ]; then"
+      },
+      {
+        "line": 68,
+        "text": "ln -sf \"${config_dir}\" \"${config_symlink}\""
+      },
+      {
+        "line": 82,
+        "text": "chmod +x /userdata/roms/ports/EndlessSky.sh"
+      },
+      {
+        "line": 86,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 90,
+        "text": "curl -L -o /userdata/roms/ports/images/endlessskylogo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/endlesssky/extra/endlessskylogo.png"
+      },
+      {
+        "line": 97,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 100,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "endless-sky/endless-sky",
+    "risk_findings": []
+  },
+  {
+    "path": "greenlight/greenlight.sh",
+    "persistent_refs": [
+      {
+        "line": 18,
+        "text": "app_dir=\"/userdata/system/add-ons/greenlight\""
+      },
+      {
+        "line": 35,
+        "text": "ports_dir=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 43,
+        "text": "export HOME=\"/userdata/system/add-ons/greenlight\""
+      },
+      {
+        "line": 46,
+        "text": "export LD_LIBRARY_PATH=\"/userdata/system/add-ons/.dep:${LD_LIBRARY_PATH}\""
+      },
+      {
+        "line": 48,
+        "text": "# Configure system settings"
+      },
+      {
+        "line": 58,
+        "text": "app_bin=\"/userdata/system/add-ons/greenlight\""
+      },
+      {
+        "line": 59,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 71,
+        "text": "cd \"/userdata/system/add-ons/greenlight\""
+      },
+      {
+        "line": 84,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/${APPNAME,,}/${APPNAME}.desktop\""
+      },
+      {
+        "line": 87,
+        "text": "mkdir -p \"/userdata/system/configs/${APPNAME,,}\""
+      },
+      {
+        "line": 88,
+        "text": "mkdir -p \"/userdata/system/add-ons/${APPNAME,,}/extra\""
+      },
+      {
+        "line": 91,
+        "text": "wget --show-progress -qO \"/userdata/system/add-ons/${APPNAME,,}/extra/icon.png\" \"$ICON_URL\""
+      },
+      {
+        "line": 100,
+        "text": "Exec=/userdata/roms/ports/${APPNAME}.sh"
+      },
+      {
+        "line": 101,
+        "text": "Icon=/userdata/system/add-ons/${APPNAME,,}/extra/icon.png"
+      },
+      {
+        "line": 113,
+        "text": "RESTORE_SCRIPT=\"/userdata/system/configs/${APPNAME,,}/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 131,
+        "text": "CUSTOM_STARTUP=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 142,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 146,
+        "text": "curl -L -o /userdata/roms/ports/images/greenlight.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/greenlight/extra/greenlight.png"
+      },
+      {
+        "line": 152,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 154,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "unknownskl/greenlight",
+    "risk_findings": [
+      {
+        "line": 30,
+        "text": "rm -rf \"$temp_dir\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 28,
+        "text": "mv \"${temp_dir}/greenlight.AppImage\" \"$app_dir/\"",
+        "type": "mv_replace"
+      }
+    ]
+  },
+  {
+    "path": "heroic/heroic.sh",
+    "persistent_refs": [
+      {
+        "line": 4,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/heroic\""
+      },
+      {
+        "line": 6,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/heroic/heroic.desktop\""
+      },
+      {
+        "line": 7,
+        "text": "SYSTEMS_CFG=\"/userdata/system/configs/emulationstation/es_systems_heroic.cfg\""
+      },
+      {
+        "line": 11,
+        "text": "ROM_DIR=\"/userdata/roms/heroic\""
+      },
+      {
+        "line": 15,
+        "text": "[ -d \"/userdata/system/add-ons/heroic\" ] && rm -rf \"/userdata/system/add-ons/heroic\""
+      },
+      {
+        "line": 18,
+        "text": "mkdir -p \"/userdata/system/configs/heroic\""
+      },
+      {
+        "line": 19,
+        "text": "mkdir -p \"/userdata/system/add-ons/heroic/extra\""
+      },
+      {
+        "line": 22,
+        "text": "echo \"Fetching the latest version of Heroic Games Launcher...\""
+      },
+      {
+        "line": 25,
+        "text": "API_RESPONSE=$(wget -qO- https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest 2>&1)"
+      },
+      {
+        "line": 31,
+        "text": "HEROIC_URL=$(wget -qO- https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest 2>&1 | grep -o 'https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v[0-9.]*/Heroic-[0-9.]*-linux-x86_64\\.AppImage' | head -n 1)"
+      },
+      {
+        "line": 49,
+        "text": "echo \"Downloading Heroic Games Launcher version $HEROIC_VERSION...\""
+      },
+      {
+        "line": 87,
+        "text": "umu_target=\"/userdata/system/.config/heroic/tools/runtimes/umu\""
+      },
+      {
+        "line": 88,
+        "text": "umu_source=\"/userdata/system/add-ons/heroic/extra/umu\""
+      },
+      {
+        "line": 91,
+        "text": "mkdir -p \"/userdata/system/.config/heroic/tools/runtimes\" 2>/dev/null"
+      },
+      {
+        "line": 117,
+        "text": "LAUNCHER=\"/userdata/system/add-ons/heroic/Launcher\""
+      },
+      {
+        "line": 122,
+        "text": "SETUP_SCRIPT=\"/userdata/system/add-ons/heroic/setup_umu_symlink.sh\""
+      },
+      {
+        "line": 127,
+        "text": "/userdata/system/add-ons/heroic/monitor_heroic.sh &"
+      },
+      {
+        "line": 129,
+        "text": "DISPLAY=:0.0 /userdata/system/add-ons/heroic/heroic.AppImage --no-sandbox \"$@\""
+      },
+      {
+        "line": 135,
+        "text": "SYSTEM_LAUNCHER=\"/userdata/system/add-ons/heroic/SystemLauncher\""
+      },
+      {
+        "line": 140,
+        "text": "SETUP_SCRIPT=\"/userdata/system/add-ons/heroic/setup_umu_symlink.sh\""
+      },
+      {
+        "line": 149,
+        "text": "DISPLAY=:0.0 /userdata/system/add-ons/heroic/heroic.AppImage --no-sandbox --no-gui \"heroic://launch/$ID\""
+      },
+      {
+        "line": 159,
+        "text": "Name=Heroic Games Launcher"
+      },
+      {
+        "line": 161,
+        "text": "Icon=/userdata/system/add-ons/heroic/extra/icon.png"
+      },
+      {
+        "line": 173,
+        "text": "cat <<EOF > \"/userdata/system/configs/heroic/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 185,
+        "text": "chmod +x \"/userdata/system/configs/heroic/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 188,
+        "text": "custom_startup=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 189,
+        "text": "if ! grep -q \"/userdata/system/configs/heroic/restore_desktop_entry.sh\" \"$custom_startup\"; then"
+      },
+      {
+        "line": 191,
+        "text": "echo \"bash \"/userdata/system/configs/heroic/restore_desktop_entry.sh\" &\" >> \"$custom_startup\""
+      },
+      {
+        "line": 206,
+        "text": "<path>/userdata/roms/heroic</path>"
+      },
+      {
+        "line": 208,
+        "text": "<command>/userdata/system/add-ons/heroic/SystemLauncher %ROM%</command>"
+      }
+    ],
+    "repo": "Heroic-Games-Launcher/HeroicGamesLauncher",
+    "risk_findings": [
+      {
+        "line": 15,
+        "text": "[ -d \"/userdata/system/add-ons/heroic\" ] && rm -rf \"/userdata/system/add-ons/heroic\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 106,
+        "text": "rm -rf \"$umu_target\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 15,
+        "text": "[ -d \"/userdata/system/add-ons/heroic\" ] && rm -rf \"/userdata/system/add-ons/heroic\"",
+        "type": "delete_addons"
+      },
+      {
+        "line": 107,
+        "text": "cp -r \"$umu_source\" \"$umu_target\"",
+        "type": "cp_recursive"
+      },
+      {
+        "line": 13,
+        "text": "UMU_TAR_URL=\"https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/heroic/extra/umu.tar.gz\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 70,
+        "text": "wget --show-progress -O \"${INSTALL_DIR}/extra/umu.tar.gz\" \"$UMU_TAR_URL\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 74,
+        "text": "tar -xzf \"${INSTALL_DIR}/extra/umu.tar.gz\" -C \"${INSTALL_DIR}/extra\"",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "iptvnator/iptvnator.sh",
+    "persistent_refs": [
+      {
+        "line": 22,
+        "text": "mkdir -p /userdata/system/add-ons/iptvnator"
+      },
+      {
+        "line": 23,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/iptvnator/IPTVNator.AppImage \"$appimage_url\""
+      },
+      {
+        "line": 30,
+        "text": "chmod a+x /userdata/system/add-ons/iptvnator/IPTVNator.AppImage"
+      },
+      {
+        "line": 34,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 38,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 39,
+        "text": "cat << 'EOF' > /userdata/roms/ports/IPTVNator.sh"
+      },
+      {
+        "line": 45,
+        "text": "export HOME=\"/userdata/system/add-ons/iptvnator\""
+      },
+      {
+        "line": 48,
+        "text": "app_dir=\"/userdata/system/add-ons/iptvnator\""
+      },
+      {
+        "line": 50,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 71,
+        "text": "chmod +x /userdata/roms/ports/IPTVNator.sh"
+      },
+      {
+        "line": 75,
+        "text": "curl -L -o \"/userdata/roms/ports/IPTVNator.sh.keys\" \"$KEYS_URL\""
+      },
+      {
+        "line": 79,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 83,
+        "text": "curl -L -o /userdata/roms/ports/images/iptvnator-logo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/iptvnator/extra/iptvnator-logo.png"
+      },
+      {
+        "line": 91,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp \\"
+      },
+      {
+        "line": 92,
+        "text": "&& mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 94,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "4gray/iptvnator",
+    "risk_findings": []
+  },
+  {
+    "path": "itgmania/itgmania.sh",
+    "persistent_refs": [
+      {
+        "line": 4,
+        "text": "install_dir=\"/userdata/system/add-ons/itgmania\""
+      },
+      {
+        "line": 5,
+        "text": "ports_dir=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 47,
+        "text": "export HOME=\"/userdata/system/add-ons/itgmania\""
+      },
+      {
+        "line": 48,
+        "text": "cd /userdata/system/add-ons/itgmania"
+      },
+      {
+        "line": 63,
+        "text": "curl -s http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "ITGmania/ITGmania",
+    "risk_findings": [
+      {
+        "line": 23,
+        "text": "rm -rf \"$install_dir\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 23,
+        "text": "rm -rf \"$install_dir\"",
+        "type": "rm_appdir"
+      },
+      {
+        "line": 37,
+        "text": "rm -f \"$install_dir/itgmania.tar.gz\"",
+        "type": "rm_appdir"
+      },
+      {
+        "line": 12,
+        "text": "| grep \"Linux\\.tar\\.gz\" \\",
+        "type": "extract_archive"
+      },
+      {
+        "line": 28,
+        "text": "wget -q --show-progress -O \"$install_dir/itgmania.tar.gz\" \"$itgmania_url\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 36,
+        "text": "tar -xzf \"$install_dir/itgmania.tar.gz\" -C \"$install_dir\" --strip-components=2",
+        "type": "extract_archive"
+      },
+      {
+        "line": 37,
+        "text": "rm -f \"$install_dir/itgmania.tar.gz\"",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "minecraft/bedrock.sh",
+    "persistent_refs": [
+      {
+        "line": 15,
+        "text": "app_dir=\"/userdata/system/add-ons/minecraft/minecraftbedrock\""
+      },
+      {
+        "line": 42,
+        "text": "# Create persistent configuration and log directories"
+      },
+      {
+        "line": 43,
+        "text": "mkdir -p \"$app_dir/minecraft-config\""
+      },
+      {
+        "line": 44,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 47,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 50,
+        "text": "cat << EOF > \"/userdata/roms/ports/MinecraftBedrock.sh\""
+      },
+      {
+        "line": 56,
+        "text": "export HOME=\"$app_dir\""
+      },
+      {
+        "line": 61,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 82,
+        "text": "chmod +x \"/userdata/roms/ports/MinecraftBedrock.sh\""
+      },
+      {
+        "line": 95,
+        "text": "curl -L -o \"/userdata/roms/ports/images/$entry_name-logo.png\" \"$logo_url\""
+      },
+      {
+        "line": 101,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 103,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "minecraft-linux/appimage-builder",
+    "risk_findings": []
+  },
+  {
+    "path": "moonlight/moonlight.sh",
+    "persistent_refs": [
+      {
+        "line": 12,
+        "text": "mkdir -p /userdata/system/add-ons/moonlight"
+      },
+      {
+        "line": 13,
+        "text": "wget -q -O /userdata/system/add-ons/moonlight/moonlight.AppImage \"$latest_release_url\""
+      },
+      {
+        "line": 20,
+        "text": "chmod a+x /userdata/system/add-ons/moonlight/moonlight.AppImage"
+      },
+      {
+        "line": 24,
+        "text": "# Create persistent configuration and log directories"
+      },
+      {
+        "line": 25,
+        "text": "mkdir -p /userdata/system/add-ons/moonlight/moonlight-config"
+      },
+      {
+        "line": 26,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 30,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 31,
+        "text": "cat << 'EOF' > /userdata/roms/ports/Moonlight.sh"
+      },
+      {
+        "line": 37,
+        "text": "export HOME=/userdata/system/add-ons/moonlight"
+      },
+      {
+        "line": 40,
+        "text": "app_dir=\"/userdata/system/add-ons/moonlight\""
+      },
+      {
+        "line": 41,
+        "text": "config_dir=\"${app_dir}/moonlight-config\""
+      },
+      {
+        "line": 42,
+        "text": "config_symlink=\"${HOME}/.config/moonlight\""
+      },
+      {
+        "line": 44,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 54,
+        "text": "# Create persistent directory for Moonlight config"
+      },
+      {
+        "line": 55,
+        "text": "mkdir -p \"${config_dir}\""
+      },
+      {
+        "line": 57,
+        "text": "# Move existing config if present"
+      },
+      {
+        "line": 58,
+        "text": "if [ -d \"${config_symlink}\" ] && [ ! -L \"${config_symlink}\" ]; then"
+      },
+      {
+        "line": 59,
+        "text": "mv \"${config_symlink}\" \"${config_dir}\""
+      },
+      {
+        "line": 62,
+        "text": "# Ensure config directory is symlinked"
+      },
+      {
+        "line": 63,
+        "text": "if [ ! -L \"${config_symlink}\" ]; then"
+      },
+      {
+        "line": 64,
+        "text": "ln -sf \"${config_dir}\" \"${config_symlink}\""
+      },
+      {
+        "line": 78,
+        "text": "chmod +x /userdata/roms/ports/Moonlight.sh"
+      },
+      {
+        "line": 81,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 85,
+        "text": "curl -L -o /userdata/roms/ports/images/moonlightlogo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/moonlight/extra/moonlightlogo.png"
+      },
+      {
+        "line": 92,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 95,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "moonlight-stream/moonlight-qt",
+    "risk_findings": []
+  },
+  {
+    "path": "portmaster/portmaster.sh",
+    "persistent_refs": [
+      {
+        "line": 16,
+        "text": "mkdir -p /userdata/system/add-ons/portmaster"
+      },
+      {
+        "line": 17,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/portmaster/Install.Full.PortMaster.sh \"$installer_url\""
+      },
+      {
+        "line": 25,
+        "text": "chmod +x /userdata/system/add-ons/portmaster/Install.Full.PortMaster.sh"
+      },
+      {
+        "line": 33,
+        "text": "echo \"A\" | /userdata/system/add-ons/portmaster/Install.Full.PortMaster.sh"
+      },
+      {
+        "line": 41,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 45,
+        "text": "curl -L -o /userdata/roms/ports/images/portmasterlogo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/portmaster/extra/portmasterlogo.png"
+      },
+      {
+        "line": 52,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      },
+      {
+        "line": 55,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "PortsMaster/PortMaster-GUI",
+    "risk_findings": []
+  },
+  {
+    "path": "prismlauncher/prismlauncher.sh",
+    "persistent_refs": [
+      {
+        "line": 4,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/prismlauncher\""
+      },
+      {
+        "line": 7,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/prismlauncher/prismlauncher.desktop\""
+      },
+      {
+        "line": 8,
+        "text": "RESTORE_SCRIPT=\"/userdata/system/configs/prismlauncher/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 26,
+        "text": "mkdir -p \"/userdata/system/configs/prismlauncher\""
+      },
+      {
+        "line": 27,
+        "text": "mkdir -p \"/userdata/roms/ports/images\""
+      },
+      {
+        "line": 28,
+        "text": "mkdir -p \"/userdata/system/logs\""
+      },
+      {
+        "line": 55,
+        "text": "wget -q -O \"/userdata/roms/ports/images/PrismLauncher-logo.png\" \\"
+      },
+      {
+        "line": 63,
+        "text": "export HOME=/userdata/system/add-ons/prismlauncher"
+      },
+      {
+        "line": 64,
+        "text": "exec /userdata/system/add-ons/prismlauncher/prismlauncher.AppImage \\"
+      },
+      {
+        "line": 65,
+        "text": "--dir /userdata/system/add-ons/prismlauncher/data \\"
+      },
+      {
+        "line": 66,
+        "text": "\"$@\" >> /userdata/system/logs/prismlauncher.log 2>&1"
+      },
+      {
+        "line": 71,
+        "text": "cat <<'ROM' > \"/userdata/roms/ports/PrismLauncher.sh\""
+      },
+      {
+        "line": 75,
+        "text": "export HOME=/userdata/system/add-ons/prismlauncher"
+      },
+      {
+        "line": 76,
+        "text": "exec /userdata/system/add-ons/prismlauncher/prismlauncher.AppImage \\"
+      },
+      {
+        "line": 77,
+        "text": "--dir /userdata/system/add-ons/prismlauncher/data \\"
+      },
+      {
+        "line": 78,
+        "text": ">> /userdata/system/logs/prismlauncher.log 2>&1"
+      },
+      {
+        "line": 80,
+        "text": "chmod +x \"/userdata/roms/ports/PrismLauncher.sh\""
+      },
+      {
+        "line": 83,
+        "text": "GAMELIST=\"/userdata/roms/ports/gamelist.xml\""
+      },
+      {
+        "line": 122,
+        "text": "if ! grep -q \"$RESTORE_SCRIPT\" /userdata/system/custom.sh; then"
+      },
+      {
+        "line": 123,
+        "text": "echo \"bash \\\"$RESTORE_SCRIPT\\\" &\" >> /userdata/system/custom.sh"
+      },
+      {
+        "line": 125,
+        "text": "chmod +x /userdata/system/custom.sh"
+      },
+      {
+        "line": 132,
+        "text": "curl -s http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "PrismLauncher/PrismLauncher",
+    "risk_findings": [
+      {
+        "line": 23,
+        "text": "rm -rf \"$INSTALL_DIR\"",
+        "type": "rm_rf"
+      },
+      {
+        "line": 23,
+        "text": "rm -rf \"$INSTALL_DIR\"",
+        "type": "rm_appdir"
+      }
+    ]
+  },
+  {
+    "path": "qbittorrent/qbittorrent.sh",
+    "persistent_refs": [
+      {
+        "line": 9,
+        "text": "APPHOME=\"c0re100/qBittorrent-Enhanced-Edition\""
+      },
+      {
+        "line": 10,
+        "text": "APPPATH=\"/userdata/system/add-ons/qbittorrent/qbittorrent.AppImage\""
+      },
+      {
+        "line": 12,
+        "text": "COMMAND=\"/userdata/system/add-ons/qbittorrent/qbittorrent.AppImage\""
+      },
+      {
+        "line": 15,
+        "text": "add_ons=\"/userdata/system/add-ons\""
+      },
+      {
+        "line": 52,
+        "text": "csh=\"/userdata/system/custom.sh\""
+      }
+    ],
+    "repo": "c0re100/qBittorrent-Enhanced-Edition",
+    "risk_findings": []
+  },
+  {
+    "path": "soar/soar.sh",
+    "persistent_refs": [
+      {
+        "line": 8,
+        "text": "CONFIG_FILE_URL=\"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/soar/extra/config.toml\""
+      },
+      {
+        "line": 12,
+        "text": "CONFIG_FILE_URL=\"https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/soar/extra/arm64_config.toml\""
+      },
+      {
+        "line": 21,
+        "text": "SOAR_BIN_DIR=\"/userdata/system/add-ons/soar/bin\""
+      },
+      {
+        "line": 22,
+        "text": "SOAR_CONFIG_DIR=\"/userdata/system/.config/soar\""
+      },
+      {
+        "line": 27,
+        "text": "mkdir -p \"$SOAR_CONFIG_DIR\""
+      },
+      {
+        "line": 43,
+        "text": "# Download the appropriate config file"
+      },
+      {
+        "line": 44,
+        "text": "curl -Lso \"$SOAR_CONFIG_DIR/config.toml\" \"$CONFIG_FILE_URL\""
+      }
+    ],
+    "repo": "pkgforge/soar",
+    "risk_findings": []
+  },
+  {
+    "path": "sunshine/sunshine.sh",
+    "persistent_refs": [
+      {
+        "line": 7,
+        "text": "mkdir -p /userdata/system/add-ons/sunshine"
+      },
+      {
+        "line": 13,
+        "text": "curl -L \"$APPIMAGE_URL\" -o /userdata/system/add-ons/sunshine/sunshine.AppImage"
+      },
+      {
+        "line": 14,
+        "text": "chmod +x /userdata/system/add-ons/sunshine/sunshine.AppImage"
+      },
+      {
+        "line": 20,
+        "text": "# Create a persistent configuration directory"
+      },
+      {
+        "line": 21,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 23,
+        "text": "# Configure Sunshine as a service"
+      },
+      {
+        "line": 24,
+        "text": "echo \"Configuring Sunshine service...\""
+      },
+      {
+        "line": 25,
+        "text": "mkdir -p /userdata/system/services"
+      },
+      {
+        "line": 26,
+        "text": "cat << 'EOF' > /userdata/system/services/sunshine"
+      },
+      {
+        "line": 35,
+        "text": "export HOME=/userdata/system/add-ons/sunshine"
+      },
+      {
+        "line": 38,
+        "text": "app_dir=\"/userdata/system/add-ons/sunshine\""
+      },
+      {
+        "line": 40,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 101,
+        "text": "chmod +x /userdata/system/services/sunshine"
+      }
+    ],
+    "repo": "LizardByte/Sunshine",
+    "risk_findings": []
+  },
+  {
+    "path": "supertuxkart/supertuxkart.sh",
+    "persistent_refs": [
+      {
+        "line": 25,
+        "text": "ADDONS_DIR=\"/userdata/system/add-ons\""
+      },
+      {
+        "line": 27,
+        "text": "PORTS_DIR=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 28,
+        "text": "LOGS_DIR=\"/userdata/system/logs\""
+      },
+      {
+        "line": 29,
+        "text": "GAME_LIST=\"/userdata/roms/ports/gamelist.xml\""
+      },
+      {
+        "line": 89,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 106,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "supertuxkart/stk-code",
+    "risk_findings": [
+      {
+        "line": 8,
+        "text": "ARCH_X86_64=\"https://github.com/supertuxkart/stk-code/releases/download/${LATEST}/SuperTuxKart-${LATEST}-linux-x86_64.tar.gz\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 9,
+        "text": "ARCH_ARM64=\"https://github.com/supertuxkart/stk-code/releases/download/${LATEST}/SuperTuxKart-${LATEST}-linux-arm64.tar.gz\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 41,
+        "text": "wget -q --show-progress -O \"${TUX_DIR}/SuperTuxKart.tar.gz\" \"$ARCHIVE_URL\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 48,
+        "text": "tar --strip-components=1 -xf \"${TUX_DIR}/SuperTuxKart.tar.gz\" -C \"$TUX_DIR\"",
+        "type": "extract_archive"
+      },
+      {
+        "line": 49,
+        "text": "rm \"${TUX_DIR}/SuperTuxKart.tar.gz\"",
+        "type": "extract_archive"
+      }
+    ]
+  },
+  {
+    "path": "vesktop/vesktop.sh",
+    "persistent_refs": [
+      {
+        "line": 21,
+        "text": "mkdir -p /userdata/system/add-ons/vesktop"
+      },
+      {
+        "line": 22,
+        "text": "wget -q --show-progress -O /userdata/system/add-ons/vesktop/Vesktop.AppImage \"$appimage_url\""
+      },
+      {
+        "line": 29,
+        "text": "chmod a+x /userdata/system/add-ons/vesktop/Vesktop.AppImage"
+      },
+      {
+        "line": 32,
+        "text": "# Create persistent configuration and log directories"
+      },
+      {
+        "line": 33,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 34,
+        "text": "mkdir -p /userdata/system/configs/vesktop"
+      },
+      {
+        "line": 35,
+        "text": "mkdir -p /userdata/system/add-ons/vesktop/extra"
+      },
+      {
+        "line": 37,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/vesktop/Vesktop.desktop\""
+      },
+      {
+        "line": 39,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/vesktop\""
+      },
+      {
+        "line": 43,
+        "text": "mkdir -p /userdata/roms/ports"
+      },
+      {
+        "line": 44,
+        "text": "cat << 'EOF' > /userdata/roms/ports/Vesktop.sh"
+      },
+      {
+        "line": 46,
+        "text": "export HOME=/userdata/system/add-ons/vesktop"
+      },
+      {
+        "line": 50,
+        "text": "config_settings_dir=\"${HOME}/.config/vesktop/settings\""
+      },
+      {
+        "line": 51,
+        "text": "quickCss=\"${config_settings_dir}/quickCss.css\""
+      },
+      {
+        "line": 53,
+        "text": "# Ensure the .config/vesktop/settings directory exists"
+      },
+      {
+        "line": 54,
+        "text": "mkdir -p \"$config_settings_dir\""
+      },
+      {
+        "line": 71,
+        "text": "app_dir=\"/userdata/system/add-ons/vesktop\""
+      },
+      {
+        "line": 73,
+        "text": "log_dir=\"/userdata/system/logs\""
+      },
+      {
+        "line": 96,
+        "text": "chmod +x /userdata/roms/ports/Vesktop.sh"
+      },
+      {
+        "line": 108,
+        "text": "Exec=/userdata/roms/ports/Vesktop.sh"
+      },
+      {
+        "line": 109,
+        "text": "Icon=/userdata/system/add-ons/vesktop/extra/icon.png"
+      },
+      {
+        "line": 121,
+        "text": "cat <<EOF > \"/userdata/system/configs/vesktop/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 133,
+        "text": "chmod +x \"/userdata/system/configs/vesktop/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 136,
+        "text": "custom_startup=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 137,
+        "text": "if ! grep -q \"/userdata/system/configs/vesktop/restore_desktop_entry.sh\" \"$custom_startup\"; then"
+      },
+      {
+        "line": 139,
+        "text": "echo \"bash \"/userdata/system/configs/vesktop/restore_desktop_entry.sh\" &\" >> \"$custom_startup\""
+      },
+      {
+        "line": 144,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      },
+      {
+        "line": 149,
+        "text": "curl -L -o \"/userdata/roms/ports/Vesktop.sh.keys\" \"$KEYS_URL\""
+      },
+      {
+        "line": 152,
+        "text": "curl -L -o /userdata/roms/ports/images/vesktoplogo.png https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/vesktop/extra/vesktoplogo.png"
+      },
+      {
+        "line": 159,
+        "text": "/userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml"
+      }
+    ],
+    "repo": "Vencord/Vesktop",
+    "risk_findings": []
+  },
+  {
+    "path": "yarg/yarg.sh",
+    "persistent_refs": [
+      {
+        "line": 4,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/yarg\""
+      },
+      {
+        "line": 5,
+        "text": "LOGS_DIR=\"/userdata/system/logs\""
+      },
+      {
+        "line": 6,
+        "text": "PORTS_DIR=\"/userdata/roms/ports\""
+      },
+      {
+        "line": 7,
+        "text": "GAME_LIST=\"/userdata/roms/ports/gamelist.xml\""
+      },
+      {
+        "line": 11,
+        "text": "PERSISTENT_DESKTOP=\"/userdata/system/configs/yarg/YARC-Launcher.desktop\""
+      },
+      {
+        "line": 45,
+        "text": "mkdir -p \"/userdata/system/configs/yarg\" \"${INSTALL_DIR}/extra\""
+      },
+      {
+        "line": 53,
+        "text": "export HOME=/userdata/system/add-ons/yarg"
+      },
+      {
+        "line": 54,
+        "text": "cd /userdata/system/add-ons/yarg"
+      },
+      {
+        "line": 64,
+        "text": "Exec=/userdata/system/add-ons/yarg/yarg-launcher.sh"
+      },
+      {
+        "line": 65,
+        "text": "Icon=/userdata/system/add-ons/yarg/extra/icon.png"
+      },
+      {
+        "line": 74,
+        "text": "cat > \"/userdata/system/configs/yarg/restore_desktop_entry.sh\" << 'EOF'"
+      },
+      {
+        "line": 77,
+        "text": "cp \"/userdata/system/configs/yarg/YARC-Launcher.desktop\" \"/usr/share/applications/YARC-Launcher.desktop\""
+      },
+      {
+        "line": 81,
+        "text": "chmod +x \"/userdata/system/configs/yarg/restore_desktop_entry.sh\""
+      },
+      {
+        "line": 83,
+        "text": "CUSTOM_SH=\"/userdata/system/custom.sh\""
+      },
+      {
+        "line": 84,
+        "text": "if ! grep -q \"/userdata/system/configs/yarg/restore_desktop_entry.sh\" \"$CUSTOM_SH\" 2>/dev/null; then"
+      },
+      {
+        "line": 85,
+        "text": "echo 'bash \"/userdata/system/configs/yarg/restore_desktop_entry.sh\" &' >> \"$CUSTOM_SH\""
+      },
+      {
+        "line": 95,
+        "text": "export HOME=/userdata/system/add-ons/yarg"
+      },
+      {
+        "line": 97,
+        "text": "INSTALL_DIR=\"/userdata/system/add-ons/yarg\""
+      },
+      {
+        "line": 98,
+        "text": "LOG_FILE=\"/userdata/system/logs/yarg.log\""
+      },
+      {
+        "line": 99,
+        "text": "mkdir -p /userdata/system/logs"
+      },
+      {
+        "line": 130,
+        "text": "curl http://127.0.0.1:1234/reloadgames"
+      }
+    ],
+    "repo": "YARC-Official/YARC-Launcher",
+    "risk_findings": []
+  }
+]

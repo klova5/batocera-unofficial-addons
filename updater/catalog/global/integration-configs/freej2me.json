@@ -1,0 +1,10 @@
+{
+  "package_id": "freej2me",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera-unofficial-addons.add/releases/download/files/Freej2me.DRL"
+    }
+  ]
+}

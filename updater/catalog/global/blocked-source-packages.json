@@ -1,0 +1,25 @@
+{
+  "packages": {
+    "Amazon Luna": {
+      "reason": "BUA-referenced Amazon Luna release artifact returns 404.",
+      "source": "https://github.com/zencodes1/amazonluna-client/releases/download/release/amazonluna-electron-client.tar.xz",
+      "status": "blocked_source"
+    },
+    "Flathub": {
+      "reason": "Required flathub.sh.keys integration asset is missing.",
+      "source": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/flathub/extra/flathub.sh.keys",
+      "status": "blocked_source"
+    },
+    "Wine Dependencies x64": {
+      "reason": "Required shared directx.7z dependency is missing.",
+      "source": "https://raw.githubusercontent.com/DRLEdition19/batocera.drl/main/wine/extra/directx.7z",
+      "status": "blocked_source"
+    },
+    "Wine Dependencies x86": {
+      "reason": "Required shared directx.7z dependency is missing.",
+      "source": "https://raw.githubusercontent.com/DRLEdition19/batocera.drl/main/wine/extra/directx.7z",
+      "status": "blocked_source"
+    }
+  },
+  "schema": 1
+}

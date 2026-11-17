@@ -1,0 +1,260 @@
+[
+  {
+    "api_repositories": [
+      "Pyrdacor/Ambermoon.net"
+    ],
+    "path": "ambermoon/ambermoon.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "app/templates/github_desktop.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "app/templates/template.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "assaultcube/AC"
+    ],
+    "path": "assaultcube/assaultcube.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "AzaharPlus/AzaharPlus"
+    ],
+    "path": "azaharplus/azaharplus.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "Geomitron/Bridge"
+    ],
+    "path": "bridge/bridge.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "celeste64/celeste64.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "streetpea/chiaki-ng"
+    ],
+    "path": "chiaki/chiaki.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "ivan-hc/Chrome-appimage"
+    ],
+    "path": "chrome/chrome.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "clonehero-game/releases"
+    ],
+    "path": "clonehero/clonehero.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "endless-sky/endless-sky"
+    ],
+    "path": "endlesssky/endlesssky.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "srevinsaju/Firefox-AppImage"
+    ],
+    "path": "firefox/firefox.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": false
+  },
+  {
+    "api_repositories": [
+      "unknownskl/greenlight"
+    ],
+    "path": "greenlight/greenlight.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "Heroic-Games-Launcher/HeroicGamesLauncher"
+    ],
+    "path": "heroic/heroic.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "hydra/hydra.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "4gray/iptvnator"
+    ],
+    "path": "iptvnator/iptvnator.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "ITGmania/ITGmania"
+    ],
+    "path": "itgmania/itgmania.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "luanti/luanti.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "minecraft-linux/appimage-builder"
+    ],
+    "path": "minecraft/bedrock.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "moonlight-stream/moonlight-qt"
+    ],
+    "path": "moonlight/moonlight.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "openra/openra.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "PortsMaster/PortMaster-GUI"
+    ],
+    "path": "portmaster/portmaster.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "PrismLauncher/PrismLauncher"
+    ],
+    "path": "prismlauncher/prismlauncher.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "c0re100/qBittorrent-Enhanced-Edition"
+    ],
+    "path": "qbittorrent/qbittorrent.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "rpi/rpi.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "pkgforge/soar"
+    ],
+    "path": "soar/soar.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "LizardByte/Sunshine"
+    ],
+    "path": "sunshine/sunshine.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "supertux/supertux.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "supertuxkart/stk-code"
+    ],
+    "path": "supertuxkart/supertuxkart.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "telegraf/telegraf.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "tidal/tidal.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [],
+    "path": "usdeluxe/usdeluxe.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "Vencord/Vesktop"
+    ],
+    "path": "vesktop/vesktop.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  },
+  {
+    "api_repositories": [
+      "ivan-hc/WPS-Office-appimage"
+    ],
+    "path": "wps-office/wps-office.sh",
+    "reads_tag_name": false,
+    "uses_latest_release": false
+  },
+  {
+    "api_repositories": [
+      "YARC-Official/YARC-Launcher"
+    ],
+    "path": "yarg/yarg.sh",
+    "reads_tag_name": true,
+    "uses_latest_release": true
+  }
+]

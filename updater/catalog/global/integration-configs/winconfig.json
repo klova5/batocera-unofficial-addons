@@ -1,0 +1,14 @@
+{
+  "package_id": "winconfig",
+  "display_version": "6.5",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/DRLEdition_Interface/releases/download/files/Winconfig_Files_full_6.5.DRL"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/DRLEdition19/DRLEdition_Interface/refs/heads/main/extra/Winconfig_gamelist_config.sh"
+    }
+  ]
+}

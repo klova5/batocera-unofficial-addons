@@ -1,0 +1,2333 @@
+[
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": ".dep/mousemove.sh",
+    "size": 499
+  },
+  {
+    "classification": [
+      "github_raw",
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "7zip/7zip.sh",
+    "size": 1802
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface"
+    ],
+    "path": "Android/Install_Android.sh",
+    "size": 11819
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "Desktop_for_Batocera/Install_Desktop.sh",
+    "size": 19137
+  },
+  {
+    "classification": "fetch_error",
+    "error": "URL can't contain control characters. '/batocera-unofficial-addons/batocera-unofficial-addons/main/Freej2me/Install_j2me-old .sh' (found at least ' ')",
+    "path": "Freej2me/Install_j2me-old .sh"
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/batocera-unofficial-addons.add"
+    ],
+    "path": "Freej2me/Install_j2me.sh",
+    "size": 7773
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface"
+    ],
+    "path": "Winconfig_Windows_Game_Fix/Install_Winconfig.sh",
+    "size": 5326
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "amazonluna/amazonluna-arm64.sh",
+    "size": 3617
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "zencodes1/amazonluna-client"
+    ],
+    "path": "amazonluna/amazonluna.sh",
+    "size": 3554
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_archive",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Pyrdacor/Ambermoon.net",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/Pyrdacor"
+    ],
+    "path": "ambermoon/ambermoon.sh",
+    "size": 3633
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/BUA.sh",
+    "size": 168
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/BUA_arm64.sh",
+    "size": 170
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/BatoceraUnofficialAddOns.sh",
+    "size": 304
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/BatoceraUnofficialAddons_ARM64.sh",
+    "size": 309
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/batocera-unofficial-addons-arm64.sh",
+    "size": 12654
+  },
+  {
+    "classification": [
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface",
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/batocera-unofficial-addons.sh",
+    "size": 27730
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/batocera-unofficial-addons"
+    ],
+    "path": "app/dep.sh",
+    "size": 875
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/batocera-unofficial-addons"
+    ],
+    "path": "app/dep_arm64.sh",
+    "size": 881
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/install.sh",
+    "size": 1087
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/install_arm64.sh",
+    "size": 6741
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/install_arm64_new.sh",
+    "size": 6113
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/install_new.sh",
+    "size": 1095
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "app/install_x86.sh",
+    "size": 8004
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/install_x86_new.sh",
+    "size": 6628
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/rd.sh",
+    "size": 273
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "app/symlinks.sh",
+    "size": 6549
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/templates/desktop_template.sh",
+    "size": 3402
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DTJW92/batocera-unofficial-addons"
+    ],
+    "path": "app/templates/desktopbase.sh",
+    "size": 1790
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/templates/flatpak-template.sh",
+    "size": 4949
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/templates/github_desktop.sh",
+    "size": 3531
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/templates/linux_template.sh",
+    "size": 3822
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DTJW92/batocera-unofficial-addons"
+    ],
+    "path": "app/templates/local_template.sh",
+    "size": 3290
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/templates/template.sh",
+    "size": 3454
+  },
+  {
+    "classification": [
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "app/updater.sh",
+    "size": 2032
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "cosmo0/arcade-manager"
+    ],
+    "path": "arcademanager/arcademanager.sh",
+    "size": 2598
+  },
+  {
+    "classification": [
+      "direct_appimage",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "armagetron/armagetron.sh",
+    "size": 3459
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "assaultcube/AC",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/assaultcube"
+    ],
+    "path": "assaultcube/assaultcube.sh",
+    "size": 2298
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "AzaharPlus/AzaharPlus",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/AzaharPlus"
+    ],
+    "path": "azaharplus/azaharplus.sh",
+    "size": 3826
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "bottles/bottles.sh",
+    "size": 4342
+  },
+  {
+    "classification": [
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "brave/brave.sh",
+    "size": 3831
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Geomitron/Bridge",
+      "repos/Geomitron"
+    ],
+    "path": "bridge/bridge.sh",
+    "size": 2676
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "celeste64/celeste64.sh",
+    "size": 3639
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/streetpea",
+      "streetpea/chiaki-ng"
+    ],
+    "path": "chiaki/chiaki.sh",
+    "size": 4796
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "ivan-hc/Chrome-appimage",
+      "repos/ivan-hc"
+    ],
+    "path": "chrome/chrome.sh",
+    "size": 4750
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "clonehero-game/releases",
+      "repos/clonehero-game"
+    ],
+    "path": "clonehero/clonehero.sh",
+    "size": 4329
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Kron4ek/Conty"
+    ],
+    "path": "conty/conty.sh",
+    "size": 890
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "crunchyroll/crunchyroll.sh",
+    "size": 2700
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "csportable/csportable.sh",
+    "size": 2136
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "dark/dark.sh",
+    "size": 1085
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_appimage",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "desktop/desktop.sh",
+    "size": 8183
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "desktop/ri-desktop.sh",
+    "size": 9934
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "disneyplus/disneyplus.sh",
+    "size": 2682
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/alpinexfce.sh",
+    "size": 2277
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/archkde.sh",
+    "size": 2322
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "docker/arrdownloaders.sh",
+    "size": 4468
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/arrinone.sh",
+    "size": 3288
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/casaos.sh",
+    "size": 1807
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/cli.sh",
+    "size": 2046
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/docker.sh",
+    "size": 2399
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/emby.sh",
+    "size": 2593
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/jellyfin.sh",
+    "size": 2901
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/menu.sh",
+    "size": 2734
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/ubuntumate.sh",
+    "size": 2340
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "docker/umbrelos.sh",
+    "size": 1812
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "eggnoggplus/eggnoggplus.sh",
+    "size": 4024
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "endless-sky/endless-sky",
+      "repos/endless-sky"
+    ],
+    "path": "endlesssky/endlesssky.sh",
+    "size": 3432
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "everest/everest.sh",
+    "size": 7873
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "git-developer/batocera-extra"
+    ],
+    "path": "extra/extra.sh",
+    "size": 784
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface",
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "f1/f1-1.sh",
+    "size": 6924
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface",
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "f1/f1-old1.sh",
+    "size": 3744
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/DRLEdition_Interface",
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "f1/f1.sh",
+    "size": 3603
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_appimage",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "fightcade/fightcade.sh",
+    "size": 8789
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "fightcade/switchres_fightcade_wrap.template.sh",
+    "size": 19067
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "fightcade/sym_wine.sh",
+    "size": 949
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "filezilla/filezilla.sh",
+    "size": 2442
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "firefox/firefox-arm64.sh",
+    "size": 3698
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/srevinsaju",
+      "srevinsaju/Firefox-AppImage"
+    ],
+    "path": "firefox/firefox.sh",
+    "size": 4639
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "flashbox/flashbox.sh",
+    "size": 3461
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "flathub/flathub.sh",
+    "size": 2652
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "freedroidrpg/freedroidrpg.sh",
+    "size": 3461
+  },
+  {
+    "classification": [
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "freetube/freetube.sh",
+    "size": 4135
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "gamescope/gamescope.sh",
+    "size": 1073
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "gparted/gparted.sh",
+    "size": 2545
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/unknownskl",
+      "unknownskl/greenlight"
+    ],
+    "path": "greenlight/greenlight.sh",
+    "size": 4975
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "greenlight/greenlight_arm64.sh",
+    "size": 3828
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "hbomax/hbomax.sh",
+    "size": 2640
+  },
+  {
+    "classification": [
+      "versionish_logic"
+    ],
+    "github_repositories": [],
+    "path": "heroic/create_game_launchers.sh",
+    "size": 4543
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Heroic-Games-Launcher/HeroicGamesLauncher",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/Heroic-Games-Launcher"
+    ],
+    "path": "heroic/heroic.sh",
+    "size": 8190
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "heroic/monitor_heroic.sh",
+    "size": 777
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "heroic/zenitysym.sh",
+    "size": 781
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "hydra/hydra.sh",
+    "size": 4507
+  },
+  {
+    "classification": [
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "inputleap/inputleap.sh",
+    "size": 3790
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "github_raw",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "4gray/iptvnator",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/4gray"
+    ],
+    "path": "iptvnator/iptvnator.sh",
+    "size": 3523
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "itchio/itch-old.sh",
+    "size": 827
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "itchio/itch.sh",
+    "size": 7593
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "ITGmania/ITGmania",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/ITGmania"
+    ],
+    "path": "itgmania/itgmania.sh",
+    "size": 2141
+  },
+  {
+    "classification": "fetch_error",
+    "error": "URL can't contain control characters. '/batocera-unofficial-addons/batocera-unofficial-addons/main/java/java - Copia.sh' (found at least ' ')",
+    "path": "java/java - Copia.sh"
+  },
+  {
+    "classification": [
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Heroic-Games-Launcher/HeroicGamesLauncher",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/Heroic-Games-Launcher"
+    ],
+    "path": "java/java-jdk19.sh",
+    "size": 17182
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "java/java.sh",
+    "size": 3361
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "jdownloader/jdownloader.sh",
+    "size": 5152
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "jellyfin-client/jellyfin-client.sh",
+    "size": 3593
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "librewolf/librewolf.sh",
+    "size": 4809
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "luanti/luanti.sh",
+    "size": 3629
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "lutris/lutris.sh",
+    "size": 5706
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "lutris/lutris2.sh",
+    "size": 5488
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "minecraft-linux/appimage-builder",
+      "repos/minecraft-linux"
+    ],
+    "path": "minecraft/bedrock.sh",
+    "size": 3700
+  },
+  {
+    "classification": [
+      "direct_appimage",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "minecraft/minecraft.sh",
+    "size": 6841
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "minecraft/minecraft_2.sh",
+    "size": 2929
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "minecraft/minecraft_3.sh",
+    "size": 2412
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "moonlight-stream/moonlight-qt",
+      "repos/moonlight-stream"
+    ],
+    "path": "moonlight/moonlight.sh",
+    "size": 3294
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "mubi/mubi.sh",
+    "size": 2620
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "netflix/netflix.sh",
+    "size": 2652
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "nvidiapatch/nvidiapatch-service.sh",
+    "size": 4212
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "nvidiapatch/nvidiapatch.sh",
+    "size": 2043
+  },
+  {
+    "classification": [
+      "github_raw",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "nvidiapatch/patches.sh",
+    "size": 7974
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "nzp-team/nzportable"
+    ],
+    "path": "nzp/nzp.sh",
+    "size": 3575
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "obs/obs.sh",
+    "size": 2533
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "openra/openra.sh",
+    "size": 3609
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "openrgb/openrgb.sh",
+    "size": 3755
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "openttd/openttd.sh",
+    "size": 3459
+  },
+  {
+    "classification": [
+      "unknown"
+    ],
+    "github_repositories": [],
+    "path": "overlay-remove/overlay-remove.sh",
+    "size": 877
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "parsec/parsec.sh",
+    "size": 4904
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "peazip/peazip.sh",
+    "size": 3786
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "plex/plex.sh",
+    "size": 4604
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "PortsMaster/PortMaster-GUI",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/PortsMaster"
+    ],
+    "path": "portmaster/portmaster.sh",
+    "size": 2220
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "prime/prime.sh",
+    "size": 2692
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "PrismLauncher/PrismLauncher",
+      "repos/PrismLauncher"
+    ],
+    "path": "prismlauncher/prismlauncher.sh",
+    "size": 4621
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "c0re100/qBittorrent-Enhanced-Edition",
+      "repos/c0re100"
+    ],
+    "path": "qbittorrent/qbittorrent.sh",
+    "size": 2123
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "qga/qga.sh",
+    "size": 1965
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "github_raw",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "rpi/rpi.sh",
+    "size": 4417
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "sandtrix/sandtrix.sh",
+    "size": 2112
+  },
+  {
+    "classification": [
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "shadps4plus/create_game_launchers.sh",
+    "size": 4937
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "shadps4plus/es_ps4/es_ps4_install.sh",
+    "size": 1171
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "shadps4plus/monitor_shadps4.sh",
+    "size": 796
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "AzaharPlus/shadPS4Plus",
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "shadps4plus/shadps4plus.sh",
+    "size": 3063
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "github_raw",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "pkgforge/soar",
+      "repos/pkgforge"
+    ],
+    "path": "soar/soar.sh",
+    "size": 1416
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "spotify/spotify.sh",
+    "size": 2671
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "steam/steam.sh",
+    "size": 6883
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "steam/steam2.sh",
+    "size": 7624
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "stepmania/stepmania.sh",
+    "size": 3498
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "stremio/stremio-arm64.sh",
+    "size": 2367
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "stremio/stremio.sh",
+    "size": 4858
+  },
+  {
+    "classification": [
+      "github_raw",
+      "direct_appimage",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "sunshine/sunshine-arm64.sh",
+    "size": 3758
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "github_raw",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "LizardByte/Sunshine",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/LizardByte"
+    ],
+    "path": "sunshine/sunshine.sh",
+    "size": 3481
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "supermariox/supermariox.sh",
+    "size": 2653
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "supertux/supertux.sh",
+    "size": 3608
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_archive",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/supertuxkart",
+      "supertuxkart/stk-code"
+    ],
+    "path": "supertuxkart/supertuxkart.sh",
+    "size": 3362
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "switch/switch.sh",
+    "size": 281
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "tailscale/tailscale.sh",
+    "size": 2735
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "influxdata/telegraf"
+    ],
+    "path": "telegraf/telegraf.sh",
+    "size": 5319
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "tidal/tidal.sh",
+    "size": 3556
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "twitch/twitch.sh",
+    "size": 2645
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [],
+    "path": "usdeluxe/usdeluxe.sh",
+    "size": 3658
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "v40wine/v40wine.sh",
+    "size": 1649
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "vclean/vclean.sh",
+    "size": 1104
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "github_raw",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Vencord/Vesktop",
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/Vencord"
+    ],
+    "path": "vesktop/vesktop.sh",
+    "size": 5794
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "vlc/vlc.sh",
+    "size": 5271
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "warzone2100/warzone2100.sh",
+    "size": 3486
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "wayvnc/wayvnc.sh",
+    "size": 1612
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "wayvnc_headless/wayvnc_headless.sh",
+    "size": 1666
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/am2r.sh",
+    "size": 3240
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/castilla.sh",
+    "size": 2259
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/cbbit.sh",
+    "size": 2245
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/celeste.sh",
+    "size": 2234
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/cmc+.sh",
+    "size": 2275
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/dka.sh",
+    "size": 2238
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/menu.sh",
+    "size": 3965
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/mmc.sh",
+    "size": 2182
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/s3d2d.sh",
+    "size": 3227
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/scb.sh",
+    "size": 2191
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/scpcontainmentbreach.sh",
+    "size": 3269
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/shrubnaut.sh",
+    "size": 3234
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "github_raw",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/smc.sh",
+    "size": 3275
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/sorr.sh",
+    "size": 2160
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/spelunky.sh",
+    "size": 2239
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/sq3d.sh",
+    "size": 2426
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/srb2.sh",
+    "size": 2235
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/ssf2.sh",
+    "size": 2315
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/stt.sh",
+    "size": 2222
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/sttw.sh",
+    "size": 2327
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/tmntrp.sh",
+    "size": 2354
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/ut.sh",
+    "size": 2224
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/zelda2.sh",
+    "size": 2383
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/zeldadoi.sh",
+    "size": 2291
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "windows/zerok.sh",
+    "size": 3217
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "GloriousEggroll/proton-ge-custom",
+      "repos/GloriousEggroll"
+    ],
+    "path": "wine-custom/ge-proton.sh",
+    "size": 4414
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "wine-custom/steamy.sh",
+    "size": 1385
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Kron4ek/Wine-Builds",
+      "repos/Kron4ek"
+    ],
+    "path": "wine-custom/tkg.sh",
+    "size": 4096
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "Kron4ek/Wine-Builds",
+      "repos/Kron4ek"
+    ],
+    "path": "wine-custom/vanilla.sh",
+    "size": 3863
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "GloriousEggroll/wine-ge-custom",
+      "repos/GloriousEggroll"
+    ],
+    "path": "wine-custom/wine-ge.sh",
+    "size": 4362
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "wine-custom/wine.sh",
+    "size": 1785
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/batocera.drl"
+    ],
+    "path": "winemanager/install_redist_dependencies32.sh",
+    "size": 2847
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/batocera.drl"
+    ],
+    "path": "winemanager/install_redist_dependencies64.sh",
+    "size": 2847
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "DRLEdition19/batocera-unofficial-addons.add"
+    ],
+    "path": "winemanager/winemanager.sh",
+    "size": 1348
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "ivan-hc/WPS-Office-appimage",
+      "repos/ivan-hc"
+    ],
+    "path": "wps-office/wps-office.sh",
+    "size": 2444
+  },
+  {
+    "classification": [
+      "direct_archive",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "x11vnc/x11vnc.sh",
+    "size": 1567
+  },
+  {
+    "classification": [
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "xonotic/xonotic.sh",
+    "size": 3789
+  },
+  {
+    "classification": [
+      "github_release_api",
+      "github_release_url",
+      "direct_appimage",
+      "other_api",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "YARC-Official/YARC-Launcher",
+      "repos/YARC-Official"
+    ],
+    "path": "yarg/yarg.sh",
+    "size": 4589
+  },
+  {
+    "classification": [
+      "github_release_url",
+      "direct_archive",
+      "versionish_logic",
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons"
+    ],
+    "path": "youtubetv/youtubetv.sh",
+    "size": 3238
+  },
+  {
+    "classification": [
+      "downloads_remote_content"
+    ],
+    "github_repositories": [
+      "batocera-unofficial-addons/batocera-unofficial-addons",
+      "repos/batocera-unofficial-addons"
+    ],
+    "path": "zenity/zenity.sh",
+    "size": 1643
+  }
+]

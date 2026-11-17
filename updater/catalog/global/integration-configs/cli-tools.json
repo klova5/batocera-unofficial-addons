@@ -1,0 +1,10 @@
+{
+  "package_id": "cli-tools",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/cli.tar.xz"
+    }
+  ]
+}

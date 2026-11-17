@@ -1,0 +1,18 @@
+{
+  "package_id": "desktop",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/batocera-containers"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/refs/heads/main/docker/docker"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/Desktop.AppImage"
+    }
+  ]
+}

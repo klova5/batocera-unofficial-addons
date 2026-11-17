@@ -1,0 +1,608 @@
+{
+  "failed": 11,
+  "passed": 24,
+  "results": [
+    {
+      "app": "Amazon Luna",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/amazonluna/amazonluna.sh",
+      "owner": "zencodes1",
+      "registration_ok": false,
+      "repo": "amazonluna-client",
+      "syntax_ok": true
+    },
+    {
+      "app": "Android",
+      "error": null,
+      "marker": {
+        "app_version": "files",
+        "update_identity": "github-release:218121749:a3257eb8a68b261c31020a001524b4b4c0d8c7d9f43e0bb0646da814c2a69ed6",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/Android/Install_Android.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": true,
+      "repo": "DRLEdition_Interface",
+      "syntax_ok": true
+    },
+    {
+      "app": "Arcade Manager",
+      "error": null,
+      "marker": {
+        "app_version": "v25.1",
+        "update_identity": "github-release:205431112:3a902e6ae808c16f6db8df55ad5be5d15ab5653721c97bdbc5117f13ecc54d4a",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "cosmo0",
+          "repo": "arcade-manager",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/arcademanager/arcademanager.sh",
+      "owner": "cosmo0",
+      "registration_ok": true,
+      "repo": "arcade-manager",
+      "syntax_ok": true
+    },
+    {
+      "app": "Conty",
+      "error": null,
+      "marker": {
+        "app_version": "1.29.4",
+        "update_identity": "github-release:397748929:afb8c9963a7982dbfdef2dc2d2224d1faddc22559b49f49a3cddbabd4280ad70",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Kron4ek",
+          "repo": "Conty",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/conty/conty.sh",
+      "owner": "Kron4ek",
+      "registration_ok": true,
+      "repo": "Conty",
+      "syntax_ok": true
+    },
+    {
+      "app": "CLI Tools",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/docker/cli.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "EGGNOGG+",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/eggnoggplus/eggnoggplus.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Fightcade",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/fightcade/fightcade.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Freej2me",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/Freej2me/Install_j2me.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": false,
+      "repo": "batocera-unofficial-addons.add",
+      "syntax_ok": true
+    },
+    {
+      "app": "Winconfig (Windows Game Fix)",
+      "error": null,
+      "marker": {
+        "app_version": "files",
+        "update_identity": "github-release:218121749:a3257eb8a68b261c31020a001524b4b4c0d8c7d9f43e0bb0646da814c2a69ed6",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/Winconfig_Windows_Game_Fix/Install_Winconfig.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": true,
+      "repo": "DRLEdition_Interface",
+      "syntax_ok": true
+    },
+    {
+      "app": "Desktop For Batocera",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/Desktop_for_Batocera/Install_Desktop.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Jellyfin Player",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/jellyfin-client/jellyfin-client.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Nazi Zombies Portable",
+      "error": null,
+      "marker": {
+        "app_version": "nightly",
+        "update_identity": "github-release:395675635:4d7fca2c0dae3bc5ac44fd50ab5547602bba31499d158814310c28a1916bd1fa",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "nzp-team",
+          "repo": "nzportable",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/nzp/nzp.sh",
+      "owner": "nzp-team",
+      "registration_ok": true,
+      "repo": "nzportable",
+      "syntax_ok": true
+    },
+    {
+      "app": "OBS",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/obs/obs.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "OpenRA",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/openra/openra.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "OpenRGB",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/openrgb/openrgb.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "ShadPS4",
+      "error": null,
+      "marker": {
+        "app_version": "PKG_EXTRACTOR_1_1",
+        "update_identity": "github-release:278568153:951d0daa5197b758bb55fbadc790704a59470bc0a2e41d9d6845a338fe955edf",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "AzaharPlus",
+          "repo": "shadPS4Plus",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/shadps4plus/shadps4plus.sh",
+      "owner": "AzaharPlus",
+      "registration_ok": true,
+      "repo": "shadPS4Plus",
+      "syntax_ok": true
+    },
+    {
+      "app": "SuperTux",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/supertux/supertux.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "Telegraf",
+      "error": null,
+      "marker": {
+        "app_version": "v1.40.1",
+        "update_identity": "github-release:393201818:a6afa655a7f38eb47ea0be495ad150bb43e70cb1246ca4c6e826a8fd40840f28",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "influxdata",
+          "repo": "telegraf",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/telegraf/telegraf.sh",
+      "owner": "influxdata",
+      "registration_ok": true,
+      "repo": "telegraf",
+      "syntax_ok": true
+    },
+    {
+      "app": "Warzone 2100",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/warzone2100/warzone2100.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Wine Dependencies x86",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/winemanager/install_redist_dependencies32.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": false,
+      "repo": "batocera.drl",
+      "syntax_ok": true
+    },
+    {
+      "app": "Wine Dependencies x64",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/winemanager/install_redist_dependencies64.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": false,
+      "repo": "batocera.drl",
+      "syntax_ok": true
+    },
+    {
+      "app": "YouTube",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/youtubetv/youtubetv.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "GParted",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/gparted/gparted.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Luanti",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/luanti/luanti.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "Tidal",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/tidal/tidal.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "Celeste 64",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/celeste64/celeste64.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "Steam",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/steam/steam2.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Lutris",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/lutris/lutris.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "PeaZip",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/peazip/peazip.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "VLC",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/vlc/vlc.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Docker",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/docker/docker.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "UltraStar",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/usdeluxe/usdeluxe.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    },
+    {
+      "app": "F1",
+      "error": null,
+      "marker": {
+        "app_version": "files",
+        "update_identity": "github-release:218121749:a3257eb8a68b261c31020a001524b4b4c0d8c7d9f43e0bb0646da814c2a69ed6",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "DRLEdition19",
+          "repo": "DRLEdition_Interface",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/f1/f1.sh",
+      "owner": "DRLEdition19",
+      "registration_ok": true,
+      "repo": "DRLEdition_Interface",
+      "syntax_ok": true
+    },
+    {
+      "app": "Desktop",
+      "error": null,
+      "marker": {
+        "app_version": "AppImages",
+        "update_identity": "github-release:194275201:8fd186887e57c036f83a1468fdd235765afe48e80b9edf3fd45930a448b1c9ae",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/desktop/desktop.sh",
+      "owner": "batocera-unofficial-addons",
+      "registration_ok": true,
+      "repo": "batocera-unofficial-addons",
+      "syntax_ok": true
+    },
+    {
+      "app": "Raspberry Pi Imager",
+      "error": "registration exited 1: Traceback (most recent call last):\n  File \"<stdin>\", line 22, in <module>\n  File \"/usr/lib/python3.14/urllib/request.py\", line 187, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 493, in open\n    response = meth(req, response)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 602, in http_response\n    response = self.parent.error(\n        'http', request, response, code, msg, hdrs)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 531, in error\n    return self._call_chain(*args)\n           ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/usr/lib/python3.14/urllib/request.py\", line 464, in _call_chain\n    result = func(*args)\n  File \"/usr/lib/python3.14/urllib/request.py\", line 611, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 404: Not Found",
+      "marker": null,
+      "marker_count": 0,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-download/rpi/rpi.sh",
+      "owner": "repos",
+      "registration_ok": false,
+      "repo": "$REPO",
+      "syntax_ok": true
+    }
+  ],
+  "targets": 35
+}

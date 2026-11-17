@@ -1,0 +1,10 @@
+{
+  "package_id": "cs-portable",
+  "display_version": "2023",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/csportable/extra/CS-Portable-2023.zip"
+    }
+  ]
+}

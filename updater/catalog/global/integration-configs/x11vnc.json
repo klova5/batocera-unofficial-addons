@@ -1,0 +1,14 @@
+{
+  "package_id": "x11vnc",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/x11vnc/extra/x11vnc.tar.gz"
+    },
+    {
+      "kind": "small",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/x11vnc/extra/x11vnc"
+    }
+  ]
+}

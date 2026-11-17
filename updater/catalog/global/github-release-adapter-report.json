@@ -1,0 +1,447 @@
+{
+  "failed": 0,
+  "passed": 22,
+  "results": [
+    {
+      "app": "Ambermoon",
+      "error": null,
+      "marker": {
+        "app_version": "v1.13.7",
+        "update_identity": "github-release:367603403:111f3fb1207821a229bdc5d26495be76bf87de3e359b231c7b65601744c1fb08",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Pyrdacor",
+          "repo": "Ambermoon.net",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/ambermoon/ambermoon.sh",
+      "owner": "Pyrdacor",
+      "registration_ok": true,
+      "repo": "Ambermoon.net",
+      "syntax_ok": true
+    },
+    {
+      "app": "Assault Cube",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0.2",
+        "update_identity": "github-release:62754067:b37983cbf3704a517b0e27cee07629195be19610fbbdc10e832952f1a7734d55",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "assaultcube",
+          "repo": "AC",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/assaultcube/assaultcube.sh",
+      "owner": "assaultcube",
+      "registration_ok": true,
+      "repo": "AC",
+      "syntax_ok": true
+    },
+    {
+      "app": "AzaharPlus",
+      "error": null,
+      "marker": {
+        "app_version": "AZAHAR_PLUS_2126_1_B",
+        "update_identity": "github-release:391938967:0b51148eab9f09aa92a3d380801a14c5b9d839357e30c0bf1b3185f0acdcb269",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "AzaharPlus",
+          "repo": "AzaharPlus",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/azaharplus/azaharplus.sh",
+      "owner": "AzaharPlus",
+      "registration_ok": true,
+      "repo": "AzaharPlus",
+      "syntax_ok": true
+    },
+    {
+      "app": "Chiaki",
+      "error": null,
+      "marker": {
+        "app_version": "v1.10.0",
+        "update_identity": "github-release:304918873:5828f0c0388345b4184bdaad7972030cf10f7244b0e196ac395db87d9a093e04",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "streetpea",
+          "repo": "chiaki-ng",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/chiaki/chiaki.sh",
+      "owner": "streetpea",
+      "registration_ok": true,
+      "repo": "chiaki-ng",
+      "syntax_ok": true
+    },
+    {
+      "app": "Chrome",
+      "error": null,
+      "marker": {
+        "app_version": "continuous",
+        "update_identity": "github-release:397533098:a12d2f3a9c5497a25aec063d09e5d1eaae3a11f2c4daa28f04354b37e2a66be2",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "ivan-hc",
+          "repo": "Chrome-appimage",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/chrome/chrome.sh",
+      "owner": "ivan-hc",
+      "registration_ok": true,
+      "repo": "Chrome-appimage",
+      "syntax_ok": true
+    },
+    {
+      "app": "Clone Hero",
+      "error": null,
+      "marker": {
+        "app_version": "v1.1.0.6142-final",
+        "update_identity": "github-release:332810254:8aaec94d6f781d8c2de5ee40537905a14510ff0e18f0a7c89b018838d8a6005c",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "clonehero-game",
+          "repo": "releases",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/clonehero/clonehero.sh",
+      "owner": "clonehero-game",
+      "registration_ok": true,
+      "repo": "releases",
+      "syntax_ok": true
+    },
+    {
+      "app": "Endless Sky",
+      "error": null,
+      "marker": {
+        "app_version": "v0.11.2",
+        "update_identity": "github-release:345775093:e3ca576a56c709eec3300d17c39608c84772bb9075aad6b0e8f14ff569381fe4",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "endless-sky",
+          "repo": "endless-sky",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/endlesssky/endlesssky.sh",
+      "owner": "endless-sky",
+      "registration_ok": true,
+      "repo": "endless-sky",
+      "syntax_ok": true
+    },
+    {
+      "app": "Firefox",
+      "error": null,
+      "marker": {
+        "app_version": "firefox-nightly",
+        "update_identity": "github-release:397641072:7bd9ecfff39ad799e4330992abaafe825373558f7b029621605ee379c9a00210",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "srevinsaju",
+          "repo": "Firefox-AppImage",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/firefox/firefox.sh",
+      "owner": "srevinsaju",
+      "registration_ok": true,
+      "repo": "Firefox-AppImage",
+      "syntax_ok": true
+    },
+    {
+      "app": "Greenlight",
+      "error": null,
+      "marker": {
+        "app_version": "v2.4.2",
+        "update_identity": "github-release:328418263:5cad5bbdcc1d53d01e26f286a90b49a9aa7ecc91bffb72a98eaac45d2973992c",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "unknownskl",
+          "repo": "greenlight",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/greenlight/greenlight.sh",
+      "owner": "unknownskl",
+      "registration_ok": true,
+      "repo": "greenlight",
+      "syntax_ok": true
+    },
+    {
+      "app": "Heroic",
+      "error": null,
+      "marker": {
+        "app_version": "v2.22.3",
+        "update_identity": "github-release:390034876:c87939865dfca4d5866e521ab136f6f4b7facc12f2dfaadf810070201043b60c",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Heroic-Games-Launcher",
+          "repo": "HeroicGamesLauncher",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/heroic/heroic.sh",
+      "owner": "Heroic-Games-Launcher",
+      "registration_ok": true,
+      "repo": "HeroicGamesLauncher",
+      "syntax_ok": true
+    },
+    {
+      "app": "IPTV Nator",
+      "error": null,
+      "marker": {
+        "app_version": "v0.24.0",
+        "update_identity": "github-release:395083432:55a41eca4a0deb1429b802a21b1e6f6dda93c184621bba8bdb3b29f3342af292",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "4gray",
+          "repo": "iptvnator",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/iptvnator/iptvnator.sh",
+      "owner": "4gray",
+      "registration_ok": true,
+      "repo": "iptvnator",
+      "syntax_ok": true
+    },
+    {
+      "app": "Prism Launcher",
+      "error": null,
+      "marker": {
+        "app_version": "11.1.0",
+        "update_identity": "github-release:381781549:a19291fb8ae00caabc3c2635c484d3b3c485708c2892a5f206d13ce28b60aac6",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "PrismLauncher",
+          "repo": "PrismLauncher",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/prismlauncher/prismlauncher.sh",
+      "owner": "PrismLauncher",
+      "registration_ok": true,
+      "repo": "PrismLauncher",
+      "syntax_ok": true
+    },
+    {
+      "app": "Moonlight",
+      "error": null,
+      "marker": {
+        "app_version": "v6.1.0",
+        "update_identity": "github-release:175337682:de5e1186f6d8df2a073735eb515333238879ba7350d1991a0169e350e297c3af",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "moonlight-stream",
+          "repo": "moonlight-qt",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/moonlight/moonlight.sh",
+      "owner": "moonlight-stream",
+      "registration_ok": true,
+      "repo": "moonlight-qt",
+      "syntax_ok": true
+    },
+    {
+      "app": "PortMaster",
+      "error": null,
+      "marker": {
+        "app_version": "2026.09.13-0343",
+        "update_identity": "github-release:387784034:84440b9e9e8e45c5b27e62a32e8f5594c68c33645aa973cf388ee572c3534a25",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "PortsMaster",
+          "repo": "PortMaster-GUI",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/portmaster/portmaster.sh",
+      "owner": "PortsMaster",
+      "registration_ok": true,
+      "repo": "PortMaster-GUI",
+      "syntax_ok": true
+    },
+    {
+      "app": "qBittorrent",
+      "error": null,
+      "marker": {
+        "app_version": "release-5.2.3.10",
+        "update_identity": "github-release:356394946:45c87b5a870d594e8d67f3335ba4f18905092b8a3e098d40d50816d7fccac340",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "c0re100",
+          "repo": "qBittorrent-Enhanced-Edition",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/qbittorrent/qbittorrent.sh",
+      "owner": "c0re100",
+      "registration_ok": true,
+      "repo": "qBittorrent-Enhanced-Edition",
+      "syntax_ok": true
+    },
+    {
+      "app": "ITGMania",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0",
+        "update_identity": "github-release:346676017:d989af57614027017c1af84bef2cb5b93bf7a203c5f95c45832e4799de1e8acc",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "ITGmania",
+          "repo": "ITGmania",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/itgmania/itgmania.sh",
+      "owner": "ITGmania",
+      "registration_ok": true,
+      "repo": "ITGmania",
+      "syntax_ok": true
+    },
+    {
+      "app": "Sunshine",
+      "error": null,
+      "marker": {
+        "app_version": "v2026.914.233613",
+        "update_identity": "github-release:388807049:78e7a5499b3cfffb609e3bee7d90321a8f22b1489c3458be7e2760d192768b32",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "LizardByte",
+          "repo": "Sunshine",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/sunshine/sunshine.sh",
+      "owner": "LizardByte",
+      "registration_ok": true,
+      "repo": "Sunshine",
+      "syntax_ok": true
+    },
+    {
+      "app": "SuperTuxKart",
+      "error": null,
+      "marker": {
+        "app_version": "1.5",
+        "update_identity": "github-release:255610604:67ad618333e828c3025816aa04c07bc71be037ed8a1ccc00a25dc2aaa333d3c4",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "supertuxkart",
+          "repo": "stk-code",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/supertuxkart/supertuxkart.sh",
+      "owner": "supertuxkart",
+      "registration_ok": true,
+      "repo": "stk-code",
+      "syntax_ok": true
+    },
+    {
+      "app": "Vesktop",
+      "error": null,
+      "marker": {
+        "app_version": "v1.6.7",
+        "update_identity": "github-release:372062513:94e3191b0fb1a9deedb7012476ac76d341be2b20e70bc314b6c270b35a37c363",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Vencord",
+          "repo": "Vesktop",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/vesktop/vesktop.sh",
+      "owner": "Vencord",
+      "registration_ok": true,
+      "repo": "Vesktop",
+      "syntax_ok": true
+    },
+    {
+      "app": "YARG",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0",
+        "update_identity": "github-release:307829796:c06bd0a75877c4bb01e7da9e434fcac682f7844bbcab22ab227b0726872eae6d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "YARC-Official",
+          "repo": "YARC-Launcher",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/yarg/yarg.sh",
+      "owner": "YARC-Official",
+      "registration_ok": true,
+      "repo": "YARC-Launcher",
+      "syntax_ok": true
+    },
+    {
+      "app": "Bridge",
+      "error": null,
+      "marker": {
+        "app_version": "v3.4.5",
+        "update_identity": "github-release:212080773:096b0725b0d2e610f23f1454b7e39a51e63ec94b944456f0a80e0f55741aab05",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Geomitron",
+          "repo": "Bridge",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/bridge/bridge.sh",
+      "owner": "Geomitron",
+      "registration_ok": true,
+      "repo": "Bridge",
+      "syntax_ok": true
+    },
+    {
+      "app": "Soar",
+      "error": null,
+      "marker": {
+        "app_version": "v0.13.4",
+        "update_identity": "github-release:383320645:f9982ec2f00eeba42d61cd9c983da924d50d19cce06619867206e5efdf66f81e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "pkgforge",
+          "repo": "soar",
+          "type": "github_release"
+        }
+      },
+      "marker_count": 1,
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-release-api/soar/soar.sh",
+      "owner": "pkgforge",
+      "registration_ok": true,
+      "repo": "soar",
+      "syntax_ok": true
+    }
+  ],
+  "targets": 22
+}

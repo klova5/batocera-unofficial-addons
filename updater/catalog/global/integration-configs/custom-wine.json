@@ -1,0 +1,30 @@
+{
+  "package_id": "custom-wine",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/wine-custom/vanilla.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/wine-custom/tkg.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/wine-custom/wine-ge.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/wine-custom/ge-proton.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/wine-custom/steamy.sh"
+    },
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/v40wine/v40wine.sh"
+    }
+  ]
+}

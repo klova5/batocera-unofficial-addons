@@ -1,0 +1,10 @@
+{
+  "package_id": "super-smash-flash-2",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/download/AppImages/SSF2.wsquashfs"
+    }
+  ]
+}

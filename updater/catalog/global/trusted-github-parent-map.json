@@ -1,0 +1,66 @@
+{
+  "Arcade Manager": {
+    "owner": "cosmo0",
+    "repo": "arcade-manager"
+  },
+  "Celeste 64": {
+    "owner": "ExOK",
+    "repo": "Celeste64"
+  },
+  "Conty": {
+    "owner": "Kron4ek",
+    "repo": "Conty"
+  },
+  "Jellyfin Player": {
+    "owner": "jellyfin",
+    "repo": "jellyfin-media-player"
+  },
+  "Luanti": {
+    "owner": "rollerozxa",
+    "repo": "luanti-appimage"
+  },
+  "Lutris": {
+    "owner": "lutris",
+    "repo": "lutris"
+  },
+  "Nazi Zombies Portable": {
+    "owner": "nzp-team",
+    "repo": "nzportable"
+  },
+  "OBS": {
+    "owner": "obsproject",
+    "repo": "obs-studio"
+  },
+  "OpenRA": {
+    "owner": "OpenRA",
+    "repo": "OpenRA"
+  },
+  "PeaZip": {
+    "owner": "peazip",
+    "repo": "PeaZip"
+  },
+  "Raspberry Pi Imager": {
+    "owner": "raspberrypi",
+    "repo": "rpi-imager"
+  },
+  "SuperTux": {
+    "owner": "SuperTux",
+    "repo": "supertux"
+  },
+  "Telegraf": {
+    "owner": "influxdata",
+    "repo": "telegraf"
+  },
+  "Tidal": {
+    "owner": "Mastermindzh",
+    "repo": "tidal-hifi"
+  },
+  "UltraStar": {
+    "owner": "UltraStar-Deluxe",
+    "repo": "USDX"
+  },
+  "Warzone 2100": {
+    "owner": "Warzone2100",
+    "repo": "warzone2100"
+  }
+}

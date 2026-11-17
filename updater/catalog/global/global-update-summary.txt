@@ -1,0 +1,34 @@
+BUA GLOBAL UPDATE MANIFEST
+==========================
+
+Total APPS: 136
+
+FETCH STATUS
+------------
+ok: 135
+unresolved: 1
+
+SOURCE FAMILIES
+---------------
+github_release_download: 58
+github_release_api: 22
+direct_web: 15
+direct_archive: 13
+nested_bua: 9
+flathub: 8
+unknown: 7
+direct_appimage: 2
+other_api: 2
+
+CONVERSION STATUS
+-----------------
+family_adapter_candidate: 66
+inspect_then_family_adapter: 32
+high_confidence_auto_candidate: 22
+variant_or_child_handling: 9
+custom_required: 7
+
+REGISTRATION STATUS
+-------------------
+not_supported: 135
+unknown: 1

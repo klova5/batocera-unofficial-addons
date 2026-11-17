@@ -1,0 +1,46 @@
+{
+  "package_id": "wine-dependencies-x64",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/directx.7z"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2015_2019.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2019.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2017.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2015.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2013.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2012.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2010.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2008.exe"
+    },
+    {
+      "kind": "large",
+      "url": "https://github.com/DRLEdition19/batocera.drl/releases/download/Batocera_Appimages/vcredist_x64_2005.exe"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "package_id": "java-runtime",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/java/extra/java.tar.bz2.partaa"
+    },
+    {
+      "kind": "large",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/java/extra/java.tar.bz2.partab"
+    }
+  ]
+}

@@ -1,0 +1,767 @@
+{
+  "failed": 0,
+  "passed": 38,
+  "results": [
+    {
+      "app": "Ambermoon",
+      "error": null,
+      "marker": {
+        "app_version": "v1.13.7",
+        "update_identity": "github-web:v1.13.7:40a6ae7e6ba5f6d14ae03dacfc37b0bddc61e5d364e47d0a2363946edcee254d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Pyrdacor",
+          "repo": "Ambermoon.net",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/ambermoon/ambermoon.sh",
+      "owner": "Pyrdacor",
+      "registration_ok": true,
+      "repo": "Ambermoon.net",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Arcade Manager",
+      "error": null,
+      "marker": {
+        "app_version": "v25.1",
+        "update_identity": "github-web:v25.1:81c55a97a4c8a375e9d29c6c2188ab1302eda1b103e79cd8029dff7b9e5a21ea",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "cosmo0",
+          "repo": "arcade-manager",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/arcademanager/arcademanager.sh",
+      "owner": "cosmo0",
+      "registration_ok": true,
+      "repo": "arcade-manager",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Assault Cube",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0.2",
+        "update_identity": "github-web:v1.3.0.2:fb7f1a7423e0205342374b00bc1f6c923bce2d667f6a82be2c7c23e57cda6c84",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "assaultcube",
+          "repo": "AC",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/assaultcube/assaultcube.sh",
+      "owner": "assaultcube",
+      "registration_ok": true,
+      "repo": "AC",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "AzaharPlus",
+      "error": null,
+      "marker": {
+        "app_version": "AZAHAR_PLUS_2126_1_B",
+        "update_identity": "github-web:AZAHAR_PLUS_2126_1_B:d152b8d6fd5de34815282154c05df7aaef7736e5b4655d8fc7fa5f1e4ab45259",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "AzaharPlus",
+          "repo": "AzaharPlus",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/azaharplus/azaharplus.sh",
+      "owner": "AzaharPlus",
+      "registration_ok": true,
+      "repo": "AzaharPlus",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Bridge",
+      "error": null,
+      "marker": {
+        "app_version": "v3.4.5",
+        "update_identity": "github-web:v3.4.5:96257cd113183a8a90f63325b574e33d53300916e1d170aa3f6923ae0168ca04",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Geomitron",
+          "repo": "Bridge",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/bridge/bridge.sh",
+      "owner": "Geomitron",
+      "registration_ok": true,
+      "repo": "Bridge",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Celeste 64",
+      "error": null,
+      "marker": {
+        "app_version": "v1.1.1",
+        "update_identity": "github-web:v1.1.1:21bc00858ef976e618546eb69f2c8e2eda5aa1fec7174b3b8737c8660a96249e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "ExOK",
+          "repo": "Celeste64",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/celeste64/celeste64.sh",
+      "owner": "ExOK",
+      "registration_ok": true,
+      "repo": "Celeste64",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Chiaki",
+      "error": null,
+      "marker": {
+        "app_version": "v1.10.0",
+        "update_identity": "github-web:v1.10.0:f56364c6af19f662b0b80db0b64bdf3ac09541759250ee946c74c830549a20dd",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "streetpea",
+          "repo": "chiaki-ng",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/chiaki/chiaki.sh",
+      "owner": "streetpea",
+      "registration_ok": true,
+      "repo": "chiaki-ng",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Chrome",
+      "error": null,
+      "marker": {
+        "app_version": "continuous",
+        "update_identity": "github-web:continuous:896b1aa78aa0a2c456b3a268de7fcd0d4daf83c8d79a1e2c88c0b541ada4a1a0",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "ivan-hc",
+          "repo": "Chrome-appimage",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/chrome/chrome.sh",
+      "owner": "ivan-hc",
+      "registration_ok": true,
+      "repo": "Chrome-appimage",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Clone Hero",
+      "error": null,
+      "marker": {
+        "app_version": "v1.1.0.6142-final",
+        "update_identity": "github-web:v1.1.0.6142-final:f9cd1d973c3f1023c4b920bf8145192f7ba61b209bde31f48ea8b409be3ea516",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "clonehero-game",
+          "repo": "releases",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/clonehero/clonehero.sh",
+      "owner": "clonehero-game",
+      "registration_ok": true,
+      "repo": "releases",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Conty",
+      "error": null,
+      "marker": {
+        "app_version": "1.29.4",
+        "update_identity": "github-web:1.29.4:fb69e5e46ab9dd80c1be5a8d9ca02365cd2694330700d27fe591959358a5c614",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Kron4ek",
+          "repo": "Conty",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/conty/conty.sh",
+      "owner": "Kron4ek",
+      "registration_ok": true,
+      "repo": "Conty",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Endless Sky",
+      "error": null,
+      "marker": {
+        "app_version": "v0.11.2",
+        "update_identity": "github-web:v0.11.2:7dfe65ae9990ed0e53aadbf20fca61cbd05ad4b7dc4c59b4f2606bed14411b43",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "endless-sky",
+          "repo": "endless-sky",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/endlesssky/endlesssky.sh",
+      "owner": "endless-sky",
+      "registration_ok": true,
+      "repo": "endless-sky",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Firefox",
+      "error": null,
+      "marker": {
+        "app_version": "firefox-nightly",
+        "update_identity": "github-web:firefox-nightly:1aa21f7ee2d62b163204bf9eaeaae798be15a45501991e001213dec051bbaf1d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "srevinsaju",
+          "repo": "Firefox-AppImage",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/firefox/firefox.sh",
+      "owner": "srevinsaju",
+      "registration_ok": true,
+      "repo": "Firefox-AppImage",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Greenlight",
+      "error": null,
+      "marker": {
+        "app_version": "v2.4.2",
+        "update_identity": "github-web:v2.4.2:4eaeb9eb64c61453a2ec5ed679a64496b326d9410739180e6f00e8413506bb4e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "unknownskl",
+          "repo": "greenlight",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/greenlight/greenlight.sh",
+      "owner": "unknownskl",
+      "registration_ok": true,
+      "repo": "greenlight",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Heroic",
+      "error": null,
+      "marker": {
+        "app_version": "v2.22.3",
+        "update_identity": "github-web:v2.22.3:7f700812116eeb4c3c41c206852b168a482a1a1e9afe0b268d186328fb6ef801",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Heroic-Games-Launcher",
+          "repo": "HeroicGamesLauncher",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/heroic/heroic.sh",
+      "owner": "Heroic-Games-Launcher",
+      "registration_ok": true,
+      "repo": "HeroicGamesLauncher",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "IPTV Nator",
+      "error": null,
+      "marker": {
+        "app_version": "v0.24.0",
+        "update_identity": "github-web:v0.24.0:5a4151a314ddff3efec3976d2247c4177ebc8d8dcb3e2de869d4fa0f72c2bf88",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "4gray",
+          "repo": "iptvnator",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/iptvnator/iptvnator.sh",
+      "owner": "4gray",
+      "registration_ok": true,
+      "repo": "iptvnator",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "ITGMania",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0",
+        "update_identity": "github-web:v1.3.0:90392615acee23d2037a619e0b89cab37e9aa5c08861e7e0426b8886a7ac2f0f",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "ITGmania",
+          "repo": "ITGmania",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/itgmania/itgmania.sh",
+      "owner": "ITGmania",
+      "registration_ok": true,
+      "repo": "ITGmania",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Jellyfin Player",
+      "error": null,
+      "marker": {
+        "app_version": "v1.12.0",
+        "update_identity": "github-web:v1.12.0:3cb253dd260eed2ba72a1cc7e567afac72a66476c0a9674a7fdc10f98a9f114e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "jellyfin",
+          "repo": "jellyfin-media-player",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/jellyfin-client/jellyfin-client.sh",
+      "owner": "jellyfin",
+      "registration_ok": true,
+      "repo": "jellyfin-media-player",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Luanti",
+      "error": null,
+      "marker": {
+        "app_version": "5.17.0",
+        "update_identity": "github-web:5.17.0:04a72ac64a1af407caeb59825ea985355f2b67bc5a1e56db0d2bf716f2d31a23",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "rollerozxa",
+          "repo": "luanti-appimage",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/luanti/luanti.sh",
+      "owner": "rollerozxa",
+      "registration_ok": true,
+      "repo": "luanti-appimage",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Lutris",
+      "error": null,
+      "marker": {
+        "app_version": "v0.5.22",
+        "update_identity": "github-web:v0.5.22:4fc87c91f0090b08387bb2167a58e4ca3581f2970418a1e11db90ff475d53d16",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "lutris",
+          "repo": "lutris",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/lutris/lutris.sh",
+      "owner": "lutris",
+      "registration_ok": true,
+      "repo": "lutris",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Moonlight",
+      "error": null,
+      "marker": {
+        "app_version": "v6.1.0",
+        "update_identity": "github-web:v6.1.0:3bfe6d31847e1489f19bf04e64af3b534ca56cbd4e1845e38fc09e9fc9c787dc",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "moonlight-stream",
+          "repo": "moonlight-qt",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/moonlight/moonlight.sh",
+      "owner": "moonlight-stream",
+      "registration_ok": true,
+      "repo": "moonlight-qt",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Nazi Zombies Portable",
+      "error": null,
+      "marker": {
+        "app_version": "nightly",
+        "update_identity": "github-web:nightly:672031fd8ef6012f20a0edfe425d58112ee7561db230ac974fd6dd51c9a21df9",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "nzp-team",
+          "repo": "nzportable",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/nzp/nzp.sh",
+      "owner": "nzp-team",
+      "registration_ok": true,
+      "repo": "nzportable",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "OBS",
+      "error": null,
+      "marker": {
+        "app_version": "32.2.2",
+        "update_identity": "github-web:32.2.2:0f5a752700b8b09f794633dc4d3b06d97b985811e548e56fb6cf8d751e9c310c",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "obsproject",
+          "repo": "obs-studio",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/obs/obs.sh",
+      "owner": "obsproject",
+      "registration_ok": true,
+      "repo": "obs-studio",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "OpenRA",
+      "error": null,
+      "marker": {
+        "app_version": "release-20250330",
+        "update_identity": "github-web:release-20250330:91143926775a1cd80ae91fa5d66ae1bab3704862d9bc38ce2d9b55af483e75a8",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "OpenRA",
+          "repo": "OpenRA",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/openra/openra.sh",
+      "owner": "OpenRA",
+      "registration_ok": true,
+      "repo": "OpenRA",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "PeaZip",
+      "error": null,
+      "marker": {
+        "app_version": "11.3.0",
+        "update_identity": "github-web:11.3.0:62882ef94d56aca08bd80f111592b7ebb1667c27e1ce75e98581d58c8b4fc48b",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "peazip",
+          "repo": "PeaZip",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/peazip/peazip.sh",
+      "owner": "peazip",
+      "registration_ok": true,
+      "repo": "PeaZip",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "PortMaster",
+      "error": null,
+      "marker": {
+        "app_version": "2026.09.13-0343",
+        "update_identity": "github-web:2026.09.13-0343:2bf59e7b20e14db73f55c87e62c7ed69dfc94ba89f134214c33255706bd5e401",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "PortsMaster",
+          "repo": "PortMaster-GUI",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/portmaster/portmaster.sh",
+      "owner": "PortsMaster",
+      "registration_ok": true,
+      "repo": "PortMaster-GUI",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Prism Launcher",
+      "error": null,
+      "marker": {
+        "app_version": "11.1.0",
+        "update_identity": "github-web:11.1.0:867ccf10bbb21019f4186ca4ae401dc0b58df217d675f8046e4016b009c4b47e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "PrismLauncher",
+          "repo": "PrismLauncher",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/prismlauncher/prismlauncher.sh",
+      "owner": "PrismLauncher",
+      "registration_ok": true,
+      "repo": "PrismLauncher",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Raspberry Pi Imager",
+      "error": null,
+      "marker": {
+        "app_version": "v2.0.11.1",
+        "update_identity": "github-web:v2.0.11.1:a9290a8561664f05c70161dfa759cae1f97318219021680d4706f06b2fabe237",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "raspberrypi",
+          "repo": "rpi-imager",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/rpi/rpi.sh",
+      "owner": "raspberrypi",
+      "registration_ok": true,
+      "repo": "rpi-imager",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Soar",
+      "error": null,
+      "marker": {
+        "app_version": "v0.13.4",
+        "update_identity": "github-web:v0.13.4:c53f31646c25b2a76841a6704afe4b6d9718340ce3d689dd867d6dc9ae5e3e60",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "pkgforge",
+          "repo": "soar",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/soar/soar.sh",
+      "owner": "pkgforge",
+      "registration_ok": true,
+      "repo": "soar",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Sunshine",
+      "error": null,
+      "marker": {
+        "app_version": "v2026.914.233613",
+        "update_identity": "github-web:v2026.914.233613:e92cc80c16982e2eb8bf8fa6609f29290a0a4724ae8127871f431adcf346f24d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "LizardByte",
+          "repo": "Sunshine",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/sunshine/sunshine.sh",
+      "owner": "LizardByte",
+      "registration_ok": true,
+      "repo": "Sunshine",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "SuperTux",
+      "error": null,
+      "marker": {
+        "app_version": "v0.7.0",
+        "update_identity": "github-web:v0.7.0:ed23bc095acd4b36ead575de1daecc3541e75cfdd73729f0f95b48ecb7a2324d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "SuperTux",
+          "repo": "supertux",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/supertux/supertux.sh",
+      "owner": "SuperTux",
+      "registration_ok": true,
+      "repo": "supertux",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "SuperTuxKart",
+      "error": null,
+      "marker": {
+        "app_version": "1.5",
+        "update_identity": "github-web:1.5:fe3fbc3d51f5a0cb46c3d482f05ce2e8f310b9fc4976f3e388775e653174990e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "supertuxkart",
+          "repo": "stk-code",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/supertuxkart/supertuxkart.sh",
+      "owner": "supertuxkart",
+      "registration_ok": true,
+      "repo": "stk-code",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Telegraf",
+      "error": null,
+      "marker": {
+        "app_version": "v1.40.1",
+        "update_identity": "github-web:v1.40.1:1225b47ed45aef92eeab091db8a295f2a798ab4e28decfdfd1e94a23fca358f6",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "influxdata",
+          "repo": "telegraf",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/telegraf/telegraf.sh",
+      "owner": "influxdata",
+      "registration_ok": true,
+      "repo": "telegraf",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Tidal",
+      "error": null,
+      "marker": {
+        "app_version": "8.1.3",
+        "update_identity": "github-web:8.1.3:6b4eb47a34f8adb19c24c8e1f9af823c8c2d76611ddb0ebf1f7d5d707795435d",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Mastermindzh",
+          "repo": "tidal-hifi",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/tidal/tidal.sh",
+      "owner": "Mastermindzh",
+      "registration_ok": true,
+      "repo": "tidal-hifi",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "UltraStar",
+      "error": null,
+      "marker": {
+        "app_version": "v2026.9.0",
+        "update_identity": "github-web:v2026.9.0:46468b8d012155d33a7a8d85395037242f8b25cb54c012932d4813f39b11d408",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "UltraStar-Deluxe",
+          "repo": "USDX",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/usdeluxe/usdeluxe.sh",
+      "owner": "UltraStar-Deluxe",
+      "registration_ok": true,
+      "repo": "USDX",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "Vesktop",
+      "error": null,
+      "marker": {
+        "app_version": "v1.6.7",
+        "update_identity": "github-web:v1.6.7:f9ee54865c18389c0b0e42701a03d98ba1403af35fe407f5a1b3cf57bb6cb103",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Vencord",
+          "repo": "Vesktop",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/vesktop/vesktop.sh",
+      "owner": "Vencord",
+      "registration_ok": true,
+      "repo": "Vesktop",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "Warzone 2100",
+      "error": null,
+      "marker": {
+        "app_version": "4.7.0",
+        "update_identity": "github-web:4.7.0:674198e9e5a72f732276fe7f5dd94bf77050b6bd92fc4c8530c01e0045a63800",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "Warzone2100",
+          "repo": "warzone2100",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/warzone2100/warzone2100.sh",
+      "owner": "Warzone2100",
+      "registration_ok": true,
+      "repo": "warzone2100",
+      "source_group": "trusted_parent",
+      "syntax_ok": true
+    },
+    {
+      "app": "YARG",
+      "error": null,
+      "marker": {
+        "app_version": "v1.3.0",
+        "update_identity": "github-web:v1.3.0:7368cd6e9086fc884b1e9a565888283e5481056f1e510b4c38774d7944c687cf",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "YARC-Official",
+          "repo": "YARC-Launcher",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/yarg/yarg.sh",
+      "owner": "YARC-Official",
+      "registration_ok": true,
+      "repo": "YARC-Launcher",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    },
+    {
+      "app": "qBittorrent",
+      "error": null,
+      "marker": {
+        "app_version": "release-5.2.3.10",
+        "update_identity": "github-web:release-5.2.3.10:04fb67cf17de618bc30961ca196b872bf8949d3b180f8c4670b604ec65c3cb0e",
+        "update_method": "custom",
+        "upstream": {
+          "owner": "c0re100",
+          "repo": "qBittorrent-Enhanced-Edition",
+          "type": "github_release"
+        }
+      },
+      "output": "/userdata/system/add-ons/bua/updater/converted/github-web-parents/qbittorrent/qbittorrent.sh",
+      "owner": "c0re100",
+      "registration_ok": true,
+      "repo": "qBittorrent-Enhanced-Edition",
+      "source_group": "original_github_api",
+      "syntax_ok": true
+    }
+  ],
+  "targets": 38
+}

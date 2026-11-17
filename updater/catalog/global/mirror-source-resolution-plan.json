@@ -1,0 +1,117 @@
+{
+  "Android": {
+    "tracking": "upstream_vendor",
+    "family": "sourceforge",
+    "project": "blissos-x86",
+    "update_method": "custom"
+  },
+
+  "CLI Tools": {
+    "tracking": "bua_package_only",
+    "family": "bua_release_asset",
+    "update_method": "custom"
+  },
+
+  "EGGNOGG+": {
+    "tracking": "needs_vendor_research",
+    "family": "itch_or_vendor",
+    "update_method": "custom"
+  },
+
+  "Fightcade": {
+    "tracking": "upstream_vendor",
+    "family": "vendor_web",
+    "source": "https://web.fightcade.com/download/",
+    "update_method": "custom"
+  },
+
+  "Winconfig (Windows Game Fix)": {
+    "tracking": "integration_package",
+    "family": "drl_release_asset",
+    "update_method": "custom"
+  },
+
+  "Desktop For Batocera": {
+    "tracking": "bua_package_only",
+    "family": "bua_release_asset",
+    "update_method": "custom"
+  },
+
+  "Jellyfin Player": {
+    "tracking": "upstream_app",
+    "family": "github_web",
+    "owner": "jellyfin",
+    "repo": "jellyfin-media-player",
+    "update_method": "custom"
+  },
+
+  "OBS": {
+    "tracking": "upstream_app",
+    "family": "github_web",
+    "owner": "obsproject",
+    "repo": "obs-studio",
+    "update_method": "custom"
+  },
+
+  "Warzone 2100": {
+    "tracking": "upstream_app",
+    "family": "github_web",
+    "owner": "Warzone2100",
+    "repo": "warzone2100",
+    "update_method": "custom"
+  },
+
+  "YouTube": {
+    "tracking": "bua_package_only",
+    "family": "bua_release_asset",
+    "update_method": "custom"
+  },
+
+  "GParted": {
+    "tracking": "upstream_vendor",
+    "family": "vendor_web",
+    "source": "https://gparted.org/",
+    "update_method": "custom"
+  },
+
+  "Lutris": {
+    "tracking": "upstream_app",
+    "family": "github_web",
+    "owner": "lutris",
+    "repo": "lutris",
+    "update_method": "custom"
+  },
+
+  "PeaZip": {
+    "tracking": "upstream_app",
+    "family": "github_web",
+    "owner": "peazip",
+    "repo": "PeaZip",
+    "update_method": "custom"
+  },
+
+  "VLC": {
+    "tracking": "upstream_vendor",
+    "family": "vendor_web",
+    "source": "https://www.videolan.org/vlc/",
+    "update_method": "custom"
+  },
+
+  "Docker": {
+    "tracking": "bua_package_only",
+    "family": "bua_release_asset",
+    "update_method": "custom"
+  },
+
+  "F1": {
+    "tracking": "integration_package",
+    "family": "drl_release_asset",
+    "update_method": "custom"
+  },
+
+  "Desktop": {
+    "tracking": "bua_package_only",
+    "family": "bua_release_asset",
+    "update_method": "custom"
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "ambiguous": 0,
+  "other": 0,
+  "resolved": 8,
+  "results": [
+    {
+      "app": "Amazon Luna",
+      "candidates": [
+        {
+          "owner": "zencodes1",
+          "repo": "amazonluna-client",
+          "verification": {
+            "error": "HTTPError: HTTP Error 404: Not Found",
+            "ok": false,
+            "url": "https://github.com/zencodes1/amazonluna-client/releases/latest"
+          }
+        }
+      ],
+      "chosen": null,
+      "status": "unresolved",
+      "variables": {}
+    },
+    {
+      "app": "Freej2me",
+      "candidates": [
+        {
+          "owner": "DRLEdition19",
+          "repo": "batocera-unofficial-addons.add",
+          "verification": {
+            "final_url": "https://github.com/DRLEdition19/batocera-unofficial-addons.add/releases",
+            "ok": false,
+            "tag": null
+          }
+        }
+      ],
+      "chosen": null,
+      "status": "unresolved",
+      "variables": {}
+    },
+    {
+      "app": "OpenRA",
+      "candidates": [
+        {
+          "owner": "OpenRA",
+          "repo": "OpenRA",
+          "verification": {
+            "final_url": "https://github.com/OpenRA/OpenRA/releases/tag/release-20250330",
+            "ok": true,
+            "tag": "release-20250330"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "OpenRA",
+        "repo": "OpenRA",
+        "verification": {
+          "final_url": "https://github.com/OpenRA/OpenRA/releases/tag/release-20250330",
+          "ok": true,
+          "tag": "release-20250330"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "OpenRA/OpenRA"
+      }
+    },
+    {
+      "app": "OpenRGB",
+      "candidates": [],
+      "chosen": null,
+      "status": "unresolved",
+      "variables": {
+        "REPO_BASE_URL": "https://openrgb.org/releases/release_0.9/"
+      }
+    },
+    {
+      "app": "SuperTux",
+      "candidates": [
+        {
+          "owner": "SuperTux",
+          "repo": "supertux",
+          "verification": {
+            "final_url": "https://github.com/SuperTux/supertux/releases/tag/v0.7.0",
+            "ok": true,
+            "tag": "v0.7.0"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "SuperTux",
+        "repo": "supertux",
+        "verification": {
+          "final_url": "https://github.com/SuperTux/supertux/releases/tag/v0.7.0",
+          "ok": true,
+          "tag": "v0.7.0"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "SuperTux/supertux"
+      }
+    },
+    {
+      "app": "Wine Dependencies x86",
+      "candidates": [
+        {
+          "owner": "DRLEdition19",
+          "repo": "batocera.drl",
+          "verification": {
+            "error": "HTTPError: HTTP Error 404: Not Found",
+            "ok": false,
+            "url": "https://github.com/DRLEdition19/batocera.drl/releases/latest"
+          }
+        }
+      ],
+      "chosen": null,
+      "status": "unresolved",
+      "variables": {}
+    },
+    {
+      "app": "Wine Dependencies x64",
+      "candidates": [
+        {
+          "owner": "DRLEdition19",
+          "repo": "batocera.drl",
+          "verification": {
+            "error": "HTTPError: HTTP Error 404: Not Found",
+            "ok": false,
+            "url": "https://github.com/DRLEdition19/batocera.drl/releases/latest"
+          }
+        }
+      ],
+      "chosen": null,
+      "status": "unresolved",
+      "variables": {}
+    },
+    {
+      "app": "Luanti",
+      "candidates": [
+        {
+          "owner": "rollerozxa",
+          "repo": "luanti-appimage",
+          "verification": {
+            "final_url": "https://github.com/rollerozxa/luanti-appimage/releases/tag/5.17.0",
+            "ok": true,
+            "tag": "5.17.0"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "rollerozxa",
+        "repo": "luanti-appimage",
+        "verification": {
+          "final_url": "https://github.com/rollerozxa/luanti-appimage/releases/tag/5.17.0",
+          "ok": true,
+          "tag": "5.17.0"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "rollerozxa/luanti-appimage"
+      }
+    },
+    {
+      "app": "Tidal",
+      "candidates": [
+        {
+          "owner": "Mastermindzh",
+          "repo": "tidal-hifi",
+          "verification": {
+            "final_url": "https://github.com/Mastermindzh/tidal-hifi/releases/tag/8.1.3",
+            "ok": true,
+            "tag": "8.1.3"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "Mastermindzh",
+        "repo": "tidal-hifi",
+        "verification": {
+          "final_url": "https://github.com/Mastermindzh/tidal-hifi/releases/tag/8.1.3",
+          "ok": true,
+          "tag": "8.1.3"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "Mastermindzh/tidal-hifi"
+      }
+    },
+    {
+      "app": "Celeste 64",
+      "candidates": [
+        {
+          "owner": "ExOK",
+          "repo": "Celeste64",
+          "verification": {
+            "final_url": "https://github.com/ExOK/Celeste64/releases/tag/v1.1.1",
+            "ok": true,
+            "tag": "v1.1.1"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "ExOK",
+        "repo": "Celeste64",
+        "verification": {
+          "final_url": "https://github.com/ExOK/Celeste64/releases/tag/v1.1.1",
+          "ok": true,
+          "tag": "v1.1.1"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "ExOK/Celeste64"
+      }
+    },
+    {
+      "app": "Steam",
+      "candidates": [
+        {
+          "owner": "batocera-unofficial-addons",
+          "repo": "batocera-unofficial-addons",
+          "verification": {
+            "final_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/tag/AppImages",
+            "ok": true,
+            "tag": "AppImages"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "batocera-unofficial-addons",
+        "repo": "batocera-unofficial-addons",
+        "verification": {
+          "final_url": "https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/releases/tag/AppImages",
+          "ok": true,
+          "tag": "AppImages"
+        }
+      },
+      "status": "resolved",
+      "variables": {}
+    },
+    {
+      "app": "UltraStar",
+      "candidates": [
+        {
+          "owner": "UltraStar-Deluxe",
+          "repo": "USDX",
+          "verification": {
+            "final_url": "https://github.com/UltraStar-Deluxe/USDX/releases/tag/v2026.9.0",
+            "ok": true,
+            "tag": "v2026.9.0"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "UltraStar-Deluxe",
+        "repo": "USDX",
+        "verification": {
+          "final_url": "https://github.com/UltraStar-Deluxe/USDX/releases/tag/v2026.9.0",
+          "ok": true,
+          "tag": "v2026.9.0"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "UltraStar-Deluxe/USDX"
+      }
+    },
+    {
+      "app": "Raspberry Pi Imager",
+      "candidates": [
+        {
+          "owner": "raspberrypi",
+          "repo": "rpi-imager",
+          "verification": {
+            "final_url": "https://github.com/raspberrypi/rpi-imager/releases/tag/v2.0.11.1",
+            "ok": true,
+            "tag": "v2.0.11.1"
+          }
+        }
+      ],
+      "chosen": {
+        "owner": "raspberrypi",
+        "repo": "rpi-imager",
+        "verification": {
+          "final_url": "https://github.com/raspberrypi/rpi-imager/releases/tag/v2.0.11.1",
+          "ok": true,
+          "tag": "v2.0.11.1"
+        }
+      },
+      "status": "resolved",
+      "variables": {
+        "REPO": "raspberrypi/rpi-imager"
+      }
+    }
+  ],
+  "total": 13,
+  "unresolved": 5
+}

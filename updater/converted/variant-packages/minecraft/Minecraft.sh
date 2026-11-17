@@ -1,0 +1,377 @@
+#!/bin/bash
+
+# ===== BUA Minecraft variant-aware registration adapter =====
+
+bua_minecraft_identity() {
+    local variant="$1"
+
+    case "$variant" in
+
+        minecraft-lunar)
+            values="$(
+                python3 \
+                  /userdata/system/add-ons/bua/updater/catalog/minecraft_lunar_identity.py
+            )" || return 1
+
+            version="$(
+                printf '%s\n' "$values" |
+                    sed -n '1p'
+            )"
+
+            identity="$(
+                printf '%s\n' "$values" |
+                    sed -n '2p'
+            )"
+
+            printf '%s\n' \
+                "$version" \
+                "$identity" \
+                "vendor_api" \
+                "Lunar Client" \
+                "api.lunarclientprod.com"
+            ;;
+
+        minecraft-eaglercraft)
+            values="$(
+                python3 \
+                  /userdata/system/add-ons/bua/updater/catalog/integration_artifact_identity.py \
+                  /userdata/system/add-ons/bua/updater/catalog/global/integration-configs/minecraft-eaglercraft.json
+            )" || return 1
+
+            printf '%s\n' \
+                "$(printf '%s\n' "$values" | sed -n '1p')" \
+                "$(printf '%s\n' "$values" | sed -n '2p')" \
+                "integration_asset" \
+                "BUA" \
+                "minecraft-eaglercraft"
+            ;;
+
+        minecraft-java-controller)
+            values="$(
+                python3 \
+                  /userdata/system/add-ons/bua/updater/catalog/integration_artifact_identity.py \
+                  /userdata/system/add-ons/bua/updater/catalog/global/integration-configs/minecraft-java-controller.json
+            )" || return 1
+
+            printf '%s\n' \
+                "$(printf '%s\n' "$values" | sed -n '1p')" \
+                "$(printf '%s\n' "$values" | sed -n '2p')" \
+                "integration_asset" \
+                "BUA" \
+                "minecraft-java-controller"
+            ;;
+
+        minecraft-bedrock)
+            values="$(
+                python3 \
+                  /userdata/system/add-ons/bua/updater/catalog/minecraft_bedrock_identity.py
+            )" || return 1
+
+            printf '%s\n' \
+                "$(printf '%s\n' "$values" | sed -n '1p')" \
+                "$(printf '%s\n' "$values" | sed -n '2p')" \
+                "github_release" \
+                "minecraft-linux" \
+                "appimage-builder"
+            ;;
+
+        *)
+            echo \
+              "Minecraft variant is unknown; refusing to guess." \
+              >&2
+            return 2
+            ;;
+    esac
+}
+
+
+bua_minecraft_register_variant() {
+    local variant="$1"
+
+    if ! declare -F bua_register >/dev/null 2>&1; then
+        return 0
+    fi
+
+    values="$(
+        bua_minecraft_identity "$variant"
+    )" || return $?
+
+    version="$(
+        printf '%s\n' "$values" |
+            sed -n '1p'
+    )"
+
+    identity="$(
+        printf '%s\n' "$values" |
+            sed -n '2p'
+    )"
+
+    upstream_type="$(
+        printf '%s\n' "$values" |
+            sed -n '3p'
+    )"
+
+    owner="$(
+        printf '%s\n' "$values" |
+            sed -n '4p'
+    )"
+
+    repo="$(
+        printf '%s\n' "$values" |
+            sed -n '5p'
+    )"
+
+    bua_register \
+        "$version" \
+        "$upstream_type" \
+        "$owner" \
+        "$repo" \
+        "custom" \
+        "" \
+        "" \
+        "" \
+        "$identity" \
+        "$variant"
+}
+
+
+if [[ "${BUA_REGISTRATION_ONLY:-0}" == "1" ]]; then
+    variant="${BUA_INSTALLED_VARIANT:-}"
+
+    if [ -z "$variant" ]; then
+        echo \
+          "Minecraft installed variant is unknown; no update comparison performed." \
+          >&2
+        exit 2
+    fi
+
+    bua_minecraft_register_variant \
+        "$variant"
+
+    exit $?
+fi
+
+# ===== end BUA Minecraft variant-aware registration adapter =====
+
+
+# Ensure the dialog utility is installed
+if ! command -v dialog &> /dev/null; then
+    echo "Error: 'dialog' is not installed. Install it and re-run the script."
+    exit 1
+fi
+
+# Step 1: Display a dialog menu for the user to select Minecraft Edition
+edition_choice=$(dialog --stdout --clear --backtitle "Minecraft Launcher Setup" \
+    --title "Select Minecraft Edition" \
+    --menu "Choose your Minecraft Edition:" 15 50 4 \
+    1 "Java Edition (Lunar Client)" \
+    2 "Eaglercraft (Online and FREE)" \
+    3 "Official Java Edition (Controller Support)" \
+    4 "Bedrock Edition")
+
+clear
+
+# Check if the user pressed Cancel
+if [ -z "$edition_choice" ]; then
+    echo "No choice made. Exiting."
+    exit 1
+fi
+
+# Step 2: Detect system architecture
+echo "Detecting system architecture..."
+arch=$(uname -m)
+
+# Initialize variables
+appimage_url=""
+app_dir=""
+
+# Step 3: Set the download URL based on the user's choice and architecture
+if [ "$edition_choice" == "1" ]; then
+    if [ "$arch" == "x86_64" ]; then
+        echo "Java Edition selected for x86_64."
+        appimage_url="https://api.lunarclientprod.com/site/download?os=linux"
+        app_dir="/userdata/system/add-ons/minecraft/minecraftjava"
+    else
+        echo "Java Edition is not supported on this architecture: $arch. Exiting."
+        exit 1
+    fi
+
+elif [ "$edition_choice" == "2" ]; then
+    echo "Eaglercraft selected."
+    appimage_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/minecraft/minecraft_3.sh"
+    app_dir="/userdata/system/add-ons/minecraft/minecraft-eaglercraft"
+
+elif [ "$edition_choice" == "3" ]; then
+    echo "Official Java Edition (controller support) selected."
+    appimage_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/minecraft/minecraft_2.sh"
+    app_dir="/userdata/system/add-ons/minecraft"
+
+elif [ "$edition_choice" == "4" ]; then
+    echo "Bedrock Edition selected (BUA installer)."
+    # Use BUA Bedrock installer script instead of a hard-coded AppImage
+    appimage_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main/minecraft/bedrock.sh"
+fi
+
+# Step 4: Download or Run the AppImage / installer script
+if [ "$edition_choice" == "2" ] || [ "$edition_choice" == "3" ] || [ "$edition_choice" == "4" ]; then
+    echo "Running the script directly from $appimage_url..."
+    curl -L "$appimage_url" | bash
+    if [ $? -ne 0 ]; then
+        echo "Failed to execute the script from $appimage_url. Exiting."
+        exit 1
+    fi
+else
+    echo "Downloading AppImage from $appimage_url..."
+    mkdir -p "$app_dir"
+    wget -q --show-progress -O "$app_dir/Minecraft_Launcher.AppImage" "$appimage_url"
+
+    if [ $? -ne 0 ]; then
+        echo "Failed to download the AppImage. Exiting."
+        exit 1
+    fi
+
+    chmod a+x "$app_dir/Minecraft_Launcher.AppImage"
+    echo "AppImage downloaded and marked as executable."
+fi
+
+# Step 5: Create persistent configuration and log directories (only for 1 & 3)
+mkdir -p /userdata/system/logs
+
+if [ "$edition_choice" == "1" ] || [ "$edition_choice" == "3" ]; then
+    mkdir -p "$app_dir/minecraft-config"
+
+    # Create the Launcher Scripts
+    mkdir -p /userdata/roms/ports
+
+    if [ "$edition_choice" == "1" ]; then
+        echo "Creating Java Edition Launcher script in Ports..."
+        cat << EOF > "/userdata/roms/ports/MinecraftJava.sh"
+#!/bin/bash
+
+# Environment setup
+export \$(cat /proc/1/environ | tr '\0' '\n')
+export DISPLAY=:0.0
+export HOME="$app_dir"
+
+# Directories and file paths
+app_dir="$app_dir"
+app_image="\${app_dir}/Minecraft_Launcher.AppImage"
+log_dir="/userdata/system/logs"
+log_file="\${log_dir}/minecraft-java.log"
+
+# Ensure log directory exists
+mkdir -p "\${log_dir}"
+
+# Append all output to the log file
+exec &> >(tee -a "\${log_file}")
+echo "\$(date): Launching Minecraft Java Edition"
+
+# Launch Minecraft Launcher AppImage
+if [ -x "\${app_image}" ]; then
+    cd "\${app_dir}"
+    ./Minecraft_Launcher.AppImage --no-sandbox > "\${log_file}" 2>&1
+    echo "Minecraft Launcher exited."
+else
+    echo "AppImage not found or not executable."
+    exit 1
+fi
+EOF
+        chmod +x "/userdata/roms/ports/MinecraftJava.sh"
+
+    elif [ "$edition_choice" == "3" ]; then
+        echo "Creating Minecraft Launcher script in Ports..."
+        cat << EOF > "/userdata/roms/ports/Minecraft.sh"
+#!/bin/bash
+
+# Environment setup
+export \$(cat /proc/1/environ | tr '\0' '\n')
+export DISPLAY=:0.0
+export HOME="$app_dir"
+
+# Directories and file paths
+app_dir="$app_dir"
+app_image="\${app_dir}/Minecraft"
+log_dir="/userdata/system/logs"
+log_file="\${log_dir}/minecraft-custom.log"
+
+# Ensure log directory exists
+mkdir -p "\${log_dir}"
+
+# Append all output to the log file
+exec &> >(tee -a "\${log_file}")
+echo "\$(date): Launching Minecraft"
+
+# Launch Minecraft Launcher binary
+if [ -x "\${app_image}" ]; then
+    cd "\${app_dir}"
+    ./Minecraft > "\${log_file}" 2>&1
+    echo "Minecraft Launcher exited."
+else
+    echo "AppImage/binary not found or not executable."
+    exit 1
+fi
+EOF
+        chmod +x "/userdata/roms/ports/Minecraft.sh"
+    fi
+fi
+
+# Step 6: Add Entry to Ports Menu (only for 1 & 3; 2 & 4 handle their own entries)
+if [ "$edition_choice" == "1" ] || [ "$edition_choice" == "3" ]; then
+    if ! command -v xmlstarlet &> /dev/null; then
+        echo "Error: xmlstarlet is not installed. Install it and re-run the script."
+        exit 1
+    fi
+
+    curl http://127.0.0.1:1234/reloadgames
+
+    if [ "$edition_choice" == "1" ]; then
+        echo "Adding Minecraft Java Edition to Ports menu..."
+        logo_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/minecraft/extra/minecraft-java-logo.png"
+        entry_name="Minecraft Java Edition"
+        script_name="MinecraftJava.sh"
+    else
+        echo "Adding Minecraft to Ports menu..."
+        logo_url="https://github.com/batocera-unofficial-addons/batocera-unofficial-addons/raw/main/minecraft/extra/minecraft-logo.png"
+        entry_name="Minecraft"
+        script_name="Minecraft.sh"
+    fi
+
+    mkdir -p "/userdata/roms/ports/images"
+    curl -L -o "/userdata/roms/ports/images/$entry_name-logo.png" "$logo_url"
+
+    xmlstarlet ed -s "/gameList" -t elem -n "game" -v "" \
+      -s "/gameList/game[last()]" -t elem -n "path" -v "./$script_name" \
+      -s "/gameList/game[last()]" -t elem -n "name" -v "$entry_name" \
+      -s "/gameList/game[last()]" -t elem -n "image" -v "./images/$entry_name-logo.png" \
+      /userdata/roms/ports/gamelist.xml > /userdata/roms/ports/gamelist.xml.tmp && mv /userdata/roms/ports/gamelist.xml.tmp /userdata/roms/ports/gamelist.xml
+
+    curl http://127.0.0.1:1234/reloadgames
+fi
+
+echo
+
+case "${edition_choice:-}" in
+    1)
+        BUA_MINECRAFT_SELECTED_VARIANT="minecraft-lunar"
+        ;;
+    2)
+        BUA_MINECRAFT_SELECTED_VARIANT="minecraft-eaglercraft"
+        ;;
+    3)
+        BUA_MINECRAFT_SELECTED_VARIANT="minecraft-java-controller"
+        ;;
+    4)
+        BUA_MINECRAFT_SELECTED_VARIANT="minecraft-bedrock"
+        ;;
+    *)
+        BUA_MINECRAFT_SELECTED_VARIANT=""
+        ;;
+esac
+
+if [ -n "$BUA_MINECRAFT_SELECTED_VARIANT" ]; then
+    bua_minecraft_register_variant \
+        "$BUA_MINECRAFT_SELECTED_VARIANT" || true
+fi
+
+echo "Installation complete! You can now launch Minecraft from the Ports menu (where applicable)."
+

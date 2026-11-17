@@ -1,0 +1,10 @@
+{
+  "package_id": "minecraft-eaglercraft",
+  "display_version": "rolling",
+  "artifacts": [
+    {
+      "kind": "small",
+      "url": "https://raw.githubusercontent.com/batocera-unofficial-addons/batocera-unofficial-addons/main/minecraft/minecraft_3.sh"
+    }
+  ]
+}
