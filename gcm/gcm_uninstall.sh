@@ -2,7 +2,7 @@
 # Uninstall Game Content Manager (GCM). Games, saves and emulator settings are kept.
 
 work_dir="/userdata/system/add-ons/game-content-manager/release"
-release_url="https://github.com/klova5/Game-Content-Manager-GCM-for-Batocera/releases/download/GCM-v3.6-preview-3/gcm-v3.6-preview-3-batocera44-x86_64.zip"
+release_url="https://github.com/klova5/Game-Content-Manager-GCM-for-Batocera/releases/download/GCM-v3.6-preview-4/gcm-v3.6-preview-4-batocera44-x86_64.zip"
 
 if [ ! -f "$work_dir/gcm-v3.6-preview/uninstall.sh" ]; then
     mkdir -p "$work_dir"
