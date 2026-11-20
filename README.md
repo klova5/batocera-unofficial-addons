@@ -28,8 +28,12 @@ one pinned in `install_x86_new.sh`.
 1. Build, then create the release `updater-v2` on
    batocera-unofficial-addons/batocera-unofficial-addons and upload
    `dist/bua-updater-x86_64.tar.gz` as its asset.
-2. A new package version: bump the tag (`updater-v2`, ...), and update
-   `BUA_UPDATER_URL` and `BUA_UPDATER_SHA256` in `install_x86_new.sh`.
+2. A new package version: publish it under a new tag (`updater-v3`, ...),
+   then update the URL and SHA256 in both places in the BUA repo:
+   `BUA_UPDATER_URL` / `BUA_UPDATER_SHA256` in `app/install_x86_new.sh`
+   and `UPDATER_PACKAGE_URL` / `UPDATER_PACKAGE_SHA256` in
+   `app/bua_installerx86.py`. Installed copies update the next time BUA
+   opens.
 
 ## Contents
 
