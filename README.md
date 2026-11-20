@@ -6,7 +6,7 @@ version-aware Updater screen to Batocera Unofficial Add-ons (PR #166).
 The BUA repository itself only carries two small changes:
 
 - `app/install_x86_new.sh` downloads this asset from the official release
-  `updater-v1` and installs it only if its SHA256 matches the one pinned
+  `updater-v2` and installs it only if its SHA256 matches the one pinned
   in the script.
 - `app/bua_installerx86.py` gets three hook points and
   `load_updater_package()`, which loads `updater/bua_updater_overlay.py`
@@ -25,7 +25,7 @@ one pinned in `install_x86_new.sh`.
 
 ## Release
 
-1. Build, then create the release `updater-v1` on
+1. Build, then create the release `updater-v2` on
    batocera-unofficial-addons/batocera-unofficial-addons and upload
    `dist/bua-updater-x86_64.tar.gz` as its asset.
 2. A new package version: bump the tag (`updater-v2`, ...), and update

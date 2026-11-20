@@ -568,6 +568,28 @@ def patch_ryujinx_generator():
 
         changed = True
 
+    # Ryujinx needs vm.max_map_count >= 524288. Linux defaults to 65530,
+    # and Ryujinx's own prompt to raise it cannot open on Batocera, so
+    # newer builds crash with "Failed to create RW mapping for RX memory".
+    # Raise it before every launch (BUA_RYUJINX_MAP_COUNT_V1).
+    map_marker = "BUA_RYUJINX_MAP_COUNT_V1"
+    map_anchor = "        st = os.stat(ryujinx_extracted)\n"
+    if map_marker not in source:
+        if map_anchor not in source:
+            raise RuntimeError("Ryujinx map-count anchor not found")
+        map_block = """        # BUA_RYUJINX_MAP_COUNT_V1: Ryujinx needs vm.max_map_count >= 524288.
+        try:
+            with open("/proc/sys/vm/max_map_count") as map_file:
+                map_count = int(map_file.read().strip())
+            if map_count < 524288:
+                with open("/proc/sys/vm/max_map_count", "w") as map_file:
+                    map_file.write("524288")
+        except (OSError, ValueError):
+            pass
+"""
+        source = source.replace(map_anchor, map_block + map_anchor, 1)
+        changed = True
+
     if not changed:
         return False
 
