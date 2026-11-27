@@ -31,7 +31,23 @@ SUMMARY_OUT = OUTDIR / "global-update-summary.txt"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 CACHEDIR.mkdir(parents=True, exist_ok=True)
 
-text = FRONTEND.read_text(errors="replace")
+# BUA_MANIFEST_NO_LOCAL_FRONTEND_V1: BUA runs bua_installerx86.py straight
+# from GitHub, so there is normally no local copy at FRONTEND. Use it when
+# present; otherwise start from an empty catalog and let extract_apps() pull
+# the upstream script and apps_x86.json. Reading FRONTEND unconditionally
+# made every on-device rebuild exit 1, so apps added after the package was
+# built never got a manifest entry and the Updater could not tell their
+# versions.
+# The form apps_x86.json uses, so installer_path is filled in as before.
+DEFAULT_BUA_BASE_URL = (
+    "https://github.com/"
+    "batocera-unofficial-addons/batocera-unofficial-addons/raw/refs/heads/main"
+)
+
+try:
+    text = FRONTEND.read_text(errors="replace")
+except OSError:
+    text = ""
 tree = ast.parse(text)
 
 
@@ -67,7 +83,7 @@ def get_bua_base_url():
     node = find_assignment("BUA_BASE_URL")
 
     if node is None:
-        raise RuntimeError("BUA_BASE_URL assignment not found")
+        return DEFAULT_BUA_BASE_URL
 
     value = literal_string(node)
 
